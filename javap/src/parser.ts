@@ -1,6 +1,6 @@
 // adapted from  https://github.com/villadora/java-class-parser/blob/master/index.js
 
-import { JavaAst, ClassDeclaration, Scope, Config } from './types';
+import { JavaAst, ClassDeclaration, Scope, Config } from '../types';
 
 /**
  * Returns a simplified AST structure of given javap output. See estreeParser for ast compatible with https://github.com/estree/estree

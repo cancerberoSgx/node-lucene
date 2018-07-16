@@ -191,7 +191,8 @@ public class JavapJsonOutput {
     return outClasses;
   }
 
-  public static String toJSON(List<OutClass> outClasses) throws Exception {
+  public static String javapJson(String[] jars, String[] classes) throws Exception {
+    List<OutClass> outClasses = javap(jars, classes);
     Gson gson = new Gson();
     return new Gson().toJson(outClasses);
   }
@@ -203,14 +204,9 @@ public class JavapJsonOutput {
         System.out.println(
             "Incorrect call you must pass comma separated class names as first argument and optionally pass .jar comma-separated files paths as second argument, Example: \njava -cp java-src JavapJsonOutput java.lang.String,java.util.List libs/foo.jar,libs/bar.jar");
       }
-      String[] jars = {};
-      if (args.length > 1) {
-        jars = args[1].split(",");
-
-      }
+      String[] jars = args.length > 1 ? args[1].split(",") : new String[0];
       String[] classes = args[0].split(",");
-      List<OutClass> outClasses = javap(jars, classes);
-      System.out.println(toJSON(outClasses));
+      System.out.println(javapJson(jars, classes));
     } catch (Exception e) {
       e.printStackTrace();
       System.exit(1);
