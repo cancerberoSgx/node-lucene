@@ -17,10 +17,13 @@ export interface ClassDeclaration {
 } // TODO
 
 export interface Config {
+  /** paths or globs to jars */ 
   classpath: string[]
-  /** class names or name globs to generate ast from */
   classes?: string[]
-  allClasses? : boolean
+  /** generate all classes of given ClassPath */
+  allClasses?: boolean
+  /** callback called with resulting ast when finish */
   fn?: (ast: JavaAst) => void
-
+  /** if true wi take javap output for stdin */
+  stdin?: boolean
 }
