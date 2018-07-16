@@ -6,7 +6,9 @@
   "bindings": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "watch": "tsc --watch",
+    "prepare": "npm run build",
+    "test": "jest"
   },
   "keywords": [
     "java",
@@ -18,7 +20,8 @@
   "repository": "https://github.com/cancerberoSgx/java2js",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0"
+    "java": "^0.10.0",
+    "javap-parser": "file:../javap-parser"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",

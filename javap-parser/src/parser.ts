@@ -12,7 +12,7 @@ export function parse(output: string): JavaAst  {
 
   while(or) {
     const scope = (or[1] || 'package') as Scope;
-    const describe = or[2];
+    const modifiers = or[2];
     const type = or[3];
     const className = or[4];
     const exts = or[5];
@@ -22,7 +22,7 @@ export function parse(output: string): JavaAst  {
       name: className,
       type: type,
       scope: scope,
-      describe: (describe || '').trim(),
+      modifiers: (modifiers || '').trim(),
       'extends': exts ? exts.split(',').map(trimStr) : [],
       'implements': impls ? impls.split(',').map(trimStr) : [],
       constructors: [],
@@ -36,14 +36,14 @@ export function parse(output: string): JavaAst  {
         signature = fieldRegex.exec(member);
         if (signature) {
           const scope = signature[1] || 'package';
-          const describe = (signature[2] || '').trim();
+          const modifiers = (signature[2] || '').trim();
           const type = signature[3];
           const name = signature[4];
           clz.fields.push({
             name: name,
             scope: scope,
             type: type,
-            describe: describe
+            modifiers: modifiers
           });
         }
 
@@ -51,7 +51,7 @@ export function parse(output: string): JavaAst  {
       }
 
       const scope = signature[1] || 'package';
-      const describe = (signature[2] || '').trim();
+      const modifiers = (signature[2] || '').trim();
       const retVal = signature[3];
       const name = signature[4];
       const args = signature[5];
@@ -59,7 +59,7 @@ export function parse(output: string): JavaAst  {
         const cons = {
           scope: scope,
           name: name,
-          describe: describe,
+          modifiers: modifiers,
           args: args ? args.split(',').map(trimStr) : []
         };
 
@@ -67,7 +67,7 @@ export function parse(output: string): JavaAst  {
       }else {
         const m = {
           scope: scope,
-          describe: describe,
+          modifiers: modifiers,
           ret: retVal,
           name: name,
           args: args ? args.split(',').map(trimStr) : []

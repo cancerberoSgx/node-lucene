@@ -6,6 +6,7 @@
   "bindings": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "watch": "tsc --watch",
     "prepare": "npm run build",
     "test": "jest"
   },

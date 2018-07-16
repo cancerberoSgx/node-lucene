@@ -7,7 +7,7 @@ export interface ClassDeclaration{
   name: string
   type: string
   scope: Scope
-  describe: string
+  modifiers: string
   extends: string[]
   implements: string[]
   constructors: MethodLikeSignature[]

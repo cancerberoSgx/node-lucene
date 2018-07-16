@@ -2,3 +2,5 @@ node_modules
 dist/__tests__
 research
 tsconfig.json
+
+src
