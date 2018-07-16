@@ -1,8 +1,9 @@
 {
-  "name": "javap-parser",
+  "name": "javap",
   "version": "0.0.1",
-  "description": "using javap to generate typescript interfaces of given classes",
+  "description": "javap command execution and output string parser to a json AST like structure from given .jar / .class files and class names",
   "main": "dist/src/index.js",
+  "bin": "bin/javap.js",
   "bindings": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
@@ -17,16 +18,18 @@
     "node"
   ],
   "author": "Sebastian Gurin",
-  "repository": "https://github.com/cancerberoSgx/javap-parser",
+  "repository": "https://github.com/cancerberoSgx/javap",
   "license": "MIT",
   "dependencies": {
     "get-stdin": "^6.0.0",
-    "java": "^0.10.0"
+    "java": "^0.10.0",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
     "@types/node": "^10.3.6",
     "typescript": "2.9.2",
+    "@types/minimist": "^1.2.0",
     "jest": "^23.3.0",
     "ts-jest": "^23.0.0",
     "ts-loader": "^4.4.2",

@@ -8,8 +8,8 @@
     "path": "java2ts"
   },
   {
-    "name": "javap-parser",
-    "path": "javap-parser"
+    "name": "javap",
+    "path": "javap"
   }
 
 ]

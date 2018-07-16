@@ -1,9 +1,14 @@
 generate javascript implementations of given Java classes of .jars / .class files based on node-java and optionally typescript interfaces / classes
 
+Generates a TypeScript project 
 very WIP - Research
 
 
 # Initial research Notes
+
+# Decisions
+
+ * Should we generate .ts files contents strings or estree AST (https://github.com/estree/formal/tree/master/formal-data/typescript) ? for now we generate content as strings since with that we can parse it to estree AST
 
 ## output project structure  different alternatives
 
@@ -16,6 +21,7 @@ initially default impl is the later
 
 # TODO
 
+ * User able to configure output type "only interfaces", "only interfaces one file", "interfaces and node-java implementations"
  * references to other types like "returns": "org.foo.Bar" - need to add imports and exports . 
  * references to other types: What happens reference is external ? should we create it or warn the user - configurable ?
  * java natives (java.lang.String) translated to js natives

@@ -1,17 +1,19 @@
-javap string parser to a json AST like structure from given .jar / .class files and class names 
+javap command execution and output string parser to a json AST like structure from given .jar and class names 
 
 # Install
 ```sh
-npm install javap-parser [--global]
+npm install javap [--global]
 ```
 
 # CLI Usage
 
+
+## Run javap manully and pass stdout
+
 User use javap directly and pass output to stdin:
 
 ```sh
-javap -s -classpath lucene-lib/lucene-core-7.4.0.jar org.apache.lucene.store.RAMDirectory > node javap-parser > parsed.json
-
+javap -s -classpath lucene-lib/lucene-core-7.4.0.jar org.apache.lucene.store.RAMDirectory | javap 
 ```
 
 # Node.js API
@@ -19,6 +21,7 @@ javap -s -classpath lucene-lib/lucene-core-7.4.0.jar org.apache.lucene.store.RAM
 User use javap directly and pass output to stdin:
 
 ```sh
+
 
 ```
 
