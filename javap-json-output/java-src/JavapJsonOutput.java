@@ -1,18 +1,22 @@
 import java.lang.reflect.*;
-// import java.awt.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import com.google.gson.*;
 
+
+// TODO: better test typeparameters
+// TODO: inner classes
+// TODO: annotations ? 
 public class JavapJsonOutput {
 
-
-  //Utilities to be able to add .jars dyamically to classpath
+  // Utilities to be able to add .jars dyamically to classpath
   public static void addFile(String s) throws IOException {
     addURL(new File(s).toURI().toURL());
   }
+
   private static final Class<?>[] parameters = new Class[] { URL.class };
+
   public static void addURL(URL u) throws IOException {
     URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
     Class<?> sysclass = URLClassLoader.class;
@@ -25,8 +29,6 @@ public class JavapJsonOutput {
       throw new IOException("Error, could not add URL to system classloader");
     }
   }
-
-
 
   public List<String> getModifiers(int m) {
     List<String> list = new ArrayList<String>();
@@ -54,19 +56,19 @@ public class JavapJsonOutput {
 
   public OutSuperClass getSuperClass() {
     Class superclass = this.c.getSuperclass();
-    if(superclass==null){
+    if (superclass == null) {
       return null;
     }
     OutSuperClass s = new OutSuperClass();
-      s.name = superclass.getName();
-      s.typeParameters = this.getTypeParameters(superclass.getTypeParameters());
+    s.name = superclass.getName();
+    s.typeParameters = this.getTypeParameters(superclass.getTypeParameters());
     return s;
   }
 
   public List<OutImplementedInterface> getInterfaces() {
     List<OutImplementedInterface> list = new ArrayList<OutImplementedInterface>();
     Class inter[] = this.c.getInterfaces();
-    for (int i = 0; i < inter.length; i++)   {
+    for (int i = 0; i < inter.length; i++) {
       OutImplementedInterface interf = new OutImplementedInterface();
       list.add(interf);
       interf.name = inter[i].getName();
@@ -128,15 +130,18 @@ public class JavapJsonOutput {
     return list;
 
   }
+
   public OutType getType(Type c) {
     return this.getType(c, null);
   }
+
   public OutType getType(Type c, Class<?> classType) {
     OutType t = new OutType();
-    t.name = classType ==null ? null : classType.getName();
+    t.name = classType == null ? null : classType.getName();
     t.text = c.getTypeName();
     return t;
   }
+
   public List<OutTypeParameter> getTypeParameters(TypeVariable[] t) {
     List<OutTypeParameter> list = new ArrayList<OutTypeParameter>();
     for (int i = 0; i < t.length; i++) {
@@ -145,8 +150,8 @@ public class JavapJsonOutput {
       tp.name = t[i].getTypeName();
       Type[] bounds = t[i].getBounds();
       tp.bounds = new ArrayList<OutType>();
-      if(bounds.length>0 && (bounds.length>1||bounds[0].getTypeName()!="java.lang.Object")){
-        for(int k = 0; k<bounds.length; k++){
+      if (bounds.length > 0 && (bounds.length > 1 || bounds[0].getTypeName() != "java.lang.Object")) {
+        for (int k = 0; k < bounds.length; k++) {
           tp.bounds.add(this.getType(bounds[k]));
         }
       }
@@ -172,39 +177,47 @@ public class JavapJsonOutput {
     return outClass;
   }
 
-  public static void main(String s[]) {
+  public static List<OutClass> javap(String[] jars, String[] classes) throws Exception {
+    for (int i = 0; i < jars.length; i++) {
+      String jar = jars[i];
+      addFile(jar);
+    }
+    List<OutClass> outClasses = new ArrayList<OutClass>();
+    for (int i = 0; i < classes.length; i++) {
+      String className = classes[i];
+      OutClass c = new JavapJsonOutput().buildClass(className);
+      outClasses.add(c);
+    }
+    return outClasses;
+  }
+
+  public static String toJSON(List<OutClass> outClasses) throws Exception {
+    Gson gson = new Gson();
+    return new Gson().toJson(outClasses);
+  }
+
+  public static void main(String args[]) {
     try {
 
-      if (s.length < 2) {
+      if (args.length < 2) {
         System.out.println(
             "Incorrect call you must pass comma separated class names as first argument and optionally pass .jar comma-separated files paths as second argument, Example: \njava -cp java-src JavapJsonOutput java.lang.String,java.util.List libs/foo.jar,libs/bar.jar");
       }
-      if (s.length > 1) {
-        String[] jars = s[1].split(",");
-        for (int i = 0; i < jars.length; i++) {
-          String jar = jars[i];
-          addFile(jar);
-        }
-      }
-      List<OutClass> outClasses = new ArrayList<OutClass>();
-      String[] classes = s[0].split(",");
-      for (int i = 0; i < classes.length; i++) {
-        String className = classes[i];
-        OutClass c = new JavapJsonOutput().buildClass(className);
-        outClasses.add(c);
-      }
+      String[] jars = {};
+      if (args.length > 1) {
+        jars = args[1].split(",");
 
-      Gson gson = new Gson();
-      System.out.println(gson.toJson(outClasses));
+      }
+      String[] classes = args[0].split(",");
+      List<OutClass> outClasses = javap(jars, classes);
+      System.out.println(toJSON(outClasses));
     } catch (Exception e) {
       e.printStackTrace();
       System.exit(1);
     }
   }
 
-
   // Types of the generaeted "AST"
-
 
   static class BaseNode {
     String name;
@@ -226,7 +239,8 @@ public class JavapJsonOutput {
   static class OutImplementedInterface extends BaseNode {
     List<OutTypeParameter> typeParameters;
 
-  } 
+  }
+
   static class OutType {
     String name;
     String text;
@@ -237,11 +251,12 @@ public class JavapJsonOutput {
     List<OutType> bounds;
     String name;
   }
+
   static class OutSuperClass extends BaseNode {
 
     List<OutTypeParameter> typeParameters;
   }
-  
+
   static class OutField extends BaseNode {
     List<String> modifiers;
   }
