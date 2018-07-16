@@ -1,0 +1,32 @@
+{
+  "name": "node-lucene",
+  "version": "0.0.1",
+  "description": "nodejs API and bindings to apache lucene",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "lucene",
+    "search",
+    "index"
+  ],
+  "author": "Sebastian Gurin",
+  "repository": "https://github.com/cancerberoSgx/Yarlasip",
+  "license": "MIT",
+  "dependencies": {
+    "java": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.4",
+    "@types/jasmine": "^2.8.8",
+    "@types/node": "^10.3.6",
+    "typescript": "2.9.2",
+    "jasmine": "^3.1.0",
+    "jest": "^23.3.0",
+    "ts-jest": "^23.0.0",
+    "ts-loader": "^4.4.2",
+    "ts-node": "^6.1.0"
+  }
+}
