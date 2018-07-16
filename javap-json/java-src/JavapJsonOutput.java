@@ -65,11 +65,11 @@ public class JavapJsonOutput {
     return s;
   }
 
-  public List<OutImplementedInterface> getInterfaces() {
-    List<OutImplementedInterface> list = new ArrayList<OutImplementedInterface>();
+  public List<OutSuperClass> getInterfaces() {
+    List<OutSuperClass> list = new ArrayList<OutSuperClass>();
     Class inter[] = this.c.getInterfaces();
     for (int i = 0; i < inter.length; i++) {
-      OutImplementedInterface interf = new OutImplementedInterface();
+      OutSuperClass interf = new OutSuperClass();
       list.add(interf);
       interf.name = inter[i].getName();
       interf.typeParameters = this.getTypeParameters(inter[i].getTypeParameters());
@@ -180,7 +180,7 @@ public class JavapJsonOutput {
   public static List<OutClass> javap(String[] jars, String[] classes) throws Exception {
     for (int i = 0; i < jars.length; i++) {
       String jar = jars[i];
-      addFile(jar);
+      // addFile(jar);
     }
     List<OutClass> outClasses = new ArrayList<OutClass>();
     for (int i = 0; i < classes.length; i++) {
@@ -218,6 +218,8 @@ public class JavapJsonOutput {
   static class BaseNode {
     String name;
     OutType type;
+    List<OutTypeParameter> typeParameters;
+    List<String> modifiers;
   }
 
   static class OutClass extends BaseNode {
@@ -226,14 +228,8 @@ public class JavapJsonOutput {
     List<OutField> fields;
     List<OutMethod> constructors;
     OutSuperClass superClass;
-    List<OutImplementedInterface> interfaces;
-    List<String> modifiers;
-    List<OutTypeParameter> typeParameters;
+    List<OutSuperClass> interfaces;
     String genericString;
-  }
-
-  static class OutImplementedInterface extends BaseNode {
-    List<OutTypeParameter> typeParameters;
   }
 
   static class OutType {
@@ -247,20 +243,16 @@ public class JavapJsonOutput {
   }
 
   static class OutSuperClass extends BaseNode {
-    List<OutTypeParameter> typeParameters;
   }
 
   static class OutField extends BaseNode {
-    List<String> modifiers;
   }
 
   static class OutMethod extends BaseNode {
-    List<String> modifiers;
     List<OutParam> parameters;
-    List<OutTypeParameter> typeParameters;
   }
 
   static class OutParam extends BaseNode {
-    List<String> modifiers;
   }
+  
 }

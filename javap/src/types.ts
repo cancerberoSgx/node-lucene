@@ -1,50 +1,52 @@
 
 export interface Config {
-  /** paths or globs to jars */ 
-  classPath?: string[]
+  /** paths or globs to jars */
+  jars?: string[]
   classes?: string[]
-  /** generate all classes of given ClassPath */
-  allClasses?: boolean
+  // /** generate all classes of given ClassPath */
+  // allClasses?: boolean
   /** callback called with resulting ast when finish */
   fn?: (ast: JavaAst) => void
-  /** if true wi take javap output for stdin */
-  stdin?: boolean
+  // /** if true wi take javap output for stdin */
+  // stdin?: boolean
   /** write ast json to file. If not provided will print json to stdout */
   output?: string
 }
 
 
 
-export type JavaAst = { [className: string]: ClassDeclaration } // TODO
-export interface Member {
-  name: string
-  typeParameters?: string,
-  scope: Scope
-  type: string
-  modifiers: string
-}
-export interface Method extends Member {
-  
-}
 
-export interface Field extends Member {
-
+export type Modifier = ('public' | 'protected' | 'private' | 'package' | 'static' | 'final')
+export type JavaAst = ClassDeclaration[] 
+export interface Method extends BaseNode {
+  parameters: Param[]
 }
-// export type FieldSignature = any//TODO
-export type Scope = string//'public' | 'protected' | 'private' | 'package'
-
-export interface ClassDeclaration extends Member {
-  name: string
-  type: 'class'|'interface',
-  extends: string[]
-  implements: string[]
+export interface Field extends BaseNode {
+}
+export interface Param extends BaseNode {
+}
+export interface SuperClass extends BaseNode {
+}
+export interface ClassDeclaration extends BaseNode {
+  superClass: SuperClass[]
+  interfaces: SuperClass[]
   constructors: Method[]
   fields: Field[]
   methods: Method[]
-} // TODO
-
-
-
+  isInterface: boolean
+  genericString: string
+}
+export interface BaseNode {
+  name: string
+  type: Type
+}
+export interface TypeParameter {
+  bounds: Type[]
+  name: string
+}
+export interface Type extends BaseNode {
+  text: string
+}
 
 /*
 
@@ -67,9 +69,6 @@ java ast from javap-json:
     String genericString;
   }
 
-  static class OutImplementedInterface extends BaseNode {
-    List<OutTypeParameter> typeParameters;
-  }
 
   static class OutType {
     String name;

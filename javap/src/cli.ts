@@ -1,4 +1,4 @@
-import { parse } from './javap';
+import { javap } from './javap';
 import { Config } from './types';
 import minimist from 'minimist'
 import { writeFileSync } from 'fs';
@@ -10,18 +10,19 @@ export async function main() {
   
   const config = getConfig()
   // console.log({config});
-  const inputs = await getInput(config)
+  // const inputs = await getInput(config)
   // .then(inputs => {
-  const astFragments = inputs.map(fragment=>parse(fragment  ))
-  const ast = Object.assign.apply(null, astFragments) // TODO: what if there are two keys ? is that possible  ? verify and print warning
+  // const astFragments = inputs.map(fragment=>javapJson(fragment  ))
+  // const ast = Object.assign.apply(null, astFragments) // TODO: what if there are two keys ? is that possible  ? verify and print warning
 
+  const ast = javap(config)
   const output = JSON.stringify(ast) // TODO: Support pretty output
   if(!config.output){
     console.log(output)
   }
   else {
     mkdir('-p', dirname(config.output))
-    writeFileSync(config.output, JSON.stringify(ast))
+    writeFileSync(config.output, output)
   }
   config.fn && config.fn(ast)
   // inputs.map(input=>parse(input, config))
@@ -37,10 +38,10 @@ function getConfig(): Config{
   })
 }
 
-function getInput(config: Config): Promise<string[]> {
-  if (config.stdin) {
-    return getStdin().then(s=>Promise.resolve([s]))
-  } else {
-    throw new Error('not implemented')
-  }
-}
+// function getInput(config: Config): Promise<string[]> {
+//   if (config.stdin) {
+//     return getStdin().then(s=>Promise.resolve([s]))
+//   } else {
+//     throw new Error('not implemented')
+//   }
+// }
