@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import { parse } from '../parser';
+import { parse } from '../javap';
 import { JavaAst } from '../types';
 import { output1 } from './javap-output1';
 

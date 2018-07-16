@@ -1,3 +1,13 @@
+Given a .jar and class name it prints the Java AST in JSON format. 
+
+Bindings for javap-json sibling project with nice CLI and node.js API.
+
+Implements allClasses to extract all class names from .jar file.
+
+Used by java2js to build a TS / JS project from given classes.
+
+
+<!-- 
 node-javap command execution and output string parser to a json AST like structure from given .jar and class names 
 
 # Install
@@ -65,4 +75,4 @@ TODO link to types.ts or copy paste
 # Dones
 
 
- * parser issue class and methods names can have generics: {"java.util.List<E>":{"name":"java.util.List<E>" - this is wrong remove generics from name and put them in new field typeParameters. 
+ * parser issue class and methods names can have generics: {"java.util.List<E>":{"name":"java.util.List<E>" - this is wrong remove generics from name and put them in new field typeParameters.  -->

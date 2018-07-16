@@ -1,17 +1,20 @@
 {
   "name": "javap-json",
   "version": "0.0.1",
-  "description": "java program like javap which prints output in json. Uses node small cli. ",
+  "bin": "bin/javap-json.js",
+  "description": "Java program like javap which prints output in json",
   "keywords": [
-    "lucene",
-    "search",
-    "index"
+    "javap",
+    "java",
+    "ast",
+    "jar"
   ],
   "author": "Sebastian Gurin",
   "license": "MIT",
   "scripts": {
     "javac": "javac -cp \"java-lib/gson-2.8.5.jar\" java-src/JavapJsonOutput.java",
     "build": "npm run clean && npm run javac && mkdir dist && mkdir tmp && cd tmp && cp ../java-src/*.class . &&  unzip ../java-lib/gson-2.8.5.jar && rm -rf META-INF && jar cvfe javap-json.jar JavapJsonOutput . && mv javap-json.jar ../dist && cd .. && rm -rf tmp",
+    "prepare": "npm run build",
     "clean": "rm -rf dist tmp java-src/*.class",
     "test": "npm run build && java -jar dist/javap-json.jar org.apache.lucene.store.RAMDirectory,org.apache.lucene.store.LockFactory,org.apache.lucene.util.Accountable,org.apache.lucene.util.FilterIterator ../node-lucene/lucene-lib/lucene-core-7.4.0.jar,../node-lucene/lucene-lib/lucene-queryparser-7.4.0.jar && rm -rf tmp java-src/*.class",
     "unix": "java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput ",
@@ -20,8 +23,11 @@
     "java-test2": "npm run javac && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput org.apache.lucene.store.RAMDirectory,org.apache.lucene.store.LockFactory,org.apache.lucene.util.Accountable,org.apache.lucene.util.FilterIterator ../node-lucene/lucene-lib/lucene-core-7.4.0.jar"
   },
   "repository": "https://github.com/cancerberoSgx/lucene-java",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^10.5.2"
+  },
   "dependencies": {
-    "yamat": "0.0.14"
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.2"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "javap",
   "version": "0.0.1",
-  "description": "javap command execution and output string parser to a json AST like structure from given .jar / .class files and class names",
+  "description": "Given a .jar and class name it prints the Java AST in JSON format. A facade for javap-json with nice cli and node.js API.",
   "main": "dist/src/index.js",
   "bin": "bin/javap-parser.js",
   "bindings": "dist/src/index.d.ts",

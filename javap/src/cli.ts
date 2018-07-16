@@ -1,4 +1,4 @@
-import { parse } from './parser';
+import { parse } from './javap';
 import { Config } from './types';
 import minimist from 'minimist'
 import { writeFileSync } from 'fs';

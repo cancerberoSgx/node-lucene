@@ -234,13 +234,11 @@ public class JavapJsonOutput {
 
   static class OutImplementedInterface extends BaseNode {
     List<OutTypeParameter> typeParameters;
-
   }
 
   static class OutType {
     String name;
     String text;
-
   }
 
   static class OutTypeParameter {
@@ -249,7 +247,6 @@ public class JavapJsonOutput {
   }
 
   static class OutSuperClass extends BaseNode {
-
     List<OutTypeParameter> typeParameters;
   }
 
