@@ -11,9 +11,9 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run java-build",
-    "java-build": "javac -cp java-lib/commons-lang3-3.4.jar java-src/JavapJsonOutput.java",
-    "java-test1": "npm run java-build && java -cp java-lib/commons-lang3-3.4.jar -cp java-src JavapJsonOutput java.lang.String,java.util.List",
-    "java-test2": "npm run java-build && java -cp java-lib/commons-lang3-3.4.jar -cp java-src JavapJsonOutput org.apache.lucene.store.RAMDirectory ../node-lucene/lucene-lib/lucene-core-7.4.0.jar"
+    "java-build": "javac -cp \"java-lib/gson-2.8.5.jar\" java-src/JavapJsonOutput.java",
+    "java-test1": "npm run java-build && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput java.lang.String,java.util.List",
+    "java-test2": "npm run java-build && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput org.apache.lucene.store.RAMDirectory,org.apache.lucene.store.LockFactory ../node-lucene/lucene-lib/lucene-core-7.4.0.jar"
   },
   "repository": "https://github.com/cancerberoSgx/lucene-java",
   "devDependencies": {},
