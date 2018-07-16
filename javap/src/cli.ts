@@ -12,7 +12,7 @@ export async function main() {
   // console.log({config});
   const inputs = await getInput(config)
   // .then(inputs => {
-  const astFragments = inputs.map(fragment=>parse(fragment, config))
+  const astFragments = inputs.map(fragment=>parse(fragment  ))
   const ast = Object.assign.apply(null, astFragments) // TODO: what if there are two keys ? is that possible  ? verify and print warning
 
   const output = JSON.stringify(ast) // TODO: Support pretty output

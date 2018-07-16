@@ -7,9 +7,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "javap-parser test",
-      "cwd": "${workspaceFolder}/javap-parser",
-      "program": "${workspaceFolder}/javap-parser/node_modules/jest/bin/jest.js"
+      "name": "javap test",
+      "cwd": "${workspaceFolder}/javap",
+      "program": "${workspaceFolder}/javap/node_modules/jest/bin/jest.js"
     }
   ]
 }

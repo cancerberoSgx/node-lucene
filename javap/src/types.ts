@@ -4,6 +4,7 @@ export interface Member {
   name: string
   typeParameters?: string,
   scope: Scope
+  type: string
   modifiers: string
 }
 export interface Method extends Member {
@@ -14,7 +15,7 @@ export interface Field extends Member {
 
 }
 // export type FieldSignature = any//TODO
-export type Scope = 'public' | 'protected' | 'private' | 'package'
+export type Scope = string//'public' | 'protected' | 'private' | 'package'
 
 export interface ClassDeclaration extends Member {
   name: string
