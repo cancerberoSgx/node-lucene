@@ -16,7 +16,8 @@
   "repository": "https://github.com/cancerberoSgx/Yarlasip",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0"
+    "java": "^0.10.0",
+    "java-class-parser": "^0.2.1"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
