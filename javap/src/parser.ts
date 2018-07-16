@@ -1,33 +1,35 @@
 // adapted from  https://github.com/villadora/java-class-parser/blob/master/index.js
 
-import { JavaAst, ClassDeclaration, Scope } from './types';
+import { JavaAst, ClassDeclaration, Scope, Config } from './types';
 
 /**
  * Returns a simplified AST structure of given javap output. See estreeParser for ast compatible with https://github.com/estree/estree
- * @param output stdout of running javap program as it is
+ * @param input stdout of running javap program as it is
  */
-export function parse(output: string): JavaAst  {
+export function parse(input: string, config: Config): JavaAst  {
   const rs: {[k: string]: ClassDeclaration} = {};
-  let or = classRegex.exec(output);
+  let or = classRegex.exec(input);
 
   while(or) {
     const scope = (or[1] || 'package') as Scope;
     const modifiers = or[2];
-    const type = or[3];
-    const className = or[4];
+    const type = or[3] as any;
+    let {name, typeParameters} = parseName(or[4]);
+    // const className = or[4];
     const exts = or[5];
     const impls = or[6];
     const classBody = or[7].split('\n').filter(Boolean).map(trimStr);
     const clz: ClassDeclaration = {
-      name: className,
-      type: type,
-      scope: scope,
+      name,
+      type,
+      scope,
       modifiers: (modifiers || '').trim(),
       'extends': exts ? exts.split(',').map(trimStr) : [],
       'implements': impls ? impls.split(',').map(trimStr) : [],
       constructors: [],
       fields: [],
-      methods: []
+      methods: [],
+      typeParameters
     };
 
     classBody.forEach(function(member) {
@@ -38,12 +40,14 @@ export function parse(output: string): JavaAst  {
           const scope = signature[1] || 'package';
           const modifiers = (signature[2] || '').trim();
           const type = signature[3];
-          const name = signature[4];
+          let {name, typeParameters} = parseName(signature[4]);
+          
           clz.fields.push({
-            name: name,
-            scope: scope,
-            type: type,
-            modifiers: modifiers
+            name,
+            scope,
+            type,
+            modifiers,
+            typeParameters
           });
         }
 
@@ -53,36 +57,50 @@ export function parse(output: string): JavaAst  {
       const scope = signature[1] || 'package';
       const modifiers = (signature[2] || '').trim();
       const retVal = signature[3];
-      const name = signature[4];
+      // const name = signature[4];
+      let {name, typeParameters} = parseName(or[4]);
       const args = signature[5];
       if (retVal == undefined) { // no ret, constructor
         const cons = {
-          scope: scope,
-          name: name,
-          modifiers: modifiers,
+          scope,
+          name,
+          modifiers,
+          typeParameters,
           args: args ? args.split(',').map(trimStr) : []
         };
 
         clz.constructors.push(cons);
       }else {
+
         const m = {
           scope: scope,
           modifiers: modifiers,
           ret: retVal,
           name: name,
-          args: args ? args.split(',').map(trimStr) : []
+          args: args ? args.split(',').map(trimStr) : [],
+          typeParameters
         };
 
         clz.methods.push(m);
       }
     });
 
-    rs[className] = clz;
+    rs[name] = clz;
 
-    or = classRegex.exec(output);
+    or = classRegex.exec(input);
   }
 
   return rs;
+}
+
+function parseName(astName: string): {name: string, typeParameters: string}{
+  let name = astName, typeParameters: string
+  if(name.endsWith('>')){
+    //Heads up : typeParameters is just a string like <A, B, B?extends Foo> and not string[] because is hard to parse
+    typeParameters = astName.substring(astName.lastIndexOf('<'), astName.length)
+    name = astName.substring(0,astName.lastIndexOf('<')-1)
+  }
+  return {name, typeParameters}
 }
 
 const typeRegex = '[a-zA-Z0-9\\.<>\\?\\$\\[\\]]+';

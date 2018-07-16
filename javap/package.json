@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "javap command execution and output string parser to a json AST like structure from given .jar / .class files and class names",
   "main": "dist/src/index.js",
-  "bin": "bin/javap.js",
+  "bin": "bin/javap-parser.js",
   "bindings": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
@@ -23,16 +23,20 @@
   "dependencies": {
     "get-stdin": "^6.0.0",
     "java": "^0.10.0",
-    "minimist": "^1.2.0"
+    "minimatch": "^3.0.4",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.2"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
-    "@types/node": "^10.3.6",
-    "typescript": "2.9.2",
+    "@types/minimatch": "^3.0.3",
     "@types/minimist": "^1.2.0",
+    "@types/node": "^10.3.6",
+    "@types/shelljs": "^0.8.0",
     "jest": "^23.3.0",
     "ts-jest": "^23.0.0",
     "ts-loader": "^4.4.2",
-    "ts-node": "^6.1.0"
+    "ts-node": "^6.1.0",
+    "typescript": "2.9.2"
   }
 }

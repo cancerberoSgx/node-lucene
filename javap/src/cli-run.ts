@@ -1,3 +1,9 @@
 import { main } from './cli';
+(async function () {
+  try {
 
-main()
+    await main()
+  } catch (error) {
+    throw error
+  }
+})()
