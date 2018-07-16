@@ -1,4 +1,4 @@
-Compiled from "RAMDirectory.java"
+export const output1 = `Compiled from "RAMDirectory.java"
 public class org.apache.lucene.store.RAMDirectory extends org.apache.lucene.store.BaseDirectory implements org.apache.lucene.util.Accountable {
   protected final java.util.Map<java.lang.String, org.apache.lucene.store.RAMFile> fileMap;
     descriptor: Ljava/util/Map;
@@ -55,3 +55,4 @@ public class org.apache.lucene.store.RAMDirectory extends org.apache.lucene.stor
   public void close();
     descriptor: ()V
 }
+`
