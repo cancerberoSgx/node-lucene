@@ -1,0 +1,34 @@
+{
+  "name": "java-to-ts",
+  "version": "0.0.1",
+  "description": "using javap to generate typescript interfaces of given classes",
+  "main": "dist/src/index.js",
+  "bindings": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "java",
+    "javascript",
+    "typescript",
+    "node"
+  ],
+  "author": "Sebastian Gurin",
+  "repository": "https://github.com/cancerberoSgx/java-to-ts",
+  "license": "MIT",
+  "dependencies": {
+    "java": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.4",
+    "@types/jasmine": "^2.8.8",
+    "@types/node": "^10.3.6",
+    "typescript": "2.9.2",
+    "jasmine": "^3.1.0",
+    "jest": "^23.3.0",
+    "ts-jest": "^23.0.0",
+    "ts-loader": "^4.4.2",
+    "ts-node": "^6.1.0"
+  }
+}

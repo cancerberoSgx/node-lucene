@@ -4,4 +4,4 @@ also generate implementations using node-java
 
 # TODO
 
- * MOVE TO SEPARATE PROJECT
+https://stackoverflow.com/questions/14434320/javap-in-a-programmable-way
