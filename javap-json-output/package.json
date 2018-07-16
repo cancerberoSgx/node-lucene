@@ -1,5 +1,5 @@
 {
-  "name": "JavapJsonOutput",
+  "name": "javap-json",
   "version": "0.0.1",
   "description": "java program like javap which prints output in json. Uses node small cli. ",
   "keywords": [
@@ -10,10 +10,13 @@
   "author": "Sebastian Gurin",
   "license": "MIT",
   "scripts": {
-    "build": "npm run java-build",
-    "java-build": "javac -cp \"java-lib/gson-2.8.5.jar\" java-src/JavapJsonOutput.java",
-    "java-test1": "npm run java-build && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput java.lang.String,java.util.List",
-    "java-test2": "npm run java-build && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput org.apache.lucene.store.RAMDirectory,org.apache.lucene.store.LockFactory,org.apache.lucene.util.Accountable,org.apache.lucene.util.FilterIterator ../node-lucene/lucene-lib/lucene-core-7.4.0.jar"
+    "javac": "javac -cp \"java-lib/gson-2.8.5.jar\" java-src/JavapJsonOutput.java",
+    "build": "npm run clean && npm run javac && mkdir dist && mkdir tmp && cd tmp && cp ../java-src/*.class . &&  unzip ../java-lib/gson-2.8.5.jar && rm -rf META-INF && jar cvfe javap-json.jar JavapJsonOutput . && mv javap-json.jar ../dist && cd .. && rm -rf tmp",
+    "clean": "rm -rf dist java-src/*.class",
+    "unix": "java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput ",
+    "windows": "java -cp \"java-lib/gson-2.8.5.jar;java-src\" JavapJsonOutput ",
+    "java-test1": "npm run javac && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput java.lang.String,java.util.List",
+    "java-test2": "npm run javac && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput org.apache.lucene.store.RAMDirectory,org.apache.lucene.store.LockFactory,org.apache.lucene.util.Accountable,org.apache.lucene.util.FilterIterator ../node-lucene/lucene-lib/lucene-core-7.4.0.jar"
   },
   "repository": "https://github.com/cancerberoSgx/lucene-java",
   "devDependencies": {},

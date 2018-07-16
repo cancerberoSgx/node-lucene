@@ -4,3 +4,5 @@ package-deps.json
 doc-assets
 tmp
 spec
+java-src
+java-lib
