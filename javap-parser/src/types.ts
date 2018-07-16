@@ -14,3 +14,7 @@ export interface ClassDeclaration{
   fields: FieldSignature[]
   methods: MethodLikeSignature[]
 } // TODO
+
+export interface CliConfig {
+  fn?: (s: string)=>void
+}

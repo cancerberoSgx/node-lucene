@@ -2,6 +2,10 @@
 
 import { JavaAst, ClassDeclaration, Scope } from './types';
 
+/**
+ * Returns a simplified AST structure of given javap output. See estreeParser for ast compatible with https://github.com/estree/estree
+ * @param output stdout of running javap program as it is
+ */
 export function parse(output: string): JavaAst  {
   const rs: {[k: string]: ClassDeclaration} = {};
   let or = classRegex.exec(output);
