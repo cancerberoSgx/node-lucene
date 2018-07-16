@@ -1,34 +1,8 @@
-// taken from https://github.com/villadora/java-class-parser/blob/master/index.js
+// adapted from  https://github.com/villadora/java-class-parser/blob/master/index.js
 
-const typeRegex = '[a-zA-Z0-9\\.<>\\?\\$\\[\\]]+';
+import { JavaAst, ClassDeclaration, Scope } from './types';
 
-const classRegex = new RegExp('(?:(public|private|protected) )?((?:(?:static|abstract|final) ?)*)(class|interface) (' + typeRegex + ') (?:extends ((?:' + typeRegex +'),?)+ )?(?:implements ((?:[a-zA-Z0-9\\.<>\\?\\$])+,?)+ )?{([^}]+)}', 'gm');
-//                             access modifier              return value             name
-const methodRegex = new RegExp('(?:(public|private|protected) )?((?:static|abstract|final) ?)*(?:(' + typeRegex + ') )?([a-zA-Z]+)\\(([^\\)]*)\\)');
-
-const fieldRegex = new RegExp('(?:(public|private|protected) )?((?:(?:static|abstract|final) ?)*)(' + typeRegex + ') ([a-zA-Z0-9]+)');
-
-export type JavaAst = any // TODO
-export type MethodLikeSignature = any //TODO
-export type FieldSignature = any//TODO
-export type Scope = 'public'|'protected'|'private'|'package'
-export interface ClassDeclaration{
-  name: string
-  type: string
-  scope: Scope
-  describe: string
-  extends: string[]
-  implements: string[]
-  constructors: MethodLikeSignature[]
-  fields: FieldSignature[]
-  methods: MethodLikeSignature[]
-} // TODO
-
-export function trimStr(str: string): string{
-  return str.trim();
-}
-
-function outputParser(output: string): JavaAst  {
+export function parse(output: string): JavaAst  {
   const rs: {[k: string]: ClassDeclaration} = {};
   let or = classRegex.exec(output);
 
@@ -105,4 +79,16 @@ function outputParser(output: string): JavaAst  {
   }
 
   return rs;
+}
+
+const typeRegex = '[a-zA-Z0-9\\.<>\\?\\$\\[\\]]+';
+
+const classRegex = new RegExp('(?:(public|private|protected) )?((?:(?:static|abstract|final) ?)*)(class|interface) (' + typeRegex + ') (?:extends ((?:' + typeRegex +'),?)+ )?(?:implements ((?:[a-zA-Z0-9\\.<>\\?\\$])+,?)+ )?{([^}]+)}', 'gm');
+//                             access modifier              return value             name
+const methodRegex = new RegExp('(?:(public|private|protected) )?((?:static|abstract|final) ?)*(?:(' + typeRegex + ') )?([a-zA-Z]+)\\(([^\\)]*)\\)');
+
+const fieldRegex = new RegExp('(?:(public|private|protected) )?((?:(?:static|abstract|final) ?)*)(' + typeRegex + ') ([a-zA-Z0-9]+)');
+
+function trimStr(str: string): string{
+  return str.trim();
 }

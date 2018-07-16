@@ -7,8 +7,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "examples/reflection-test.js",
-      "program": "${workspaceFolder}/examples/reflection-test.js"
+      "name": "javap-parser test",
+      "cwd": "${workspaceFolder}/javap-parser",
+      "program": "${workspaceFolder}/javap-parser/node_modules/jest/bin/jest.js"
     }
   ]
 }

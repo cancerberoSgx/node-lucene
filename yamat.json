@@ -4,8 +4,12 @@
     "path": "node-lucene"
   },  
   {
-    "name": "java-to-ts",
-    "path": "java-to-ts"
+    "name": "java2ts",
+    "path": "java2ts"
+  },
+  {
+    "name": "javap-parser",
+    "path": "javap-parser"
   }
 
 ]
