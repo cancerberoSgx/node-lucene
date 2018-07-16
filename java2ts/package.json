@@ -1,23 +1,24 @@
 {
-  "name": "lucene-node",
+  "name": "java2ts",
   "version": "0.0.1",
-  "description": "nodejs API and bindings to apache lucene",
-  "main": "index.js",
+  "description": "using javap to generate typescript interfaces of given classes",
+  "main": "dist/src/index.js",
+  "bindings": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
   },
   "keywords": [
-    "lucene",
-    "search",
-    "index"
+    "java",
+    "javascript",
+    "typescript",
+    "node"
   ],
   "author": "Sebastian Gurin",
-  "repository": "https://github.com/cancerberoSgx/lucene-node",
+  "repository": "https://github.com/cancerberoSgx/java2ts",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0",
-    "java-class-parser": "^0.2.1"
+    "java": "^0.10.0"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",
