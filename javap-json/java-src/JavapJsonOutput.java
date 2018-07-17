@@ -10,14 +10,16 @@ import com.google.gson.*;
 // TODO: annotations ? 
 public class JavapJsonOutput {
 
+
+
   // Utilities to be able to add .jars dyamically to classpath
-  public static void addFile(String s) throws IOException {
+  static void addFile(String s) throws IOException {
     addURL(new File(s).toURI().toURL());
   }
 
   private static final Class<?>[] parameters = new Class[] { URL.class };
 
-  public static void addURL(URL u) throws IOException {
+  static void addURL(URL u) throws IOException {
     URLClassLoader sysloader = (URLClassLoader) ClassLoader.getSystemClassLoader();
     Class<?> sysclass = URLClassLoader.class;
     try {
@@ -29,6 +31,63 @@ public class JavapJsonOutput {
       throw new IOException("Error, could not add URL to system classloader");
     }
   }
+
+  // Utility for obtain methods/fields descriptors (useful for node-jz)
+  static String getDescriptorForClass(final Class c)
+  {
+      if(c.isPrimitive())
+      {
+          if(c==byte.class)
+              return "B";
+          if(c==char.class)
+              return "C";
+          if(c==double.class)
+              return "D";
+          if(c==float.class)
+              return "F";
+          if(c==int.class)
+              return "I";
+          if(c==long.class)
+              return "J";
+          if(c==short.class)
+              return "S";
+          if(c==boolean.class)
+              return "Z";
+          if(c==void.class)
+              return "V";
+          throw new RuntimeException("Unrecognized primitive "+c);
+      }
+      if(c.isArray()) return c.getName().replace('.', '/');
+      return ('L'+c.getName()+';').replace('.', '/');
+  }
+  
+  static String getFieldDescriptor(Field m)
+  {
+      String s="(";
+      // for(final Class c:(m.getParameterTypes()))
+          // s+=getDescriptorForClass(c);
+      s+=')';
+      return s+getDescriptorForClass(m.getType());
+  }
+
+  static String getMethodDescriptor(Method m)
+  {
+      String s="(";
+      for(final Class c:(m.getParameterTypes()))
+          s+=getDescriptorForClass(c);
+      s+=')';
+      return s+getDescriptorForClass(m.getReturnType());
+  } static String  getConstructorDescriptor(Constructor m)
+  {
+      String s="(";
+      for(final Class c:(m.getParameterTypes()))
+          s+=getDescriptorForClass(c);
+      s+=')';
+      return s;//+getDescriptorForClass(m.getReturnType());
+  }
+ 
+
+
 
   public List<String> getModifiers(int m) {
     List<String> list = new ArrayList<String>();
@@ -81,7 +140,10 @@ public class JavapJsonOutput {
     List<OutField> list = new ArrayList<OutField>();
     Field f[] = this.c.getFields();
     for (int i = 0; i < f.length; i++) {
+      System.out.println();
+
       OutField field = new OutField();
+      field.descriptor = getFieldDescriptor(f[i]);
       list.add(field);
       field.modifiers = getModifiers(f[i].getModifiers());
       field.type = getType(f[i].getType());
@@ -94,7 +156,9 @@ public class JavapJsonOutput {
     List<OutMethod> list = new ArrayList<OutMethod>();
     Constructor cs[] = this.c.getDeclaredConstructors();
     for (int i = 0; i < cs.length; i++) {
+      // System.out.println(getConstructorDescriptor(cs[i]));
       OutMethod om = new OutMethod();
+      om.descriptor = getConstructorDescriptor(cs[i]);
       list.add(om);
       om.modifiers = getModifiers(cs[i].getModifiers());
       om.parameters = getParameters(cs[i].getParameters());
@@ -118,9 +182,12 @@ public class JavapJsonOutput {
   public List<OutMethod> getMethods() {
     List<OutMethod> list = new ArrayList<OutMethod>();
     Method m[] = this.c.getDeclaredMethods();
+
     for (int i = 0; i < m.length; i++) {
       OutMethod om = new OutMethod();
+      om.descriptor = getMethodDescriptor(m[i]);
       list.add(om);
+      System.out.println(getMethodDescriptor(m[i]));
       om.modifiers = getModifiers(m[i].getModifiers());
       om.type = getType(m[i].getGenericReturnType(), m[i].getReturnType());
       om.name = m[i].getName();
@@ -159,6 +226,8 @@ public class JavapJsonOutput {
     return list;
   }
 
+
+  // main API
   Class<?> c;
 
   public OutClass buildClass(String className) throws Exception {
@@ -197,6 +266,9 @@ public class JavapJsonOutput {
     return new Gson().toJson(outClasses);
   }
 
+
+  // main CLI
+
   public static void main(String args[]) {
     try {
 
@@ -213,6 +285,10 @@ public class JavapJsonOutput {
     }
   }
 
+
+
+
+
   // Types of the generaeted "AST"
 
   static class BaseNode {
@@ -220,6 +296,7 @@ public class JavapJsonOutput {
     OutType type;
     List<OutTypeParameter> typeParameters;
     List<String> modifiers;
+    String descriptor;
   }
 
   static class OutClass extends BaseNode {
