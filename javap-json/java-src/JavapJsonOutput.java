@@ -180,7 +180,7 @@ public class JavapJsonOutput {
   public static List<OutClass> javap(String[] jars, String[] classes) throws Exception {
     for (int i = 0; i < jars.length; i++) {
       String jar = jars[i];
-      // addFile(jar);
+      addFile(jar);
     }
     List<OutClass> outClasses = new ArrayList<OutClass>();
     for (int i = 0; i < classes.length; i++) {
