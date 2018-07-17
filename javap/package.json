@@ -9,7 +9,7 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "prepare": "npm run build",
-    "test": "npm run build && jest"
+    "test": "ts-node node_modules/jasmine/bin/jasmine.js --config=src/__tests__/jasmine.json"
   },
   "keywords": [
     "java",
@@ -34,6 +34,7 @@
     "@types/minimist": "^1.2.0",
     "@types/node": "^10.3.6",
     "@types/shelljs": "^0.8.0",
+    "jasmine": "^3.1.0",
     "jest": "^23.3.0",
     "ts-jest": "^23.0.0",
     "ts-loader": "^4.4.2",

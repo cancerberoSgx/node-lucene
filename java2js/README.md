@@ -35,6 +35,10 @@ initially default impl is the later
 
 
 # TODO
+ * problem since we need to create java types from js types and some like functions could not be transformed so SF probably we will need to verify if a signature can be transformed at all and if not decied what to do.
+ * problem: java overloaded methods : probably hard to ayuto-implement in js
+ * for auto code generation we need to discover the method java signature liike 'javapJson([Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/String;' 
+
  * decide the API
  * User able to configure output type "only interfaces", "only interfaces one file", "interfaces and node-java implementations"
  * references to other types like "returns": "org.foo.Bar" - need to add imports and exports . 
