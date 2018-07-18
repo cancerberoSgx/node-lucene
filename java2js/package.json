@@ -1,7 +1,7 @@
 {
   "name": "java2js",
   "version": "0.0.1",
-  "description": "generate javascript implementations of given Java classes of .jars / .class files based on node-java and optionally typescript interfaces",
+  "description": "Generates TypeScript interfaces of given Java class names and .jars as a project structure in FS. Also, generate JavaScript implementations of given Java classes of .jars / .class files based on node-java and optionally TypeScript interfaces / classes",
   "main": "dist/src/index.js",
   "bindings": "dist/src/index.d.ts",
   "scripts": {
@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "java": "^0.10.0",
-    "javap-parser": "file:../javap-parser"
+    "javap": "file:../javap"
   },
   "devDependencies": {
     "@types/jest": "^23.1.4",

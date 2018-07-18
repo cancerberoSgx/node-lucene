@@ -1,6 +1,6 @@
 // generate ts interfaces from java ast
-import {JavaAst} from '../../javap-parser/dist/src'
+import {JavaAst} from 'javap'
 
-export function printInterfaces(ast: JavaAst){
+export function getProjectInterfaces(ast: JavaAst) {
 
 }

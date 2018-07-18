@@ -1,15 +1,9 @@
-import { MethodLikeSignature } from '../../javap-parser/dist/src';
-
-
+import { Method } from 'javap';
 
 export interface Config {
-
-  /** TODO: custom param names for given method like */
-  paramNames?: (node: MethodLikeSignature) => string[]
-
+  /** TODO: custom param names for given method like. Default is arg0, arg1, etc */
+  paramNames?: (node: Method) => string[]
 }
-
-
 // project types (for generating output TS project - not input AST)
 
 export interface Project {
@@ -21,13 +15,13 @@ export interface SourceFile {
   content: string
 }
 
-export interface Node {
-  name?: string
-}
+// export interface Node {
+//   name?: string
+// }
 
-export interface Class extends Node {
-  extends: string
-  implements: string[]
-}
+// export interface Class extends Node {
+//   extends: string
+//   implements: string[]
+// }
 
 

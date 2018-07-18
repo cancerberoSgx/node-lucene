@@ -1,4 +1,4 @@
-generate javascript implementations of given Java classes of .jars / .class files based on node-java and optionally typescript interfaces / classes
+Generate JavaScript implementations of given Java classes of .jars / .class files based on node-java and optionally TypeScript interfaces / classes
 
 Generates a TypeScript project 
 very WIP - Research
@@ -23,7 +23,7 @@ interface Java2JsConfig extends JavapConfig {
 
 # Output type for content
 
- * Should we generate .ts files contents strings or estree AST (https://github.com/estree/formal/tree/master/formal-data/typescript) ? for now we generate content as strings since with that we can parse it to estree AST
+ * Should we generate .ts files contents strings or estree AST (https://github.com/estree/formal/tree/master/formal-data/TypeScript) ? for now we generate content as strings since with that we can parse it to estree AST
 
 ## output project structure  different alternatives
 

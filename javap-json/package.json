@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "javac": "javac -cp \"java-lib/gson-2.8.5.jar\" java-src/JavapJsonOutput.java",
-    "build": "npm run clean && npm run javac && mkdir dist && mkdir tmp && cd tmp && cp ../java-src/*.class . &&  unzip ../java-lib/gson-2.8.5.jar && rm -rf META-INF && jar cvfe javap-json.jar JavapJsonOutput . && mv javap-json.jar ../dist && cd .. && rm -rf tmp",
+    "build": "npm run clean && npm run javac && mkdir dist && mkdir tmp && cd tmp && cp ../java-src/*.class . &&  unzip -q ../java-lib/gson-2.8.5.jar && rm -rf META-INF && jar cvfe javap-json.jar JavapJsonOutput . > /dev/null && mv javap-json.jar ../dist && cd .. && rm -rf tmp",
     "prepare": "npm run build",
     "clean": "rm -rf dist tmp java-src/*.class",
     "test": "jasmine",

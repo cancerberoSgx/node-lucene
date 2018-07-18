@@ -1,15 +1,14 @@
 [
   {
-    "name": "node-lucene",
-    "path": "node-lucene"
-  },  
-  {
-    "name": "java2ts",
-    "path": "java2ts"
+    "name": "javap-json",
+    "path": "javap-json"
   },
   {
     "name": "javap",
     "path": "javap"
+  },
+  {
+    "name": "java2ts",
+    "path": "java2ts"
   }
-
 ]
