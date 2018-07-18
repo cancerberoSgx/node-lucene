@@ -2,6 +2,15 @@
   "name": "node-lucene",
   "version": "1.0.1",
   "description": "apache lucene bindings for nodejs and utilities around node-java to auto generate interfaces and implementations from java .jars",
+  "author": "Sebastian Gurin",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx yamat run npm run build",
+    "test": " npx yamat run npm test",
+    "yamat-link": "npx yamat link && npx yamat run \"rm -rf node_modules package-lock.json\" && npx yamat run \"npm i\" && npx yamat run \"npm run build\" && npx yamat run npm test",
+    "yamat-unlink-pack": "npx yamat run \"rm -rf node_modules package-lock.json\" && npx yamat run npm i && npx yamat unlink --version pack && npx yamat run \"rm -rf node_modules package-lock.json\" && npx yamat run npm i && npx yamat run npm run build && npx yamat run npm run test",
+    "yamat-patch-publish": "npx yamat run \"npm version patch\" && npx yamat unlink && npx yamat --break-on-error no run npm publish"
+  },
   "keywords": [
     "lucene",
     "Java",
@@ -13,15 +22,6 @@
     "search",
     "index"
   ],
-  "author": "Sebastian Gurin",
-  "license": "MIT",
-  "scripts": {
-    "build": "npx yamat run npm run build",
-    "test": " npx yamat run npm test",
-    "yamat-link": "npx yamat link && npx yamat run \"rm -rf node_modules package-lock.json\" && npx yamat run \"npm i\" && npx yamat run \"npm run build\" && npx yamat run npm test",
-    "yamat-unlink-pack": "npx yamat run \"rm -rf node_modules package-lock.json\" && npx yamat run npm i && npx yamat unlink --version pack && npx yamat run \"rm -rf node_modules package-lock.json\" && npx yamat run npm i && npx yamat run npm run build && npx yamat run npm run test",
-    "yamat-patch-publish": "npx yamat run \"npm version patch\" && npx yamat unlink && npx yamat --break-on-error no run npm publish"
-  },
   "repository": "https://github.com/cancerberoSgx/node-lucene",
   "devDependencies": {},
   "dependencies": {

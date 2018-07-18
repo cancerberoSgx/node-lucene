@@ -51,3 +51,7 @@ const RAMDirectory = ast.find(c => c.name == 'org.apache.lucene.store.RAMDirecto
 const fileNameExists = RAMDirectory.methods.find(m => m.name == 'fileNameExists')
 console.log(`org.apache.lucene.store.RAMDirectory.fileNameExists method descriptor is ${fileNameExists.descriptor}`)
 ```
+
+
+
+

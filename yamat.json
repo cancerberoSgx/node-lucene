@@ -8,7 +8,7 @@
     "path": "javap"
   },
   {
-    "name": "java2ts",
-    "path": "java2ts"
+    "name": "java2js",
+    "path": "java2js"
   }
 ]

@@ -8,10 +8,10 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
+    "test": "ts-node node_modules/jasmine/bin/jasmine.js --config=src/__tests__/jasmine.json",
     "prepare": "npm run build",
-    "clean": "rm -rf dist tmp java-src/*.class",
-    "all": "rm -rf node_modules package-lock.json && npm run clean && npm i && npm run build && npm test",
-    "test": "ts-node node_modules/jasmine/bin/jasmine.js --config=src/__tests__/jasmine.json"
+    "clean": "rm -rf dist",
+    "all": "rm -rf node_modules package-lock.json && npm run clean && npm i && npm run build && npm test"
   },
   "keywords": [
     "java",
