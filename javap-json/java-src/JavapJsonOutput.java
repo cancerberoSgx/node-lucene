@@ -4,13 +4,10 @@ import java.net.*;
 import java.util.*;
 import com.google.gson.*;
 
-
 // TODO: better test typeparameters
 // TODO: inner classes
 // TODO: annotations ? 
 public class JavapJsonOutput {
-
-
 
   // Utilities to be able to add .jars dyamically to classpath
   static void addFile(String s) throws IOException {
@@ -33,61 +30,56 @@ public class JavapJsonOutput {
   }
 
   // Utility for obtain methods/fields descriptors (useful for node-jz)
-  static String getDescriptorForClass(final Class c)
-  {
-      if(c.isPrimitive())
-      {
-          if(c==byte.class)
-              return "B";
-          if(c==char.class)
-              return "C";
-          if(c==double.class)
-              return "D";
-          if(c==float.class)
-              return "F";
-          if(c==int.class)
-              return "I";
-          if(c==long.class)
-              return "J";
-          if(c==short.class)
-              return "S";
-          if(c==boolean.class)
-              return "Z";
-          if(c==void.class)
-              return "V";
-          throw new RuntimeException("Unrecognized primitive "+c);
-      }
-      if(c.isArray()) return c.getName().replace('.', '/');
-      return ('L'+c.getName()+';').replace('.', '/');
-  }
-  
-  static String getFieldDescriptor(Field m)
-  {
-      String s="(";
-      // for(final Class c:(m.getParameterTypes()))
-          // s+=getDescriptorForClass(c);
-      s+=')';
-      return s+getDescriptorForClass(m.getType());
+  static String getDescriptorForClass(final Class c) {
+    if (c.isPrimitive()) {
+      if (c == byte.class)
+        return "B";
+      if (c == char.class)
+        return "C";
+      if (c == double.class)
+        return "D";
+      if (c == float.class)
+        return "F";
+      if (c == int.class)
+        return "I";
+      if (c == long.class)
+        return "J";
+      if (c == short.class)
+        return "S";
+      if (c == boolean.class)
+        return "Z";
+      if (c == void.class)
+        return "V";
+      throw new RuntimeException("Unrecognized primitive " + c);
+    }
+    if (c.isArray())
+      return c.getName().replace('.', '/');
+    return ('L' + c.getName() + ';').replace('.', '/');
   }
 
-  static String getMethodDescriptor(Method m)
-  {
-      String s="(";
-      for(final Class c:(m.getParameterTypes()))
-          s+=getDescriptorForClass(c);
-      s+=')';
-      return s+getDescriptorForClass(m.getReturnType());
-  } static String  getConstructorDescriptor(Constructor m)
-  {
-      String s="(";
-      for(final Class c:(m.getParameterTypes()))
-          s+=getDescriptorForClass(c);
-      s+=')';
-      return s;//+getDescriptorForClass(m.getReturnType());
+  static String getFieldDescriptor(Field m) {
+    String s = "(";
+    // for(final Class c:(m.getParameterTypes()))
+    // s+=getDescriptorForClass(c);
+    s += ')';
+    return s + getDescriptorForClass(m.getType());
   }
- 
 
+  static String getMethodDescriptor(Method m) {
+    String s = "(";
+    for (final Class c : (m.getParameterTypes()))
+      s += getDescriptorForClass(c);
+    s += ')';
+    return s + getDescriptorForClass(m.getReturnType());
+  }
 
+  static String getConstructorDescriptor(Constructor m) {
+    String s = "(";
+    for (final Class c : (m.getParameterTypes()))
+      s += getDescriptorForClass(c);
+    s += ')';
+    return s;// +getDescriptorForClass(m.getReturnType());
+  }
 
   public List<String> getModifiers(int m) {
     List<String> list = new ArrayList<String>();
@@ -140,8 +132,6 @@ public class JavapJsonOutput {
     List<OutField> list = new ArrayList<OutField>();
     Field f[] = this.c.getFields();
     for (int i = 0; i < f.length; i++) {
-      System.out.println();
-
       OutField field = new OutField();
       field.descriptor = getFieldDescriptor(f[i]);
       list.add(field);
@@ -156,7 +146,6 @@ public class JavapJsonOutput {
     List<OutMethod> list = new ArrayList<OutMethod>();
     Constructor cs[] = this.c.getDeclaredConstructors();
     for (int i = 0; i < cs.length; i++) {
-      // System.out.println(getConstructorDescriptor(cs[i]));
       OutMethod om = new OutMethod();
       om.descriptor = getConstructorDescriptor(cs[i]);
       list.add(om);
@@ -187,7 +176,6 @@ public class JavapJsonOutput {
       OutMethod om = new OutMethod();
       om.descriptor = getMethodDescriptor(m[i]);
       list.add(om);
-      System.out.println(getMethodDescriptor(m[i]));
       om.modifiers = getModifiers(m[i].getModifiers());
       om.type = getType(m[i].getGenericReturnType(), m[i].getReturnType());
       om.name = m[i].getName();
@@ -225,7 +213,6 @@ public class JavapJsonOutput {
     }
     return list;
   }
-
 
   // main API
   Class<?> c;
@@ -266,70 +253,65 @@ public class JavapJsonOutput {
     return new Gson().toJson(outClasses);
   }
 
-
   // main CLI
 
   public static void main(String args[]) {
     try {
-
-      if (args.length < 2) {
+      if (args.length < 1) {
         System.out.println(
             "Incorrect call you must pass comma separated class names as first argument and optionally pass .jar comma-separated files paths as second argument, Example: \njava -cp java-src JavapJsonOutput java.lang.String,java.util.List libs/foo.jar,libs/bar.jar");
       }
       String[] jars = args.length > 1 ? args[1].split(",") : new String[0];
       String[] classes = args[0].split(",");
       System.out.println(javapJson(jars, classes));
+      
     } catch (Exception e) {
       e.printStackTrace();
       System.exit(1);
     }
   }
 
+}
 
+// Types of the generaeted "AST"
 
+class BaseNode {
+  String name;
+  OutType type;
+  List<OutTypeParameter> typeParameters;
+  List<String> modifiers;
+  String descriptor;
+}
 
+class OutClass extends BaseNode {
+  boolean isInterface;
+  List<OutMethod> methods;
+  List<OutField> fields;
+  List<OutMethod> constructors;
+  OutSuperClass superClass;
+  List<OutSuperClass> interfaces;
+  String genericString;
+}
 
-  // Types of the generaeted "AST"
+class OutType {
+  String name;
+  String text;
+}
 
-  static class BaseNode {
-    String name;
-    OutType type;
-    List<OutTypeParameter> typeParameters;
-    List<String> modifiers;
-    String descriptor;
-  }
+class OutTypeParameter {
+  List<OutType> bounds;
+  String name;
+}
 
-  static class OutClass extends BaseNode {
-    boolean isInterface;
-    List<OutMethod> methods;
-    List<OutField> fields;
-    List<OutMethod> constructors;
-    OutSuperClass superClass;
-    List<OutSuperClass> interfaces;
-    String genericString;
-  }
+class OutSuperClass extends BaseNode {
+}
 
-  static class OutType {
-    String name;
-    String text;
-  }
+class OutField extends BaseNode {
+}
 
-  static class OutTypeParameter {
-    List<OutType> bounds;
-    String name;
-  }
+class OutMethod extends BaseNode {
+  List<OutParam> parameters;
+}
 
-  static class OutSuperClass extends BaseNode {
-  }
-
-  static class OutField extends BaseNode {
-  }
-
-  static class OutMethod extends BaseNode {
-    List<OutParam> parameters;
-  }
-
-  static class OutParam extends BaseNode {
-  }
-  
+class OutParam extends BaseNode {
 }
