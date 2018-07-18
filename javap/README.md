@@ -1,78 +1,53 @@
-Given a .jar and class name it prints the Java AST in JSON format. 
+# javap
 
-Bindings for javap-json sibling project with nice CLI and node.js API.
+# What?
 
-Implements allClasses to extract all class names from .jar file.
+ * Given a .jar and class name it prints the Java AST in JSON format.
+ * High level performant CLI and Node.js APIs
+ * Supports .jar inspection to, for example, extract the AST of all its classes
+ * Supports class and .jar file glob matching 
+ * Node.js API are actually bindings to javap-json (sibling project) with nice (not a wrapper around the CLI). (uses java-node project for this)
+ * Performant, direct access to Jvm, no wrapping, no process spawns
+ * Written in TypeScript so have typings out of the box!
 
-Used by java2js to build a TS / JS project from given classes.
-
-
-<!-- 
-node-javap command execution and output string parser to a json AST like structure from given .jar and class names 
-
-# Install
-```sh
-npm install javap [--global]
-```
-
-
-# CLI Usage
-
-If installed with --global will install the command `javap-parser`
-
- * parse all lucene jar files classes and print resulting AST to stdout
+# How 
 
 ```sh
-javap-parser --classPath "lib/**/lucene*.jar" --allClasses 
+npm install javap
 ```
 
-* parse classes that match `java.util.*` from standard java library:
-
-java.lang* , java.util* , etc classes are located in JRE distribution `rt.jar`: 
+or globally to use the CLI tool directly: 
 
 ```sh
-javap-parser --classPath /usr/local/java/jre/lib/rt.jar --classes "java.util.*"
+npm install -g javap
 ```
 
- * Run `javap` manually and pass stdout to `javap-parser`
+## CLI
 
-```sh
-javap -s -classpath lucene-lib/lucene-core-7.4.0.jar org.apache.lucene.store.RAMDirectory | javap-parser
+TODO
+
+## Node.js API
+
+Get the AST of java.util.List interface and print all its method return types: 
+
+```js
+import { javap } from 'javap';
+const config = { classes: ['java.util.List'] }
+const ast = javap(config)
+const listClass = ast.find(c => c.name === 'java.util.List')
+console.log(`Methods : ${listClass.methods.map(m => m.name).join(', ')}`)
 ```
 
+This time we will get the descriptor of method `org.apache.lucene.store.RAMDirectory.fileNameExists` we will need to provide the library's .jar file:
 
-# Node.js API
-
-User use javap directly and pass output to stdin:
-
-```sh
-
+```js
+import { javap } from 'javap';
+const config = {
+  jars: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
+  classes: ['org.apache.lucene.store.RAMDirectory']
+}
+const ast = javap(config)
+const RAMDirectory = ast.find(c => c.name == 'org.apache.lucene.store.RAMDirectory')
+const fileNameExists = RAMDirectory.methods.find(m => m.name == 'fileNameExists')
+console.log(`org.apache.lucene.store.RAMDirectory.fileNameExists method descriptor is ${fileNameExists.descriptor}`)
 ```
-
-# Options
-
-Options both for API and CLI
-
-TODO link to types.ts or copy paste
-
-# TODO
-
- * maybe instead of parsing javap is safer to create a .java program that loads the class and use reflection to get everything, like http://javahungry.blogspot.com/2013/05/reflection-javap-command.html
-
- 
- * this fails - fileMap is not well parsed because of generics...
-
-```
- public class org.apache.lucene.store.RAMDirectory extends org.apache.lucene.store.BaseDirectory implements org.apache.lucene.util.Accountable {
-  protected final java.util.Map<java.lang.String, org.apache.lucene.store.RAMFile> fileMap;
-    descriptor: Ljava/util/Map;```
-
-
- 
- * validate format is valid https://github.com/estree/estree (typescript) compatible (example: https://cancerberosgx.github.io/js-ast-experiments-of-mine/#ast-types%20print%20AST%20of%20TypeScript%20code) 
-
-
-# Dones
-
-
- * parser issue class and methods names can have generics: {"java.util.List<E>":{"name":"java.util.List<E>" - this is wrong remove generics from name and put them in new field typeParameters.  -->
