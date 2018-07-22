@@ -1,17 +1,28 @@
-import { JavaAst } from './types-ast';
+import { JavaAst, BaseNode } from './types-ast';
 
 export interface Config {
-  /** paths or globs to jars */
+  
+  /** paths or globs to jars. In the command line must be comma-separated if more than one. */
   jars?: string[]
+  
+  /** Classes to print. In the command line must be comma-separated if more than one. */
   classes: string[]
+  
   // /** generate all classes of given ClassPath */
   // allClasses?: boolean
+  
   /** callback called with resulting ast when finish */
   fn?: (ast: JavaAst) => void
-  // /** if true wi take javap output for stdin */
-  // stdin?: boolean
+
   /** write ast json to file. If not provided will print json to stdout */
   output?: string
+
+  /** if given will print only those members which name contain given string  */
+  memberFilter?: string | ((s: BaseNode) => boolean)
+
+  /** if true will remove all those properties which value are empty array or false */
+  removeEmptyArrayProps? : boolean
+
 }
 
 

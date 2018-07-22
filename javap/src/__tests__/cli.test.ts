@@ -8,7 +8,7 @@ describe('build and cli', () => {
   it('should print json to stdout if no --input provided', () => {
     const p = exec('node bin/javap-parser.js --jars node_modules/javap-json/dist/javap-json.jar --classes JavapJsonOutput,java.util.List')
     expect(p.code).toBe(0)
-        //@ts-ignore
+    //@ts-ignore
     expect(JSON.parse(p.stdout).find(c => c.name === 'JavapJsonOutput').methods.find(m => m.name === 'javap'))
   })
 
@@ -16,7 +16,7 @@ describe('build and cli', () => {
     const f = 'tmp_'+Date.now()+'.json'
     const p = exec('node bin/javap-parser.js --output '+f+' --jars node_modules/javap-json/dist/javap-json.jar --classes JavapJsonOutput,java.util.List')
     expect(p.code).toBe(0)
-        //@ts-ignore
+    //@ts-ignore
     expect(JSON.parse(cat(f)).find(c => c.name === 'JavapJsonOutput').methods.find(m => m.name === 'javap'))  
     rm(f)
   })

@@ -1,12 +1,10 @@
-import {RAMDirectory, StandardAnalyzer, IndexWriterConfig, IndexWriter, QueryParser, Document, } from 'lucene'
+import {RAMDirectory, StandardAnalyzer, IndexWriterConfig, IndexWriter, QueryParser, Document, DirectoryReader} from 'lucene'
 
 const index = new RAMDirectory()
 const analyzer = new StandardAnalyzer()
 const writerConfig = new IndexWriterConfig(analyzer)
 const writer = new IndexWriter(index, writerConfig)
 const queryParser = new QueryParser("content", analyzer)
-
-
 
 writer.addDocumentSync(createDocument("Theodore Roosevelt",
   "It behooves every man to remember that the work of the " +
@@ -26,15 +24,13 @@ writer.addDocumentSync(createDocument("Mohandas Gandhi",
   "Freedom is not worth having if it does not connote " +
   "freedom to err."));
 
-
 writer.closeSync();
 
+var searcher = new IndexSearcher(DirectoryReader.open(index))
 
 search(searcher, "freedom");
 search(searcher, "free");
 search(searcher, "progress or achievements");
-
-
 
 function createDocument(title, content) {
   var fieldStoreYes = java.callStaticMethodSync("org.apache.lucene.document.Field$Store", "valueOf", "YES");
