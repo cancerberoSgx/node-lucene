@@ -8,6 +8,7 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "prepare": "npm run build",
+    "clean": "rm -rf dist",
     "test": "jest"
   },
   "keywords": [

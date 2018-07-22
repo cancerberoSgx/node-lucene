@@ -33,8 +33,10 @@ export async function main() {
 }
 function getConfig(): Config{
   const args = minimist(process.argv.slice(2)) as any
-  console.log(args);
-  return Object.assign({}, args, {
+  // console.log(args);
+  return Object.assign({}, args, { 
+    classes: (args.classes||'').split(','),
+    jars: (args.jars||'').split(',')
   })
 }
 
