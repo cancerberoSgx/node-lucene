@@ -9,7 +9,7 @@
     "watch": "tsc --watch",
     "prepare": "npm run build",
     "clean": "rm -rf dist",
-    "test": "ts-node node_modules/jasmine/bin/jasmine.js --config=src/__tests__/jasmine.json"
+    "test": "ts-node src/__tests__/index.ts"
   },
   "keywords": [
     "java",

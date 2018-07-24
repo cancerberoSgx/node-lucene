@@ -1,11 +1,18 @@
-import { buildSourceFile } from '..';
+// import { buildSourceFiles } from '..';
 import { javap } from 'javap/dist';
+import { create } from '..';
 
 describe('parser', () => {
-  it('should accept function predicate', () => {
+  it('should transform already processed ast', () => {
+    console.log('start');
+
     const ast = javap({ classes: ['java.lang.Object'] })
-    const sourceFile = buildSourceFile(ast)
-    console.log(JSON.stringify(sourceFile));
+    const transformer = create()
+    const options = { ast }
+    const sourceFile = transformer.transform(options)
+    expect(sourceFile.files[0].sourceFile.interfaces![0].methods!.find(m => m.name === 'toString')!.returnType).toBe('string')
+    // debugger
+    // console.log(JSON.stringify(sourceFile, null, 2))
 
   })
 });

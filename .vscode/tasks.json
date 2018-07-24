@@ -9,6 +9,13 @@
       "script": "build",
       "path": "javap/",
       "problemMatcher": []
+    },
+    {
+      "identifier": "java2js:build",
+      "type": "npm",
+      "script": "build",
+      "path": "java2js/",
+      "problemMatcher": []
     }
   ]
 }

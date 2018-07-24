@@ -17,6 +17,19 @@
       ]
       // "preLaunchTask": "javap:build",
       
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "java2js test",
+      "cwd": "${workspaceFolder}/java2js",
+      "program": "${workspaceFolder}/java2js/src/__tests__/index.ts", 
+      "outFiles": [
+        "${workspaceFolder}/java2js/dist/**/*"
+      ],
+      "args": [
+      ],
+      "preLaunchTask": "java2js:build"
     }
   ]
 }
