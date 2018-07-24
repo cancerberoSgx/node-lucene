@@ -4,7 +4,7 @@ import { create } from '..';
 
 describe('parser', () => {
   it('should transform already processed ast', () => {
-    console.log('start');
+    // console.log('start');
 
     const ast = javap({ classes: ['java.lang.Object'] })
     const transformer = create()

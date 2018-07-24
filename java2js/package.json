@@ -18,16 +18,19 @@
     "node"
   ],
   "author": "Sebastian Gurin",
-  "repository": "https://github.com/cancerberoSgx/java2js",
+  "repository": "https://github.com/cancerberoSgx/node-lucene",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0",
     "javap": "file:../javap",
+    "minimist": "^1.2.0",
     "ts-simple-ast": "^12.5.4"
   },
   "devDependencies": {
+    "@types/glob": "^5.0.35",
     "@types/jasmine": "^2.8.8",
+    "@types/minimist": "^1.2.0",
     "@types/node": "^10.3.6",
+    "glob": "^7.1.2",
     "jasmine": "^3.1.0",
     "ts-node": "^6.1.0",
     "tslint": "^5.10.0",

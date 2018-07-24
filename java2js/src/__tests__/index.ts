@@ -1,21 +1,21 @@
 import { join } from 'path';
 
 const Jasmine = require('jasmine')
+import { sync as glob } from 'glob'
+import minimist from 'minimist'
 
-var jasmineRunner = new Jasmine();
+const jasmineRunner = new Jasmine();
+const args = minimist(process.argv.slice(2)) as any
+let specs: string[];
 
-// var specs;
-
-// if (args.specs)
-// {
-// 	specs = _.map(args.specs.split(','), function (spec) {return path.join(__dirname, spec)} );
-// }
-// else
-// {
-// 	specs = glob(path.join(__dirname, '*-spec.js'));
-// }
-
-jasmineRunner.specFiles = [join(__dirname, 'interfaces.test')];
-jasmineRunner.execute();
+if (args.specs) {
+  specs = (args.specs as string).split(',').map(spec => join(__dirname, spec))
+}
+else {
+  specs = glob(join(__dirname, '*.test.*'))
+}
+specs = specs.map(spec => spec.substring(0, spec.length - 3))
+jasmineRunner.specFiles = specs
+jasmineRunner.execute()
 
 

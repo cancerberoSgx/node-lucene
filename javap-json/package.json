@@ -25,7 +25,7 @@
     "java-test2": "npm run javac && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput org.apache.lucene.store.RAMDirectory,org.apache.lucene.store.LockFactory,org.apache.lucene.util.Accountable,org.apache.lucene.util.FilterIterator ../node-lucene/lucene-lib/lucene-core-7.4.0.jar",
     "java-test3": "npm run build && java -jar dist/javap-json.jar org.apache.lucene.store.RAMDirectory,org.apache.lucene.store.LockFactory,org.apache.lucene.util.Accountable,org.apache.lucene.util.FilterIterator ../node-lucene/lucene-lib/lucene-core-7.4.0.jar,../node-lucene/lucene-lib/lucene-queryparser-7.4.0.jar && rm -rf tmp java-src/*.class"
   },
-  "repository": "https://github.com/cancerberoSgx/lucene-java",
+  "repository": "https://github.com/cancerberoSgx/node-lucene",
   "devDependencies": {
     "@types/node": "^10.5.2"
   },

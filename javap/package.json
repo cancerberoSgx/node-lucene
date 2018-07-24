@@ -20,7 +20,7 @@
     "node"
   ],
   "author": "Sebastian Gurin",
-  "repository": "https://github.com/cancerberoSgx/javap",
+  "repository": "https://github.com/cancerberoSgx/node-lucene",
   "license": "MIT",
   "dependencies": {
     "java": "^0.10.0",
