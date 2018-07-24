@@ -15,12 +15,9 @@ describe('parser', () => {
   })
 
   it('should list all classes in jar', () => {
-    // const jar1 = '/home/sg/programs/graalvm-1.0.0-rc1/jre/lib/rt.jar'
     const all = getAllClassNamesFromJar(jar1)
     expect(all).toContain('com.google.gson.Gson')
-    // console.log(all);
-
-    // expect(getFileNamesFromJar(jar1, 'Out*.class')).toContain('OutTypeParameter.class')
+    // expect(all).not.toContain('com.google.gson.Gson$3')
   })
 
 })

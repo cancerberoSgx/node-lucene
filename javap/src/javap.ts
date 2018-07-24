@@ -1,10 +1,12 @@
-import { Config, JavaAst } from './types';
-import { resolve, join } from 'path';
-import { BaseNode } from './types-ast';
+import { writeFileSync } from 'fs';
+import { dirname, join, resolve } from 'path';
+import { mkdir } from 'shelljs';
 import { getAllClassNamesFromJar } from './listJarFiles';
+import { Config, JavaAst } from './types';
+import { BaseNode } from './types-ast';
 
 /**
- * Main public function that perform the job.
+ * Perform the main parsing job calling javap-json and post processing the result 
  */
 export function javap(config: Config): JavaAst {
   const result = JSON.parse(javapNoParse(config), config.removeEmptyArrayProps ? removeEmptyArrayPropReviver : undefined) as JavaAst
@@ -32,6 +34,21 @@ export function javapNoParse(config: Config): string {
   const jclasses = java.newArray('java.lang.String', classes);
   return java.callStaticMethodSync('JavapJsonOutput', fullMethodSignature, jjars, jclasses)
 }
+
+/** main public function accepting user config and responsible of writing files after calling javap */
+export function main(config: Config) {
+  const ast = javap(config);
+  const output = config.pretty ? JSON.stringify(ast, null, 2) : JSON.stringify(ast);
+  if (!config.output) {
+    console.log(output);
+  }
+  else {
+    mkdir('-p', dirname(config.output));
+    writeFileSync(config.output, output);
+  }
+  config.fn && config.fn(ast);
+}
+
 
 let java: any
 function getJava(): any {
@@ -68,7 +85,10 @@ function resolveClasses(config: Config): string[] {
     config.jars.forEach(jar => {
       classes = classes.concat(getAllClassNamesFromJar(jar))
     })
-    classes = classes.filter((v, i, a) => a.indexOf(v) === i) // deduplicate
+    classes = classes
+      .filter((v, i, a) => a.indexOf(v) === i) // deduplicate
+      .filter(i => !!i.trim()) // remove empties
+    debugger
   }
   else {
     classes = config.classes

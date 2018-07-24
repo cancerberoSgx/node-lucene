@@ -24,9 +24,22 @@ npm install -g javap
 
 ## CLI
 
+The executable is called javap-json so it not collides with existing Java `javap` command. Examples: 
+
+Print AST of class `org.apache.lucene.store.RAMDirectory` to stdout:
+
 ```sh
-javap --jars ../node-lucene/lucene-lib/lucene-core-7.4.0.jar --classes org.apache.lucene.store.RAMDirectory
+javap-json --jars ../node-lucene/lucene-lib/lucene-core-7.4.0.jar --classes org.apache.lucene.store.RAMDirectory
 ```
+
+Print AST of all classes found in `rt.jar` to file `standard-ast.json`:
+
+
+```sh
+javap-json --jars /usr/lib/jvm/java-8-jdk/jre/lib/rt.jar --all-classes
+```
+
+
 
 ## Node.js API
 
@@ -53,6 +66,9 @@ const RAMDirectory = ast.find(c => c.name == 'org.apache.lucene.store.RAMDirecto
 const fileNameExists = RAMDirectory.methods.find(m => m.name == 'fileNameExists')
 console.log(`org.apache.lucene.store.RAMDirectory.fileNameExists method descriptor is ${fileNameExists.descriptor}`)
 ```
+
+Or we can just print all classes of given jars. In the following example we print the AST of all standard Java classes like java.lang and java.util. For that we must provide the rt.jar file distributed with the Java JRE / JDK : 
+
 
 ## Options
 

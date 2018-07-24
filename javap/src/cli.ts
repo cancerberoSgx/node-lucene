@@ -1,22 +1,10 @@
-import { javap } from './javap';
+import minimist from 'minimist';
+import { main } from './javap';
 import { Config } from './types';
-import minimist from 'minimist'
-import { writeFileSync } from 'fs';
-import { mkdir } from 'shelljs';
-import { dirname } from 'path';
 
-export async function main() {
+export async function mainCli() {
   const config = getConfig()
-  const ast = javap(config)
-  const output = config.pretty ? JSON.stringify(ast, null, 2) : JSON.stringify(ast)
-  if (!config.output) {
-    console.log(output)
-  }
-  else {
-    mkdir('-p', dirname(config.output))
-    writeFileSync(config.output, output)
-  }
-  config.fn && config.fn(ast)
+  main(config);
 }
 
 function getConfig(): Config {

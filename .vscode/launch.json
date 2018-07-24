@@ -9,14 +9,14 @@
       "request": "launch",
       "name": "javap test",
       "cwd": "${workspaceFolder}/javap",
-      // "runtimeExecutable": "ts-node",
-      "program": "${workspaceFolder}/javap/node_modules/ts-node/dist/bin.js", 
+      "program": "${workspaceFolder}/javap/dist/__tests__/index", 
+      // "program": "${workspaceFolder}/javap/src/__tests__/index.ts", 
+      "outFiles": [
+        "${workspaceFolder}/javap/dist/**/*"
+      ],
       "args": [
-        "node_modules/jasmine/bin/jasmine.js",
-        "--config=src/__tests__/jasmine.json"
-      ]
-      // "preLaunchTask": "javap:build",
-      
+      ],
+      "preLaunchTask": "javap:build"
     },
     {
       "type": "node",

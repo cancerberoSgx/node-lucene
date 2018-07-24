@@ -1,7 +1,7 @@
-import { main } from './cli';
+import { mainCli } from './cli';
 (async function () {
   try {
-    await main()
+    await mainCli()
   } catch (error) {
     throw error
   }
