@@ -36,6 +36,7 @@
     "@types/shelljs": "^0.8.0",
     "jasmine": "^3.1.0",
     "ts-node": "^6.1.0",
+    "tslint": "^5.10.0",
     "typescript": "2.9.2"
   }
 }

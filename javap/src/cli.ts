@@ -8,7 +8,7 @@ import { dirname } from 'path';
 export async function main() {
   const config = getConfig()
   const ast = javap(config)
-  const output = JSON.stringify(ast) // TODO: Support pretty output
+  const output = config.pretty ? JSON.stringify(ast, null, 2) : JSON.stringify(ast)
   if(!config.output){
     console.log(output)
   }

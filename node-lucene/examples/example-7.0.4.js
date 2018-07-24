@@ -1,15 +1,13 @@
-#!/usr/bin/env node
-
 var java = require("java");
 java.classpath.push("./lucene-lib/lucene-core-7.4.0.jar");
 java.classpath.push("./lucene-lib/lucene-analyzers-common-7.4.0.jar");
 java.classpath.push("./lucene-lib/lucene-queryparser-7.4.0.jar");
 
 
-var idx = java.newInstanceSync("org.apache.lucene.store.RAMDirectory");
+var index = java.newInstanceSync("org.apache.lucene.store.RAMDirectory");
 var analyzer = java.newInstanceSync("org.apache.lucene.analysis.standard.StandardAnalyzer");
 var writerConfig = java.newInstanceSync("org.apache.lucene.index.IndexWriterConfig", analyzer);
-var writer = java.newInstanceSync("org.apache.lucene.index.IndexWriter", idx, writerConfig);
+var writer = java.newInstanceSync("org.apache.lucene.index.IndexWriter", index, writerConfig);
 var queryParser = java.newInstanceSync("org.apache.lucene.queryparser.classic.QueryParser", "content", analyzer);
 
 writer.addDocumentSync(createDocument("Theodore Roosevelt",
@@ -32,7 +30,7 @@ writer.addDocumentSync(createDocument("Mohandas Gandhi",
 
 writer.closeSync();
 
-var searcher = java.newInstanceSync("org.apache.lucene.search.IndexSearcher", java.callStaticMethodSync("org.apache.lucene.index.DirectoryReader", "open", idx));
+var searcher = java.newInstanceSync("org.apache.lucene.search.IndexSearcher", java.callStaticMethodSync("org.apache.lucene.index.DirectoryReader", "open", index));
 
 search(searcher, "freedom");
 search(searcher, "free");

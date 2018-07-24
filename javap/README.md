@@ -24,7 +24,9 @@ npm install -g javap
 
 ## CLI
 
-TODO
+```sh
+javap --jars ../node-lucene/lucene-lib/lucene-core-7.4.0.jar --classes org.apache.lucene.store.RAMDirectory
+```
 
 ## Node.js API
 
@@ -52,6 +54,39 @@ const fileNameExists = RAMDirectory.methods.find(m => m.name == 'fileNameExists'
 console.log(`org.apache.lucene.store.RAMDirectory.fileNameExists method descriptor is ${fileNameExists.descriptor}`)
 ```
 
+## Options
+
+The following are the options that javap accept in general both in the javaScript API and in the Command Line interface:
+
+
+```ts
+export interface Config {
+  
+  /** paths or globs to jars. In the command line must be comma-separated if more than one. */
+  jars?: string[]
+  
+  /** Classes to print. In the command line must be comma-separated if more than one. */
+  classes: string[]
+
+  /** write ast json to file. If not provided will print json to stdout */
+  output?: string
+
+  /** if given will print only those members which name contain given string  */
+  memberFilter?: string | ((s: BaseNode) => boolean)
+
+  /** if true will remove all those properties which value are empty array or false */
+  removeEmptyArrayProps? : boolean
+
+  /** if true JSON output will be indented if not minified */
+  pretty? : boolean
+
+}
+
+```
 
 
 
+
+#  TODO
+
+ * Contribute to java-node : add to examples to .npmignore - all its users are downloading lucene .jars on npm install !! n and probably same goes for test/ and **/*.class

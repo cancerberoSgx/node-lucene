@@ -23,6 +23,9 @@ export interface Config {
   /** if true will remove all those properties which value are empty array or false */
   removeEmptyArrayProps? : boolean
 
+  /** if true JSON output will be indented if not minified */
+  pretty? : boolean
+
 }
 
 

@@ -1,4 +1,4 @@
-import {RAMDirectory, StandardAnalyzer, IndexWriterConfig, IndexWriter, QueryParser, Document, DirectoryReader} from 'lucene'
+import {RAMDirectory, StandardAnalyzer, IndexWriterConfig, IndexWriter, QueryParser, Document, DirectoryReader, FieldStore} from 'lucene'
 
 const index = new RAMDirectory()
 const analyzer = new StandardAnalyzer()
@@ -33,10 +33,10 @@ search(searcher, "free");
 search(searcher, "progress or achievements");
 
 function createDocument(title, content) {
-  var fieldStoreYes = java.callStaticMethodSync("org.apache.lucene.document.Field$Store", "valueOf", "YES");
+  // var fieldStoreYes = java.callStaticMethodSync("org.apache.lucene.document.Field$Store", "valueOf", "YES");
   var doc = java.newInstanceSync("org.apache.lucene.document.Document");
   doc.addSync(java.newInstanceSync("org.apache.lucene.document.TextField", "title", title, fieldStoreYes));
-  doc.addSync(java.newInstanceSync("org.apache.lucene.document.TextField", "content", content, fieldStoreYes));
+  doc.addSync(java.newInstanceSync("org.apache.lucene.document.TextField", "content", content, FieldStore.YES));
   return doc;
 }
 
