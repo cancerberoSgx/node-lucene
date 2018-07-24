@@ -3,3 +3,6 @@ node_modules
 *.tgz
 tmp*
 *.class
+.gradle
+.settings
+/bin

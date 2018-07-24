@@ -1,27 +1,31 @@
-import { Method } from 'javap';
+// import { SourceFile } from 'ts-simple-ast';
 
-export interface Config {
-  /** TODO: custom param names for given method like. Default is arg0, arg1, etc */
-  paramNames?: (node: Method) => string[]
-}
-// project types (for generating output TS project - not input AST)
-
-export interface Project {
-  files: SourceFile[]
-}
-
-export interface SourceFile {
-  name: string
-  content: string
-}
-
-// export interface Node {
-//   name?: string
+// export interface File {
+//   name: string
+//   sourceFile: SourceFile
 // }
 
-// export interface Class extends Node {
-//   extends: string
-//   implements: string[]
+
+// import { Method } from '../../javap/dist';
+
+// export interface Config {
+//   /** TODO: custom param names for given method like. Default is arg0, arg1, etc */
+//   paramNames?: (node: Method) => string[]
 // }
+// // project types (for generating output TS project - not input AST)
+
+// export interface Project {
+//   files: SourceFile[]
+// }
+
+
+// // export interface Node {
+// //   name?: string
+// // }
+
+// // export interface Class extends Node {
+// //   extends: string
+// //   implements: string[]
+// // }
 
 

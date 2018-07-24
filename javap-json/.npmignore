@@ -6,3 +6,6 @@ tmp
 spec
 java-src
 java-lib
+.gradle
+.settings
+/bin

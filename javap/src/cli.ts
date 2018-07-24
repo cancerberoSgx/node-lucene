@@ -9,7 +9,7 @@ export async function main() {
   const config = getConfig()
   const ast = javap(config)
   const output = config.pretty ? JSON.stringify(ast, null, 2) : JSON.stringify(ast)
-  if(!config.output){
+  if (!config.output) {
     console.log(output)
   }
   else {
@@ -18,10 +18,11 @@ export async function main() {
   }
   config.fn && config.fn(ast)
 }
-function getConfig(): Config{
+
+function getConfig(): Config {
   const args = minimist(process.argv.slice(2)) as any
-  return Object.assign({}, args, { 
-    classes: (args.classes||'').split(','),
-    jars: (args.jars||'').split(','),
+  return Object.assign({}, args, {
+    classes: (args.classes || '').split(','),
+    jars: (args.jars || '').split(','),
   })
 }

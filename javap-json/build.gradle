@@ -1,0 +1,15 @@
+apply plugin: 'java'
+repositories {
+    mavenCentral()
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = 'javap-json'
+    version =  '0.0.1'
+}
+
+sourceSets {
+    main.java.srcDirs += 'java-src'
+}

@@ -1,8 +1,8 @@
 //TODO: we could autogenerate this file using this technology parsing from javap-json.jar
 
-export type Modifier = 'public' | 'protected' | 'private' | 'package' | 'static' | 'final'
+export type Modifier = 'public' | 'protected' | 'private' | 'package' | 'static' | 'final' | 'abstract'
 
-export type JavaAst = ClassDeclaration[] 
+export type JavaAst = ClassDeclaration[]
 
 export interface Method extends BaseNode {
   parameters: Param[]
@@ -18,7 +18,7 @@ export interface SuperClass extends BaseNode {
 }
 
 export interface ClassDeclaration extends BaseNode {
-  superClass: SuperClass[]
+  superClass?: SuperClass
   interfaces: SuperClass[]
   constructors: Method[]
   fields: Field[]
@@ -32,7 +32,8 @@ export interface BaseNode {
   modifiers: Modifier[]
   descriptor: string
   name: string
-  type: Type
+  type: Type,
+  typeParameters: TypeParameter[]
 }
 
 export interface TypeParameter {

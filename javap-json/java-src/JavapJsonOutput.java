@@ -1,3 +1,4 @@
+import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
 import java.io.*;
 import java.net.*;
@@ -174,6 +175,8 @@ public class JavapJsonOutput {
 
     for (int i = 0; i < m.length; i++) {
       OutMethod om = new OutMethod();
+      // for (Annotation a : m[i].getAnnotations()) {
+      // }     
       om.descriptor = getMethodDescriptor(m[i]);
       list.add(om);
       om.modifiers = getModifiers(m[i].getModifiers());
