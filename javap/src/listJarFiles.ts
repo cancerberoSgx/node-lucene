@@ -15,3 +15,7 @@ export function getFileNamesFromJar(jarPath: string, pattern?: string | ((f: str
   const predicate = typeof pattern === 'string' ? (f: string) => minimatch(f, pattern) : pattern
   return predicate ? lines.filter(predicate) : lines
 }
+
+export function getAllClassNamesFromJar(jarPath: string): string[] {
+  return getFileNamesFromJar(jarPath, '**/*.class').map(f => f.replace(/\//gmi, '.').replace(/\.class$/gim, ''))
+}

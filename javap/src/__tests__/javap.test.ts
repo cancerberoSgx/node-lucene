@@ -19,5 +19,16 @@ describe('javap', () => {
     const fileNameExists = RAMDirectory!.methods.find(m => m.name == 'fileNameExists')
     expect(fileNameExists!.type.name).toBe('boolean')
   })
+
+  it('should work passing several jars and classes', () => {
+    const config = {
+      jars: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
+      classes: ['org.apache.lucene.store.RAMDirectory']
+    }
+    const ast = javap(config)
+    const RAMDirectory = ast.find(c => c.name == 'org.apache.lucene.store.RAMDirectory')
+    const fileNameExists = RAMDirectory!.methods.find(m => m.name == 'fileNameExists')
+    expect(fileNameExists!.type.name).toBe('boolean')
+  })
 })
 

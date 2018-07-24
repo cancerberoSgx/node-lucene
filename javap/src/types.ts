@@ -1,16 +1,16 @@
 import { JavaAst, BaseNode } from './types-ast';
 
 export interface Config {
-  
+
   /** paths or globs to jars. In the command line must be comma-separated if more than one. */
   jars?: string[]
-  
-  /** Classes to print. In the command line must be comma-separated if more than one. */
-  classes: string[]
-  
-  // /** generate all classes of given ClassPath */
-  // allClasses?: boolean
-  
+
+  /** Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true*/
+  classes?: string[]
+
+  /** generate all classes of given ClassPath */
+  allClasses?: boolean
+
   /** callback called with resulting ast when finish */
   fn?: (ast: JavaAst) => void
 
@@ -21,10 +21,10 @@ export interface Config {
   memberFilter?: string | ((s: BaseNode) => boolean)
 
   /** if true will remove all those properties which value are empty array or false */
-  removeEmptyArrayProps? : boolean
+  removeEmptyArrayProps?: boolean
 
   /** if true JSON output will be indented if not minified */
-  pretty? : boolean
+  pretty?: boolean
 
 }
 
