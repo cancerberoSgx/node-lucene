@@ -17,5 +17,10 @@ export function getFileNamesFromJar(jarPath: string, pattern?: string | ((f: str
 }
 
 export function getAllClassNamesFromJar(jarPath: string): string[] {
-  return getFileNamesFromJar(jarPath, '**/*.class').map(f => f.replace(/\//gmi, '.').replace(/\.class$/gim, ''))
+  return getFileNamesFromJar(jarPath, '**/*.class')
+    .map(f => f
+      .replace(/\//gmi, '.')
+      .replace(/\.class$/gim, '')
+    )
+    .filter(f => !f.match(/\$[\d]+$/))
 }

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Given a .jar and class name it prints the Java AST in JSON format. A facade for javap-json with nice cli and node.js API.",
   "main": "dist/index.js",
-  "bin": "bin/javap-parser.js",
+  "bin": "bin/java-ast.js",
   "bindings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",

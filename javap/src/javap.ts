@@ -1,6 +1,4 @@
-import { writeFileSync } from 'fs';
-import { dirname, join, resolve } from 'path';
-import { mkdir } from 'shelljs';
+import { join, resolve } from 'path';
 import { getAllClassNamesFromJar } from './listJarFiles';
 import { Config, JavaAst } from './types';
 import { BaseNode } from './types-ast';
@@ -33,20 +31,6 @@ export function javapNoParse(config: Config): string {
   const jjars = java.newArray('java.lang.String', jars);
   const jclasses = java.newArray('java.lang.String', classes);
   return java.callStaticMethodSync('JavapJsonOutput', fullMethodSignature, jjars, jclasses)
-}
-
-/** main public function accepting user config and responsible of writing files after calling javap */
-export function main(config: Config) {
-  const ast = javap(config);
-  const output = config.pretty ? JSON.stringify(ast, null, 2) : JSON.stringify(ast);
-  if (!config.output) {
-    console.log(output);
-  }
-  else {
-    mkdir('-p', dirname(config.output));
-    writeFileSync(config.output, output);
-  }
-  config.fn && config.fn(ast);
 }
 
 
@@ -88,7 +72,6 @@ function resolveClasses(config: Config): string[] {
     classes = classes
       .filter((v, i, a) => a.indexOf(v) === i) // deduplicate
       .filter(i => !!i.trim()) // remove empties
-    debugger
   }
   else {
     classes = config.classes

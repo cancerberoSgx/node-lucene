@@ -5,4 +5,4 @@ tmp*
 *.class
 .gradle
 .settings
-/bin
+/bin/main

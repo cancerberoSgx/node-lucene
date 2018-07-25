@@ -1,5 +1,6 @@
 import { javap } from '../javap';
 import { JavaAst } from '../types';
+import { javapJsonJar, rtJar } from './testUtils';
 
 describe('javap', () => {
   it('should work passing no jars and core classes', () => {
@@ -11,7 +12,7 @@ describe('javap', () => {
 
   it('should work passing several jars and classes', () => {
     const config = {
-      jars: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
+      jars: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'], //TODO: use a local .jar like 
       classes: ['org.apache.lucene.store.RAMDirectory']
     }
     const ast = javap(config)
@@ -20,15 +21,23 @@ describe('javap', () => {
     expect(fileNameExists!.type.name).toBe('boolean')
   })
 
-  it('should work passing several jars and classes', () => {
+  it('should generate for all classes in given jars if no --classes given', () => {
     const config = {
-      jars: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
-      classes: ['org.apache.lucene.store.RAMDirectory']
+      jars: [javapJsonJar]
     }
     const ast = javap(config)
-    const RAMDirectory = ast.find(c => c.name == 'org.apache.lucene.store.RAMDirectory')
-    const fileNameExists = RAMDirectory!.methods.find(m => m.name == 'fileNameExists')
-    expect(fileNameExists!.type.name).toBe('boolean')
+    expect(ast.find(c => c.name === 'com.google.gson.Gson').name).toBe('com.google.gson.Gson')
+    expect(ast.filter(c => c.name === 'com.google.gson.Gson$1').length).toBe(0) // no Foo$1 classes because those are repeated - identical to the ones without the $1
+    expect(ast.length).toBeGreaterThan(100)
+  })
+
+  it('should generate for all classes in rt.jar (standard lang and util classes)', () => {
+    const config = {
+      jars: [rtJar]
+    }
+    debugger
+    const ast = javap(config)
+    debugger
   })
 })
 

@@ -24,19 +24,19 @@ npm install -g javap
 
 ## CLI
 
-The executable is called javap-json so it not collides with existing Java `javap` command. Examples: 
+The executable is called `java-ast` so it not collides with existing Java `javap` command. Examples: 
 
 Print AST of class `org.apache.lucene.store.RAMDirectory` to stdout:
 
 ```sh
-javap-json --jars ../node-lucene/lucene-lib/lucene-core-7.4.0.jar --classes org.apache.lucene.store.RAMDirectory
+java-ast --jars ../node-lucene/lucene-lib/lucene-core-7.4.0.jar --classes org.apache.lucene.store.RAMDirectory
 ```
 
 Print AST of all classes found in `rt.jar` to file `standard-ast.json`:
 
 
 ```sh
-javap-json --jars /usr/lib/jvm/java-8-jdk/jre/lib/rt.jar --all-classes
+java-ast --jars /usr/lib/jvm/java-8-jdk/jre/lib/rt.jar --all-classes
 ```
 
 

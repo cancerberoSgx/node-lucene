@@ -1,4 +1,3 @@
-
 export interface TraverseNode { key?: string, value: any, parent: any, typeOf: string }
 export function traverse(parent: any, fn: (obj: TraverseNode) => void) {
   if (parent && typeof parent == "object") {

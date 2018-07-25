@@ -8,4 +8,4 @@ java-src
 java-lib
 .gradle
 .settings
-/bin
+/bin/main

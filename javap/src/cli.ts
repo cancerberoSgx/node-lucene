@@ -1,6 +1,6 @@
 import minimist from 'minimist';
-import { main } from './javap';
 import { Config } from './types';
+import { main } from './main';
 
 export async function mainCli() {
   const config = getConfig()

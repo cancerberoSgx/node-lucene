@@ -1,5 +1,9 @@
 [
   {
+    "name": "generate-cli-api-help",
+    "path": "generate-cli-api-help"
+  },
+  {
     "name": "javap-json",
     "path": "javap-json"
   },
@@ -11,4 +15,5 @@
     "name": "java2js",
     "path": "java2js"
   }
+  
 ]

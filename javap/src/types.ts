@@ -26,6 +26,13 @@ export interface Config {
   /** if true JSON output will be indented if not minified */
   pretty?: boolean
 
+  /** list given jars content files optionally filtering using listJarFilter glob pattern */
+  listJar?: boolean
+
+  /** glob pattern to filter file when --listJar is used */
+  listJarFilter?: string
+
+  help?: string
 }
 
 
