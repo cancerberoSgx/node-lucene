@@ -1,6 +1,6 @@
 import { javap } from '../javap';
 import { JavaAst } from '../types';
-import { javapJsonJar, rtJar } from './testUtils';
+import { javapJsonJar, rtJar, rtResourcesJar } from './testUtils';
 
 describe('javap', () => {
   it('should work passing no jars and core classes', () => {
@@ -31,13 +31,13 @@ describe('javap', () => {
     expect(ast.length).toBeGreaterThan(100)
   })
 
-  it('should generate for all classes in rt.jar (standard lang and util classes)', () => {
+  xit('should generate for all classes in rt.jar (standard lang and util classes)', () => {
     const config = {
-      jars: [rtJar]
+      jars: [rtJar, rtResourcesJar]
     }
-    debugger
     const ast = javap(config)
-    debugger
+    console.log(ast.length);
+
   })
 })
 

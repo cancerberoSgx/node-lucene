@@ -17,6 +17,13 @@ export function javap(config: Config): JavaAst {
     })
   }
   return result
+
+  function removeEmptyArrayPropReviver(k: string, v: any): any {
+    if (!v || Array.isArray(v) && v.length === 0) {
+      return undefined
+    }
+    return v
+  }
 }
 
 /**
@@ -51,13 +58,6 @@ function addJars(jars: string[]) {
       java.classpath.push(j)
     }
   })
-}
-
-function removeEmptyArrayPropReviver(k: string, v: any): any {
-  if (!v || Array.isArray(v) && v.length === 0) {
-    return undefined
-  }
-  return v
 }
 
 function resolveClasses(config: Config): string[] {

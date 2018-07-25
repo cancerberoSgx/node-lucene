@@ -1,4 +1,5 @@
 import { getFileNamesFromJar, getAllClassNamesFromJar } from '../listJarFiles';
+import { rtJar, rtResourcesJar } from './testUtils';
 
 describe('parser', () => {
   const jar1 = 'node_modules/javap-json/dist/javap-json.jar'
@@ -17,7 +18,11 @@ describe('parser', () => {
   it('should list all classes in jar', () => {
     const all = getAllClassNamesFromJar(jar1)
     expect(all).toContain('com.google.gson.Gson')
-    // expect(all).not.toContain('com.google.gson.Gson$3')
+    expect(all).not.toContain('com.google.gson.Gson$3')
   })
+  xit('should list all classes in jar', () => {
+    const all = [rtJar, rtResourcesJar].map(j => getAllClassNamesFromJar(j).join('\n'))
+    console.log(all.join('\n------\n'));
 
+  })
 })
