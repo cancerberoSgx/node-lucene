@@ -17,7 +17,7 @@ export function printHelp(options: Options): string {
   const node = getNode(options)
   let s = `${printJsDoc(node.getJsDocs())}:
 
- * ${node.getProperties().map(p => p.getName() + ': ' + printJsDoc(p.getJsDocs())).join('\n * ')}`
+ * ${node.getProperties().map(p => '\`' + p.getName() + '\`' + ': (\`' + p.getTypeNode().getText() + '\`) ' + printJsDoc(p.getJsDocs())).join('\n * ')}`
   return s
 }
 

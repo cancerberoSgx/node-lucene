@@ -20,9 +20,12 @@ describe('parser', () => {
     expect(all).toContain('com.google.gson.Gson')
     expect(all).not.toContain('com.google.gson.Gson$3')
   })
-  xit('should list all classes in jar', () => {
-    const all = [rtJar, rtResourcesJar].map(j => getAllClassNamesFromJar(j).join('\n'))
-    console.log(all.join('\n------\n'));
 
-  })
+  // it('should list all classes in jar', () => {
+  //   // const all = [rtJar, rtResourcesJar].map(j => getAllClassNamesFromJar(j).join('\n'))
+  //   const all = [rtJar].map(getAllClassNamesFromJar)
+  //   // console.log(all.join('\n------\n'));
+  //   debugger
+
+  // })
 })

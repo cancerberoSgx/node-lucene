@@ -33,7 +33,7 @@ describe('javap', () => {
 
   xit('should generate for all classes in rt.jar (standard lang and util classes)', () => {
     const config = {
-      jars: [rtJar, rtResourcesJar]
+      jars: [rtJar]
     }
     const ast = javap(config)
     console.log(ast.length);

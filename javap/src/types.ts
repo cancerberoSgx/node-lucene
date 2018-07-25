@@ -8,6 +8,9 @@ export interface Config {
   /** Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true*/
   classes?: string[]
 
+  /** glob-like pattern for matching classes */
+  classesFilter?: string
+
   /** generate all classes of given ClassPath */
   allClasses?: boolean
 
@@ -29,9 +32,10 @@ export interface Config {
   /** list given jars content files optionally filtering using listJarFilter glob pattern */
   listJar?: boolean
 
-  /** glob pattern to filter file when --listJar is used */
+  /** glob pattern to filter files when --listJar is used */
   listJarFilter?: string
 
+  /** shows usage help */
   help?: string
 }
 

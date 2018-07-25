@@ -49,8 +49,8 @@ Get the AST of java.util.List interface and print all its method return types:
 import { javap } from 'javap';
 const config = { classes: ['java.util.List'] }
 const ast = javap(config)
-const listClass = ast.find(c => c.name === 'java.util.List')
-console.log(`Methods : ${listClass.methods.map(m => m.name).join(', ')}`)
+const List = ast.find(c => c.name === 'java.util.List')
+console.log(`Methods : ${List.methods.map(m => m.name).join(', ')}`)
 ```
 
 This time we will get the descriptor of method `org.apache.lucene.store.RAMDirectory.fileNameExists` we will need to provide the library's .jar file:
@@ -63,7 +63,7 @@ const config = {
 }
 const ast = javap(config)
 const RAMDirectory = ast.find(c => c.name == 'org.apache.lucene.store.RAMDirectory')
-const fileNameExists = RAMDirectory.methods.find(m => m.name == 'fileNameExists')
+const fileNameExists = RAMDirectory.methods.find(m => m.name === 'fileNameExists')
 console.log(`org.apache.lucene.store.RAMDirectory.fileNameExists method descriptor is ${fileNameExists.descriptor}`)
 ```
 
@@ -74,35 +74,20 @@ Or we can just print all classes of given jars. In the following example we prin
 
 The following are the options that javap accept in general both in the javaScript API and in the Command Line interface:
 
-
-```ts
-export interface Config {
-  
-  /** paths or globs to jars. In the command line must be comma-separated if more than one. */
-  jars?: string[]
-  
-  /** Classes to print. In the command line must be comma-separated if more than one. */
-  classes: string[]
-
-  /** write ast json to file. If not provided will print json to stdout */
-  output?: string
-
-  /** if given will print only those members which name contain given string  */
-  memberFilter?: string | ((s: BaseNode) => boolean)
-
-  /** if true will remove all those properties which value are empty array or false */
-  removeEmptyArrayProps? : boolean
-
-  /** if true JSON output will be indented if not minified */
-  pretty? : boolean
-
-}
-
-```
+ * `jars`: (`string[]`) paths or globs to jars. In the command line must be comma-separated if more than one.
+ * `classes`: (`string[]`) Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true
+ * `classesFilter`: (`string`) glob-like pattern for matching classes
+ * `allClasses`: (`boolean`) generate all classes of given ClassPath
+ * `fn`: (`(ast: JavaAst) => void`) callback called with resulting ast when finish
+ * `output`: (`string`) write ast json to file. If not provided will print json to stdout
+ * `memberFilter`: (`string | ((s: BaseNode) => boolean)`) if given will print only those members which name contain given string
+ * `removeEmptyArrayProps`: (`boolean`) if true will remove all those properties which value are empty array or false
+ * `pretty`: (`boolean`) if true JSON output will be indented if not minified
+ * `listJar`: (`boolean`) list given jars content files optionally filtering using listJarFilter glob pattern
+ * `listJarFilter`: (`string`) glob pattern to filter files when --listJar is used
+ * `help`: (`string`) shows usage help
 
 
-
-
-#  TODO
+# TODO
 
  * Contribute to java-node : add to examples to .npmignore - all its users are downloading lucene .jars on npm install !! n and probably same goes for test/ and **/*.class
