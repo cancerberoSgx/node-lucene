@@ -2,3 +2,4 @@ node_modules
 dist
 .yamat
 *.tgz
+tmp*

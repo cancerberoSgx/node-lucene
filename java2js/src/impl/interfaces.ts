@@ -2,7 +2,8 @@
 import { JavaAst, ClassDeclaration, Method, Param, Field, TypeParameter as JavaTypeParameter, Type, Modifier, javap } from 'javap'
 import Project, { InterfaceDeclarationStructure, ConstructSignatureDeclarationStructure, ParameterDeclarationStructure, PropertyDeclarationStructure, TypeParameterDeclarationStructure, MethodSignatureStructure, SourceFileStructure, Scope, SourceFile } from 'ts-simple-ast'
 import { Transformer, TransformerOptions, TransformerResult, File } from '../types'
-import { rtJar } from '../__tests__/testUtils';
+import { fromNow } from 'hrtime-now'
+// import { rtJar } from '../__tests__/testUtils';
 
 /**
  * this first try will generate a single big file with all interfaces and classes found - 
@@ -26,16 +27,15 @@ export class TransformerImpl implements Transformer {
       return options.ast
     }
     else if (options.javapOptions) {
-      debugger
-      const config = {
-        jars: [rtJar],
-        classesFilter: 'java.*' // heads up - I'm filtering here if not I'm getting a resource missing error probably I need to include another .jar but not important right now
-      }
-      console.log('CONNNN', config);
+      // debugger
+      // const config = {
+      //   jars: [rtJar],
+      //   classesFilter: 'java.*' // heads up - I'm filtering here if not I'm getting a resource missing error probably I need to include another .jar but not important right now
+      // }
+      // console.log('CONNNN', config);
+      // return javap(config)
 
-      return javap(config)
-
-      // return javap(options.javapOptions)
+      return javap(options.javapOptions)
     }
     else {
       throw new Error('Invalid call: Must pass ast or javapOptions property')
@@ -55,7 +55,8 @@ export class TransformerImpl implements Transformer {
     return {
       typeParameters: node.typeParameters.map(this.buildTypeParameter.bind(this)),
       name: this.getClassName(node.name),
-      extends: (node.superClass ? [this.getClassName(node.name)] : []).concat(node.interfaces.map(c => this.getClassName(c.name))),
+      extends: (node.superClass ? [this.getClassName(node.name)] : [])
+        .concat(node.interfaces.map(c => this.getClassName(c.name))),
       constructSignatures: node.constructors.map(this.buildConstructor.bind(this)),
       properties: node.fields.map(this.buildProperty.bind(this)),
       methods: node.methods.map(this.buildMethod.bind(this))
@@ -151,13 +152,19 @@ export class TransformerImpl implements Transformer {
 export class FileImpl implements File {
   private project: Project | undefined = undefined
   private sourceFile: SourceFile | undefined = undefined
+  private content: string | undefined = undefined
   constructor(public fileName: string, public sourceFileStructure: SourceFileStructure) {
   }
-  private content: string | undefined = undefined
   getContent(): string {
     if (!this.content) {
       this.project = new Project({ useVirtualFileSystem: true })
       this.sourceFile = this.project.createSourceFile(this.fileName, '')
+      this.sourceFileStructure.interfaces!.forEach((node, index) =>
+        fromNow(() =>
+          this.sourceFile!.addInterface(node)
+          , time => console.log(node.name, index, time))
+      );
+
       this.sourceFile.fill(this.sourceFileStructure)
       this.content = this.sourceFile.getText()
     }
