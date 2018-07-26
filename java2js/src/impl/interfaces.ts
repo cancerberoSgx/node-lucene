@@ -1,17 +1,23 @@
 // generate ts interfaces from java ast
 import { JavaAst, ClassDeclaration, Method, Param, Field, TypeParameter as JavaTypeParameter, Type, Modifier, javap } from 'javap'
-import { InterfaceDeclarationStructure, ConstructSignatureDeclarationStructure, ParameterDeclarationStructure, PropertyDeclarationStructure, TypeParameterDeclarationStructure, MethodSignatureStructure, SourceFileStructure, Scope } from 'ts-simple-ast'
-import { Transformer, TransformerOptions, TransformerResult } from '../types';
+import Project, { InterfaceDeclarationStructure, ConstructSignatureDeclarationStructure, ParameterDeclarationStructure, PropertyDeclarationStructure, TypeParameterDeclarationStructure, MethodSignatureStructure, SourceFileStructure, Scope, SourceFile } from 'ts-simple-ast'
+import { Transformer, TransformerOptions, TransformerResult, File } from '../types'
+import { rtJar } from '../__tests__/testUtils';
 
 /**
- * this first try will generate a single big file with all interfaces inside replacing foo.bar.Class with fooBarClass names
+ * this first try will generate a single big file with all interfaces and classes found - 
+ * all as TypeScript interfaces inside replacing foo.bar.Class with fooBarClass names. 
+ * 
+ * Implemented with ts-simple-ast.
  */
 export class TransformerImpl implements Transformer {
 
   transform(options: TransformerOptions): TransformerResult {
     const ast = this.resolveAst(options)
+    const fileStructures = this.buildSourceFileStructures(ast)
     return {
-      files: this.buildSourceFiles(ast).map(sourceFile => ({ fileName: 'all.ts', sourceFile }))
+      files: fileStructures.map(sourceFileStructure =>
+        new FileImpl('all.ts', sourceFileStructure))
     }
   }
 
@@ -20,14 +26,23 @@ export class TransformerImpl implements Transformer {
       return options.ast
     }
     else if (options.javapOptions) {
-      return javap(options.javapOptions)
+      debugger
+      const config = {
+        jars: [rtJar],
+        classesFilter: 'java.*' // heads up - I'm filtering here if not I'm getting a resource missing error probably I need to include another .jar but not important right now
+      }
+      console.log('CONNNN', config);
+
+      return javap(config)
+
+      // return javap(options.javapOptions)
     }
     else {
       throw new Error('Invalid call: Must pass ast or javapOptions property')
     }
   }
 
-  protected buildSourceFiles(ast: JavaAst): SourceFileStructure[] {
+  protected buildSourceFileStructures(ast: JavaAst): SourceFileStructure[] {
     return [{
       imports: [],
       exports: [],
@@ -86,9 +101,10 @@ export class TransformerImpl implements Transformer {
     }
   }
 
-
   /**
-   * org.apache.lucene.store.RAMDirectory => org/apache/lucene/store/RAMDirectory/ts (depends on config)
+   * TODO
+   * 
+   * Given java class name return the name of the file in which it should be generated. example: org.apache.lucene.store.RAMDirectory => org/apache/lucene/store/RAMDirectory.ts (depends on config)
    */
   protected getSourceFileName(name: string): string {
     return name
@@ -98,7 +114,7 @@ export class TransformerImpl implements Transformer {
    * org.apache.lucene.store.RAMDirectory => RAMDirectory (depends on config)
    */
   protected getClassName(name: string): string {
-    return name
+    return name.replace(/\./gmi, '_')
   }
 
   /**
@@ -114,8 +130,12 @@ export class TransformerImpl implements Transformer {
   }
 
   protected typeMap: { [key: string]: string } = {
-    'java.lang.String': 'string'
+    'java.lang.String': 'string',
+    'int': 'number',
+    'double': 'number',
+    'float': 'number'
   }
+
   /**
    * get TS Scope from Java Modifier[]
    */
@@ -124,3 +144,27 @@ export class TransformerImpl implements Transformer {
   }
 
 }
+
+/**
+ * @internal
+ */
+export class FileImpl implements File {
+  private project: Project | undefined = undefined
+  private sourceFile: SourceFile | undefined = undefined
+  constructor(public fileName: string, public sourceFileStructure: SourceFileStructure) {
+  }
+  private content: string | undefined = undefined
+  getContent(): string {
+    if (!this.content) {
+      this.project = new Project({ useVirtualFileSystem: true })
+      this.sourceFile = this.project.createSourceFile(this.fileName, '')
+      this.sourceFile.fill(this.sourceFileStructure)
+      this.content = this.sourceFile.getText()
+    }
+    return this.content
+  }
+}
+// class TransformerResultImpl implements TransformerResult {
+//   constructor(public files: FileImpl[]) {
+//   }
+// }

@@ -19,6 +19,7 @@
     "prepare": "npm run build",
     "clean": "rm -rf dist tmp java-src/*.class",
     "test": "jasmine",
+    "test-js": "npm test",
     "unix": "java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput ",
     "windows": "java -cp \"java-lib/gson-2.8.5.jar;java-src\" JavapJsonOutput ",
     "java-test1": "npm run javac && java -cp \"java-lib/gson-2.8.5.jar:java-src\" JavapJsonOutput java.lang.String,java.util.List",

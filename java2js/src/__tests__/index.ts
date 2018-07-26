@@ -12,9 +12,11 @@ if (args.specs) {
   specs = (args.specs as string).split(',').map(spec => join(__dirname, spec))
 }
 else {
-  specs = glob(join(__dirname, '*.test.*'))
+  specs = glob(join(__dirname, '**/*.test.*s'))
+    .filter(f => !f.endsWith('.d.ts'))
+    .map(f => f.substring(0, f.length - 3))
 }
-specs = specs.map(spec => spec.substring(0, spec.length - 3))
+
 jasmineRunner.specFiles = specs
 jasmineRunner.execute()
 

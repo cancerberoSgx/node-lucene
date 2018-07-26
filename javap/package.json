@@ -9,9 +9,9 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "ts-node src/__tests__/index.ts",
+    "test-js": "npm run clean && npm run build && node dist/__tests__/index.js",
     "prepare": "npm run build",
-    "clean": "rm -rf dist",
-    "all": "rm -rf node_modules package-lock.json && npm run clean && npm i && npm run build && npm test"
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "java",

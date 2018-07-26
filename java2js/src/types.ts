@@ -3,7 +3,7 @@ import { JavaAst, Method, Config } from 'javap/dist';
 
 export interface File {
   fileName: string
-  sourceFile: SourceFileStructure
+  getContent(): string
 }
 
 export interface Transformer {
@@ -17,7 +17,7 @@ export interface TransformerResult {
 /** input could be provided by giving classes+jars or by providing ast */
 export interface TransformerOptions {
 
-  /** optionally, if user doesn't pass `ast` it must give `classes` and `jars` in this options */
+  /** optionally, if user doesn't pass `ast` it must give `classes` and `jars` as a javapOptions */
   javapOptions?: Config
 
   /** optional input AST - output of calling javap() */

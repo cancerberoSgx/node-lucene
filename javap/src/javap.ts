@@ -8,6 +8,7 @@ import minimatch from 'minimatch';
  * Perform the main parsing job calling javap-json and post processing the result
  */
 export function javap(config: Config): JavaAst {
+  // console.log('javap with config', config);
   const result = JSON.parse(javapNoParse(config), config.removeEmptyArrayProps ? removeEmptyArrayPropReviver : undefined) as JavaAst
   if (config.memberFilter) {
     const p = config.memberFilter
