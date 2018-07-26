@@ -1,10 +1,11 @@
-import { join, resolve } from 'path';
-import { getAllClassNamesFromJar } from './listJarFiles';
-import { Config, JavaAst } from './types';
-import { BaseNode } from './types-ast';
+import { join, resolve } from 'path'
+import { getAllClassNamesFromJar } from './listJarFiles'
+import { Config, JavaAst } from './types'
+import { BaseNode } from './types-ast'
+import minimatch from 'minimatch';
 
 /**
- * Perform the main parsing job calling javap-json and post processing the result 
+ * Perform the main parsing job calling javap-json and post processing the result
  */
 export function javap(config: Config): JavaAst {
   const result = JSON.parse(javapNoParse(config), config.removeEmptyArrayProps ? removeEmptyArrayPropReviver : undefined) as JavaAst
@@ -35,11 +36,10 @@ export function javapNoParse(config: Config): string {
   const jars = (config.jars || []).map(p => resolve(p))
   addJars(jars)
   const classes = resolveClasses(config)
-  const jjars = java.newArray('java.lang.String', jars);
-  const jclasses = java.newArray('java.lang.String', classes);
+  const jjars = java.newArray('java.lang.String', jars)
+  const jclasses = java.newArray('java.lang.String', classes)
   return java.callStaticMethodSync('JavapJsonOutput', fullMethodSignature, jjars, jclasses)
 }
-
 
 let java: any
 function getJava(): any {
@@ -69,12 +69,17 @@ function resolveClasses(config: Config): string[] {
     config.jars.forEach(jar => {
       classes = classes.concat(getAllClassNamesFromJar(jar))
     })
-    classes = classes
-      .filter((v, i, a) => a.indexOf(v) === i) // deduplicate
-      .filter(i => !!i.trim()) // remove empties
   }
   else {
     classes = config.classes
+  }
+  classes = classes
+    .filter((v, i, a) => a.indexOf(v) === i) // deduplicate
+    .filter(i => !!i.trim()) // remove empties
+  if (config.classesFilter) {
+    //@ts-ignore
+    const predicate: NodePredicate = typeof config.classesFilter === 'string' ? n => minimatch(n, config.classesFilter) : config.classesFilter
+    classes = classes.filter(predicate)
   }
   return classes
 }

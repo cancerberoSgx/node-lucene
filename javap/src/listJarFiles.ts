@@ -5,7 +5,7 @@ import { exec, config } from 'shelljs';
 config.silent = true
 
 /** 
- * calls jar tf a.jar parse output and returns all .class files found optionally filtering result 
+ * executes `jar tf a.jar`, parse output and returns all .class files found optionally filtering result 
  * with given pattern 
  */
 export function getFileNamesFromJar(jarPath: string, pattern?: string | ((f: string) => boolean)): string[] {

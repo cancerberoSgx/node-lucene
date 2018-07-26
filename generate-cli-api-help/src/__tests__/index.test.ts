@@ -7,8 +7,7 @@ describe('index', () => {
       interfaceName: 'Options'
     }
     const help = printHelp(config)
-    expect(help).toContain(' * fileWithInterface:')
-    expect(help).toContain(' * interfaceName:')
-    console.log(help);
+    expect(help).toContain('* `fileWithInterface`: (`string`) - mandatory - Path to the file containing the options')
+    expect(help).toContain("* `format`: (`'markdown' | 'javascriptString'`) - optional - output format")
   })
 })

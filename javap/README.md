@@ -72,21 +72,17 @@ Or we can just print all classes of given jars. In the following example we prin
 
 ## Options
 
-The following are the options that javap accept in general both in the javaScript API and in the Command Line interface:
+The following are the options that javap accept in general both in the JavaScript API and in the Command Line interface:
 
- * `jars`: (`string[]`) paths or globs to jars. In the command line must be comma-separated if more than one.
- * `classes`: (`string[]`) Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true
- * `classesFilter`: (`string`) glob-like pattern for matching classes
- * `allClasses`: (`boolean`) generate all classes of given ClassPath
- * `fn`: (`(ast: JavaAst) => void`) callback called with resulting ast when finish
- * `output`: (`string`) write ast json to file. If not provided will print json to stdout
- * `memberFilter`: (`string | ((s: BaseNode) => boolean)`) if given will print only those members which name contain given string
- * `removeEmptyArrayProps`: (`boolean`) if true will remove all those properties which value are empty array or false
- * `pretty`: (`boolean`) if true JSON output will be indented if not minified
- * `listJar`: (`boolean`) list given jars content files optionally filtering using listJarFilter glob pattern
- * `listJarFilter`: (`string`) glob pattern to filter files when --listJar is used
- * `help`: (`string`) shows usage help
-
+ * `jars`: (`string[]`) - optional - paths or globs to jars. In the command line must be comma-separated if more than one.
+ * `classes`: (`string[]`) - optional - Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true
+ * `classesFilter`: (`string`) - optional - glob-like pattern for matching classes
+ * `allClasses`: (`boolean`) - optional - generate all classes of given ClassPath
+ * `output`: (`string`) - optional - write ast json to file. If not provided will print json to stdout
+ * `memberFilter`: (`string | ((s: BaseNode) => boolean)`) - optional - if given will print only those members which name contain given string
+ * `removeEmptyArrayProps`: (`boolean`) - optional - if true will remove all those properties which value are empty array or false
+ * `pretty`: (`boolean`) - optional - if true JSON output will be indented if not minified
+ * `help`: (`string`) - optional - shows usage help
 
 # TODO
 

@@ -60,8 +60,6 @@ public class JavapJsonOutput {
 
   static String getFieldDescriptor(Field m) {
     String s = "(";
-    // for(final Class c:(m.getParameterTypes()))
-    // s+=getDescriptorForClass(c);
     s += ')';
     return s + getDescriptorForClass(m.getType());
   }
@@ -79,7 +77,7 @@ public class JavapJsonOutput {
     for (final Class c : (m.getParameterTypes()))
       s += getDescriptorForClass(c);
     s += ')';
-    return s;// +getDescriptorForClass(m.getReturnType());
+    return s;
   }
 
   public List<String> getModifiers(int m) {
@@ -175,8 +173,6 @@ public class JavapJsonOutput {
 
     for (int i = 0; i < m.length; i++) {
       OutMethod om = new OutMethod();
-      // for (Annotation a : m[i].getAnnotations()) {
-      // }     
       om.descriptor = getMethodDescriptor(m[i]);
       list.add(om);
       om.modifiers = getModifiers(m[i].getModifiers());
