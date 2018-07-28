@@ -12,6 +12,7 @@ export interface Transformer {
 
 export interface TransformerResult {
   files: File[]
+  ast: JavaAst
 }
 
 /** input could be provided by giving classes+jars or by providing ast */

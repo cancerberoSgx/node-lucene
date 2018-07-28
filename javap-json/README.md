@@ -1,4 +1,4 @@
-
+# What?
 
 This is a program similar to Java command line tool `javap` program but outputs json so parsing is possible. 
 
@@ -6,7 +6,7 @@ Is implemented in Java and uses JavaRefection to obtain inforation by loading gi
 
 Also it contains a small Node.js CLI tool /bin/javap-json.js
 
-For more high level, flexible and easy to use package check the sibling project `javap` which is a facade on top of this one but nicer CLI and API. 
+For more high level, flexible and easy to use package check the sibling project `javap` which is a facade on top of this one but nicer CLI and API. For example it allows to filter .jars and class names using glob-like pattern, filter classes and members by modifiers (public, private, etc), etc.
 
 For be able to generate TypeScript interfaces from Java .class and even implementations based on node-java check sibling project  `java2js`. 
 
@@ -69,3 +69,11 @@ npm run build
 ```
 
 That will generate the .jar file in dist/ folder
+
+
+# TODO / Roadmap 
+
+ * build with gradle not manually
+ * TODO: better test typeparameters
+ * TODO: inner classes
+ * TODO: annotations ? 

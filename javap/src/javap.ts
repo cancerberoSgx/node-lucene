@@ -9,7 +9,10 @@ import minimatch from 'minimatch';
  */
 export function javap(config: Config): JavaAst {
   // console.log('javap with config', config);
-  const result = JSON.parse(javapNoParse(config), config.removeEmptyArrayProps ? removeEmptyArrayPropReviver : undefined) as JavaAst
+  let result = JSON.parse(javapNoParse(config), config.removeEmptyArrayProps ? removeEmptyArrayPropReviver : undefined) as JavaAst
+  if (config.classFilter) {
+    result = result.filter(config.classFilter)
+  }
   if (config.memberFilter) {
     const p = config.memberFilter
     const predicate: (s: BaseNode) => boolean = typeof p === 'string' ? n => n.name.includes(p) : p
@@ -76,10 +79,10 @@ function resolveClasses(config: Config): string[] {
   }
   classes = classes
     .filter((v, i, a) => a.indexOf(v) === i) // deduplicate
-    .filter(i => !!i.trim()) // remove empties
-  if (config.classesFilter) {
+    .filter(i => i.trim()) // remove empties
+  if (config.classesFilterByName) {
     //@ts-ignore
-    const predicate: NodePredicate = typeof config.classesFilter === 'string' ? n => minimatch(n, config.classesFilter) : config.classesFilter
+    const predicate: NodePredicate = typeof config.classesFilterByName === 'string' ? n => minimatch(n, config.classesFilterByName) : config.classesFilterByName
     classes = classes.filter(predicate)
   }
   return classes

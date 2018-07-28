@@ -4,10 +4,6 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import com.google.gson.*;
-
-// TODO: better test typeparameters
-// TODO: inner classes
-// TODO: annotations ? 
 public class JavapJsonOutput {
 
   // Utilities to be able to add .jars dyamically to classpath

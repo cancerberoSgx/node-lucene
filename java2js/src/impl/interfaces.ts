@@ -3,7 +3,6 @@ import { JavaAst, ClassDeclaration, Method, Param, Field, TypeParameter as JavaT
 import Project, { InterfaceDeclarationStructure, ConstructSignatureDeclarationStructure, ParameterDeclarationStructure, PropertyDeclarationStructure, TypeParameterDeclarationStructure, MethodSignatureStructure, SourceFileStructure, Scope, SourceFile } from 'ts-simple-ast'
 import { Transformer, TransformerOptions, TransformerResult, File } from '../types'
 import { fromNow } from 'hrtime-now'
-// import { rtJar } from '../__tests__/testUtils';
 
 /**
  * this first try will generate a single big file with all interfaces and classes found - 
@@ -18,7 +17,8 @@ export class TransformerImpl implements Transformer {
     const fileStructures = this.buildSourceFileStructures(ast)
     return {
       files: fileStructures.map(sourceFileStructure =>
-        new FileImpl('all.ts', sourceFileStructure))
+        new FileImpl('all.ts', sourceFileStructure)),
+      ast
     }
   }
 
@@ -27,14 +27,6 @@ export class TransformerImpl implements Transformer {
       return options.ast
     }
     else if (options.javapOptions) {
-      // debugger
-      // const config = {
-      //   jars: [rtJar],
-      //   classesFilter: 'java.*' // heads up - I'm filtering here if not I'm getting a resource missing error probably I need to include another .jar but not important right now
-      // }
-      // console.log('CONNNN', config);
-      // return javap(config)
-
       return javap(options.javapOptions)
     }
     else {
@@ -112,7 +104,10 @@ export class TransformerImpl implements Transformer {
   }
 
   /**
-   * org.apache.lucene.store.RAMDirectory => RAMDirectory (depends on config)
+   * Dependencing on the output format configuration it returns the final class name for given java class name. For example, could be:
+   * 
+   *  * org.apache.lucene.store.RAMDirectory => org_apache_lucene_store_RAMDirectory 
+   *  * org.apache.lucene.store.RAMDirectory => RAMDirectory 
    */
   protected getClassName(name: string): string {
     return name.replace(/\./gmi, '_')
@@ -134,7 +129,8 @@ export class TransformerImpl implements Transformer {
     'java.lang.String': 'string',
     'int': 'number',
     'double': 'number',
-    'float': 'number'
+    'float': 'number',
+    'long': 'number'
   }
 
   /**
@@ -161,12 +157,15 @@ export class FileImpl implements File {
       this.sourceFile = this.project.createSourceFile(this.fileName, '')
       this.sourceFileStructure.interfaces!.forEach((node, index) =>
         fromNow(() =>
-          this.sourceFile!.addInterface(node)
+          // this.sourceFile!.addInterface(node)
+          this.sourceFile!.insertInterface(index, node)
           , time => console.log(node.name, index, time))
       );
+      console.log('All Nodes inserted in SourceFile');
 
-      this.sourceFile.fill(this.sourceFileStructure)
-      this.content = this.sourceFile.getText()
+      fromNow(() => this.sourceFile!.fill(this.sourceFileStructure), t => console.log('Source File fill() took ' + t))
+
+      this.content = fromNow(() => this.sourceFile!.getText(), t => console.log('Source File getText() took ' + t))
     }
     return this.content
   }

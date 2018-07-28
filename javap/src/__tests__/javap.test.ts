@@ -31,23 +31,41 @@ describe('javap', () => {
     expect(ast.length).toBeGreaterThan(100)
   })
 
-  it('should let me filter class by name using glob-like pattern', () => {
+  it('should let me filter class by name using glob-like pattern and by modifiers classes and members', () => {
     let ast = javap({ jars: [javapJsonJar] })
     expect(ast.find(c => !c.name.startsWith('com.google.gson.'))).toBeDefined()
     ast = javap({
       jars: [javapJsonJar],
-      classesFilter: 'com.google.gson.*'
+      classesFilterByName: 'com.google.gson.*'
     })
+    const size = ast.length
     expect(ast.find(c => !c.name.startsWith('com.google.gson.'))).not.toBeDefined()
+    ast = javap({
+      jars: [javapJsonJar],
+      classesFilterByName: 'com.google.gson.*',
+      classFilter: c => c.modifiers.includes('public')
+    })
+    expect(ast.length).toBeLessThan(size)
+    let memberSize = 0
+    ast.forEach(c => memberSize += (c.methods.length + c.fields.length))
+    ast = javap({
+      jars: [javapJsonJar],
+      classesFilterByName: 'com.google.gson.*',
+      classFilter: c => c.modifiers.includes('public'),
+      memberFilter: node => node.modifiers.includes('public')
+    })
+    let memberSize2 = 0
+    ast.forEach(c => memberSize2 += (c.methods.length + c.fields.length))
+    expect(memberSize).toBeGreaterThan(memberSize2)
   })
 
   it('should generate for all classes in rt.jar (standard lang and util classes)', () => {
     const config = {
       jars: [rtJar],
-      classesFilter: 'java.*' // heads up - I'm filtering here if not I'm getting a resource missing error probably I need to include another .jar but not important right now
+      classesFilterByName: 'java.*' // heads up - I'm filtering here if not I'm getting a resource missing error probably I need to include another .jar but not important right now
     }
     const ast = javap(config)
-    console.log('BIG ONE: ' + ast.length);
+    // console.log('BIG ONE: ' + ast.length);
 
     const classes = ['java.lang.String', 'java.util.HashMap', 'java.lang.reflect.Method']
     classes.forEach(className => expect(ast.find(c => c.name === className)).toBeTruthy())

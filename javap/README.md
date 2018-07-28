@@ -76,14 +76,15 @@ The following are the options that javap accept in general both in the JavaScrip
 
  * `jars`: (`string[]`) - optional - paths or globs to jars. In the command line must be comma-separated if more than one.
  * `classes`: (`string[]`) - optional - Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true
- * `classesFilter`: (`string`) - optional - glob-like pattern for matching classes
+ * `classesFilterByName`: (`string | ((s: string) => boolean)`) - optional - filter classes by name. Could be glob-like pattern or function predicate
  * `allClasses`: (`boolean`) - optional - generate all classes of given ClassPath
+ * `classFilter`: (`((c: BaseNode) => boolean)`) - optional - Filter class / interface nodes. Besides being able to filter them by name using \`classesFilterByName\` this predicate can be also used to filter nodes for example by modifier (public, private, etc)
  * `output`: (`string`) - optional - write ast json to file. If not provided will print json to stdout
  * `memberFilter`: (`string | ((s: BaseNode) => boolean)`) - optional - if given will print only those members which name contain given string
  * `removeEmptyArrayProps`: (`boolean`) - optional - if true will remove all those properties which value are empty array or false
  * `pretty`: (`boolean`) - optional - if true JSON output will be indented if not minified
  * `help`: (`string`) - optional - shows usage help
 
-# TODO
+## TODO
 
  * Contribute to java-node : add to examples to .npmignore - all its users are downloading lucene .jars on npm install !! n and probably same goes for test/ and **/*.class

@@ -1,7 +1,5 @@
 import { getFileNamesFromJar, getAllClassNamesFromJar } from '../listJarFiles';
 import { listDefaultLibs } from '../listDefaultLibs';
-// import { rtJar } from './testUtils';
-// import { rtJar, rtResourcesJar } from './testUtils';
 
 describe('parser', () => {
   const jar1 = 'node_modules/javap-json/dist/javap-json.jar'

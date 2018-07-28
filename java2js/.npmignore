@@ -1,6 +1,7 @@
 node_modules
-dist/__tests__
+dist/src/__tests__
 research
 tsconfig.json
-
+tmp*
+examples-output
 src

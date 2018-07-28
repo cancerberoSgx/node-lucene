@@ -8,10 +8,13 @@ export interface Config {
   classes?: string[]
 
   /** filter classes by name. Could be glob-like pattern or function predicate */
-  classesFilter?: string | ((s: string) => boolean)
+  classesFilterByName?: string | ((s: string) => boolean)
 
   /** generate all classes of given ClassPath */
   allClasses?: boolean
+
+  /** Filter class / interface nodes. Besides being able to filter them by name using `classesFilterByName` this predicate can be also used to filter nodes for example by modifier (public, private, etc) */
+  classFilter?: ((c: BaseNode) => boolean)
 
   /** write ast json to file. If not provided will print json to stdout */
   output?: string
