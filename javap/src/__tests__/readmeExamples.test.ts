@@ -14,7 +14,7 @@ describe('example readmes', () => {
     // this time we will get the descriptor of method org.apache.lucene.store.RAMDirectory.fileNameExists
     // we will need to provide the library's .jar file:
     const config = {
-      jars: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
+      classPath: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
       classes: ['org.apache.lucene.store.RAMDirectory']
     }
     const ast = javap(config)

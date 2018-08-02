@@ -36,12 +36,12 @@ export function javap(config: Config): JavaAst {
 export function javapNoParse(config: Config): string {
   const fullMethodSignature = 'javapJson([Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/String;'
   const java = getJava()
-  const jars = (config.jars || []).concat(config.classPath || []).map(p => resolve(p))
-  addJars(jars)
+  const classPath = (config.classPath || []).concat(config.classPath || []).map(p => resolve(p))
+  addclassPath(classPath)
   const classes = resolveClasses(config)
-  const jjars = java.newArray('java.lang.String', jars)
+  const jclassPath = java.newArray('java.lang.String', classPath)
   const jclasses = java.newArray('java.lang.String', classes)
-  return java.callStaticMethodSync('JavapJsonOutput', fullMethodSignature, jjars, jclasses)
+  return java.callStaticMethodSync('JavapJsonOutput', fullMethodSignature, jclassPath, jclasses)
 }
 
 let java: any
@@ -55,8 +55,8 @@ function getJava(): any {
 }
 
 const cp: string[] = []
-function addJars(jars: string[]) {
-  jars.forEach(j => {
+function addclassPath(classPath: string[]) {
+  classPath.forEach(j => {
     if (!cp.includes(j)) {
       java.classpath.push(j)
     }
@@ -66,10 +66,10 @@ function addJars(jars: string[]) {
 function resolveClasses(config: Config): string[] {
   let classes: string[] = []
   if (config.allClasses || !config.classes) {
-    if (!config.jars || !config.jars.length) {
-      throw new Error('Invalid invocation: you must provide classes or jars')
+    if (!config.classPath || !config.classPath.length) {
+      throw new Error('Invalid invocation: you must provide classes or classPath')
     }
-    config.jars.forEach(jar => {
+    config.classPath.forEach(jar => {
       classes = classes.concat(getAllClassNamesFromJar(jar))
     })
   }

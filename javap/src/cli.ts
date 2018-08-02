@@ -19,7 +19,7 @@ export function getConfig(): Config {
   const args = minimist(process.argv.slice(2)) as any
   return Object.assign({}, args, {
     classes: (args.classes || '').split(','),
-    jars: (args.jars || '').split(','),
+    classPath: (args.classPath || '').split(','),
   })
 }
 
@@ -41,7 +41,7 @@ export function main(config: Config) {
 
 export function help(code: number) {
   console.log(`
-  * \`jars\`: (\`string[]\`) - optional - paths or globs to jars. In the command line must be comma-separated if more than one.
+  * \`classPath\`: (\`string[]\`) - optional - paths or globs to .jar files or to folders with .class files. In the command line must be comma-separated if more than one.
   * \`classes\`: (\`string[]\`) - optional - Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true
   * \`classesFilterByName\`: (\`string | ((s: string) => boolean)\`) - optional - filter classes by name. Could be glob-like pattern or function predicate
   * \`allClasses\`: (\`boolean\`) - optional - generate all classes of given ClassPath

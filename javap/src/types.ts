@@ -1,10 +1,7 @@
 import { BaseNode } from './types-ast';
 export interface Config {
 
-  /** paths or globs to jars. In the command line must be comma-separated if more than one. */
-  jars?: string[]
-
-  /** Paths to folders with .class to add to java classpath. In the command line must be comma-separated if more than one. Note: these won't be considered for filtering classes or `allClasses` */
+  /** paths or globs to `.jar` files or to folders with `.class` files to add to classPath. In the command line must be comma-separated if more than one. */
   classPath?: string[]
 
   /** Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true*/
@@ -33,15 +30,6 @@ export interface Config {
 
   /** shows usage help */
   help?: string
-
-  // /** list given jars content files optionally filtering using listJarFilter glob pattern */
-  // listJar?: boolean
-
-  // /** glob pattern to filter files when --listJar is used */
-  // listJarFilter?: string
-
-  // /** callback called with resulting ast when finish */
-  // fn?: (ast: JavaAst) => void
 
 }
 

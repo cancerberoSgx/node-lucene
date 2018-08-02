@@ -29,17 +29,15 @@ The executable is called `java-ast` so it not collides with existing Java `javap
 Print AST of class `org.apache.lucene.store.RAMDirectory` to stdout:
 
 ```sh
-java-ast --jars ../node-lucene/lucene-lib/lucene-core-7.4.0.jar --classes org.apache.lucene.store.RAMDirectory
+java-ast --classPath ../node-lucene/lucene-lib/lucene-core-7.4.0.jar --classes org.apache.lucene.store.RAMDirectory
 ```
 
 Print AST of all classes found in `rt.jar` to file `standard-ast.json`:
 
 
 ```sh
-java-ast --jars /usr/lib/jvm/java-8-jdk/jre/lib/rt.jar --all-classes
+java-ast --classPath /usr/lib/jvm/java-8-jdk/jre/lib/rt.jar --all-classes
 ```
-
-
 
 ## Node.js API
 
@@ -58,7 +56,7 @@ This time we will get the descriptor of method `org.apache.lucene.store.RAMDirec
 ```js
 import { javap } from 'javap';
 const config = {
-  jars: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
+  classPath: ['../node-lucene/lucene-lib/lucene-core-7.4.0.jar'],
   classes: ['org.apache.lucene.store.RAMDirectory']
 }
 const ast = javap(config)
@@ -67,14 +65,14 @@ const fileNameExists = RAMDirectory.methods.find(m => m.name === 'fileNameExists
 console.log(`org.apache.lucene.store.RAMDirectory.fileNameExists method descriptor is ${fileNameExists.descriptor}`)
 ```
 
-Or we can just print all classes of given jars. In the following example we print the AST of all standard Java classes like java.lang and java.util. For that we must provide the rt.jar file distributed with the Java JRE / JDK : 
+Or we can just print all classes of given classPath. In the following example we print the AST of all standard Java classes like java.lang and java.util. For that we must provide the rt.jar file distributed with the Java JRE / JDK : 
 
 
 ## Options
 
 The following are the options that javap accept in general both in the JavaScript API and in the Command Line interface:
 
- * `jars`: (`string[]`) - optional - paths or globs to jars. In the command line must be comma-separated if more than one.
+ * `classPath`: (`string[]`) - optional - paths or globs to `.jar` files or to folders with `.class` files to add to class path. In the command line must be comma-separated if more than one.
  * `classes`: (`string[]`) - optional - Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true
  * `classesFilterByName`: (`string | ((s: string) => boolean)`) - optional - filter classes by name. Could be glob-like pattern or function predicate
  * `allClasses`: (`boolean`) - optional - generate all classes of given ClassPath
@@ -87,4 +85,4 @@ The following are the options that javap accept in general both in the JavaScrip
 
 ## TODO
 
- * Contribute to java-node : add to examples to .npmignore - all its users are downloading lucene .jars on npm install !! n and probably same goes for test/ and **/*.class
+ * Contribute to java-node : add to examples to .npmignore - all its users are downloading lucene .classPath on npm install !! n and probably same goes for test/ and **/*.class

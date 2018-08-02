@@ -21,9 +21,9 @@ describe('parser', () => {
   })
 
   it('should listDefaultLibs', () => {
-    const jars = listDefaultLibs()
-    expect(jars.length).not.toBe(0)
-    expect(jars[0]).toContain('rt.jar')
+    const classPath = listDefaultLibs()
+    expect(classPath.length).not.toBe(0)
+    expect(classPath[0]).toContain('rt.jar')
   })
 
 })
