@@ -4,6 +4,9 @@ export interface Config {
   /** paths or globs to jars. In the command line must be comma-separated if more than one. */
   jars?: string[]
 
+  /** Paths to folders with .class to add to java classpath. In the command line must be comma-separated if more than one. Note: these won't be considered for filtering classes or `allClasses` */
+  classPath?: string[]
+
   /** Classes to print. In the command line must be comma-separated if more than one. If omitted the behavior will be as if allClasses===true*/
   classes?: string[]
 

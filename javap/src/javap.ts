@@ -8,7 +8,6 @@ import minimatch from 'minimatch';
  * Perform the main parsing job calling javap-json and post processing the result
  */
 export function javap(config: Config): JavaAst {
-  // console.log('javap with config', config);
   let result = JSON.parse(javapNoParse(config), config.removeEmptyArrayProps ? removeEmptyArrayPropReviver : undefined) as JavaAst
   if (config.classFilter) {
     result = result.filter(config.classFilter)
@@ -37,7 +36,7 @@ export function javap(config: Config): JavaAst {
 export function javapNoParse(config: Config): string {
   const fullMethodSignature = 'javapJson([Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/String;'
   const java = getJava()
-  const jars = (config.jars || []).map(p => resolve(p))
+  const jars = (config.jars || []).concat(config.classPath || []).map(p => resolve(p))
   addJars(jars)
   const classes = resolveClasses(config)
   const jjars = java.newArray('java.lang.String', jars)

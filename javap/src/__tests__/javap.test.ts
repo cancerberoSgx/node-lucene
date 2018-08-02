@@ -65,10 +65,28 @@ describe('javap', () => {
       classesFilterByName: 'java.*' // heads up - I'm filtering here if not I'm getting a resource missing error probably I need to include another .jar but not important right now
     }
     const ast = javap(config)
-    // console.log('BIG ONE: ' + ast.length);
-
     const classes = ['java.lang.String', 'java.util.HashMap', 'java.lang.reflect.Method']
     classes.forEach(className => expect(ast.find(c => c.name === className)).toBeTruthy())
+  })
+})
+
+
+// import { listDefaultLibs, javap } from 'javap';
+import { exec, config } from 'shelljs';
+import { ok } from 'assert';
+describe('classPath', () => {
+  it('should be able to give classPath folder', () => {
+    // config.silent = false
+    const folder = `src/__tests__/assets/javaproject1`
+    const p = exec(`javac ${folder}/package1/*.java`)
+    ok(p.code === 0)
+    const ast = javap({
+      classPath: [folder],
+      classes: ['package1.Class1', 'package1.Interface1']
+    })
+    expect(ast.length).toBe(2)
+    expect(ast.find(n => n.name === 'package1.Class1').superClass.name).toBe('java.lang.Object')
+    // console.log(ast);
   })
 })
 

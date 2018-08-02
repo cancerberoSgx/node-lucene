@@ -34,7 +34,6 @@
     "ts-node": "^6.1.0",
     "tslint": "^5.10.0",
     "glob": "^7.1.2",
-    "minimist": "^1.2.0",
     "typescript": "2.9.2"
   }
 }

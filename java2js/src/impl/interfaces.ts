@@ -48,10 +48,19 @@ export class TransformerImpl implements Transformer {
       typeParameters: node.typeParameters.map(this.buildTypeParameter.bind(this)),
       name: this.getClassName(node.name),
       extends: (node.superClass ? [this.getClassName(node.name)] : [])
-        .concat(node.interfaces.map(c => this.getClassName(c.name))),
+        .concat(node.interfaces.map(c => this.getClassName(c.name))).filter(name => name !== node.name),
       constructSignatures: node.constructors.map(this.buildConstructor.bind(this)),
       properties: node.fields.map(this.buildProperty.bind(this)),
       methods: node.methods.map(this.buildMethod.bind(this))
+    }
+  }
+
+  protected buildProperty(field: Field): PropertyDeclarationStructure {
+    return {
+      name: field.name,
+      scope: this.getScope(field.modifiers),
+      isAbstract: field.modifiers.includes('abstract'),
+      type: this.getType(field.type)
     }
   }
 
@@ -85,15 +94,6 @@ export class TransformerImpl implements Transformer {
     }
   }
 
-  protected buildProperty(field: Field): PropertyDeclarationStructure {
-    return {
-      name: field.name,
-      scope: this.getScope(field.modifiers),
-      isAbstract: field.modifiers.includes('abstract'),
-      type: this.getType(field.type)
-    }
-  }
-
   /**
    * TODO
    * 
@@ -122,7 +122,7 @@ export class TransformerImpl implements Transformer {
    */
   protected getType(type: string | Type): string {
     const asString = typeof type === 'string' ? type : (type.name || type.text)
-    return this.typeMap[asString] || asString
+    return this.typeMap[asString] || 'any /*' + asString + '*/'
   }
 
   protected typeMap: { [key: string]: string } = {

@@ -47,6 +47,15 @@ initially default impl is the later
 
 
 # TODO
+
+## Issues
+
+ * interface I extends I if base - (Type 'I' recursively references itself as a base type.)
+ * interfaces:  public YES: any - 'public' modifier cannot appear on a type member. <-- this is probably a ts-simple-ast issue - should not print 'public' in this case
+
+
+## Problems ahead / detected
+
  * problems since we need to create java types from js types, some like not be possible to transform - for being 100% automatic we will need to verify if a signature can be transformed at all and if not decied what to do.
  * Java allow static properties on interfaces - how we translate that to js ? classes instead of interfaces ? 
  * problem: java overloaded methods : probably hard to ayuto-implement in js
