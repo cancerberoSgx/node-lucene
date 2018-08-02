@@ -85,4 +85,5 @@ The following are the options that javap accept in general both in the JavaScrip
 
 ## TODO
 
+ * classPath when using folders should support globs and class filtering
  * Contribute to java-node : add to examples to .npmignore - all its users are downloading lucene .classPath on npm install !! n and probably same goes for test/ and **/*.class

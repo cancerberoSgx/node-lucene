@@ -1,5 +1,4 @@
-import { SourceFileStructure } from 'ts-simple-ast';
-import { JavaAst, Method, Config } from 'javap/dist';
+import { Config, JavaAst } from 'javap/dist';
 
 export interface File {
   fileName: string
@@ -23,9 +22,4 @@ export interface TransformerOptions {
 
   /** optional input AST - output of calling javap() */
   ast?: JavaAst
-
-  // outputDir?: string
-
-  // /** TODO: custom param names for given method like. Default is arg0, arg1, etc */
-  // paramNames?: (node: Method) => string[]
 }
