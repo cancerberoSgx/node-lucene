@@ -4,7 +4,6 @@ import { getJava } from '../java';
 export module store {
 
   export class RAMDirectory extends lucene.util.Accountable {
-    _java: any;
     /**
      * ()
      */
@@ -24,12 +23,7 @@ export module store {
     //  * (Lorg/apache/lucene/store/FSDirectory;Lorg/apache/lucene/store/IOContext;)
     //  */
     // new(arg0: any /*org.apache.lucene.store.FSDirectory*/, arg1: any /*org.apache.lucene.store.IOContext*/);
-    /**
-     * ()J
-     */
-    ramBytesUsedSync(): number {
-      return this._java.ramBytesUsedSync().valueOf()
-    }
+
     // /**
     //  * ()Ljava/util/Collection;
     //  */

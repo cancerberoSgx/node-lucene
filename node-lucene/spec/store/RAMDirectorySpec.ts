@@ -1,8 +1,14 @@
 import * as lucene from '../../src'
 describe('RAMDirectory', () => {
-  it('1', () => {
+  it('should return 0 ramBytesUsedSync new instance', done => {
     const d = new lucene.store.RAMDirectory()
-    debugger;
-    expect(d.ramBytesUsedSync()).toBe(0)
+    expect(d.ramBytesUsedSync()).toEqual(0)
+    expect(d.ramBytesUsedSync().valueOf()).toBe(0)
+    d.ramBytesUsed((error, value) => {
+      expect(error).not.toBeDefined()
+      expect(value).toEqual(0)
+      expect(value.valueOf()).toBe(0)
+      done()
+    })
   })
 })
