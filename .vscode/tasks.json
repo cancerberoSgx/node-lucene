@@ -16,6 +16,13 @@
       "script": "build",
       "path": "java2js/",
       "problemMatcher": []
+    },
+    {
+      "identifier": "node-lucene:build",
+      "type": "npm",
+      "script": "build",
+      "path": "node-lucene/",
+      "problemMatcher": []
     }
   ]
 }

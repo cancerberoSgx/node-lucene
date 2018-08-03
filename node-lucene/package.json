@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "clean": "rm -rf dist",
+    "test": "ts-node node_modules/jasmine/bin/jasmine"
   },
   "keywords": [
     "lucene",
@@ -20,14 +22,18 @@
     "java-class-parser": "^0.2.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.1.4",
+    "@types/glob": "^5.0.35",
     "@types/jasmine": "^2.8.8",
-    "@types/node": "^10.3.6",
-    "typescript": "2.9.2",
+    "@types/jest": "^23.1.4",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^10.5.2",
+    "glob": "^7.1.2",
     "jasmine": "^3.1.0",
     "jest": "^23.3.0",
+    "minimist": "^1.2.0",
     "ts-jest": "^23.0.0",
     "ts-loader": "^4.4.2",
-    "ts-node": "^6.1.0"
+    "ts-node": "^6.1.0",
+    "typescript": "2.9.2"
   }
 }

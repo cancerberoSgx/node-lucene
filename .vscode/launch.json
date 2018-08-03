@@ -30,6 +30,19 @@
       "args": [
       ],
       "preLaunchTask": "java2js:build"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "node-lucene test",
+      "cwd": "${workspaceFolder}/node-lucene",
+      "program": "${workspaceFolder}/node-lucene/spec/index.ts", 
+      "outFiles": [
+        "${workspaceFolder}/node-lucene/dist/**/*"
+      ],
+      "args": [
+      ],
+      "preLaunchTask": "node-lucene:build"
     }
   ]
 }

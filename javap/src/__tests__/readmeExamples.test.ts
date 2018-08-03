@@ -8,6 +8,7 @@ describe('example readmes', () => {
     const ast = javap(config)
     const listClass = ast.find(c => c.name === 'java.util.List')
     // console.log(`Methods : ${listClass.methods.map(m => m.name).join(', ')}`)
+    expect(listClass.methods.map(m => m.name)).toContain('replaceAll')
   })
 
   it('readme example 2 should work', () => {
@@ -20,6 +21,7 @@ describe('example readmes', () => {
     const ast = javap(config)
     const RAMDirectory = ast.find(c => c.name == 'org.apache.lucene.store.RAMDirectory')
     const fileNameExists = RAMDirectory.methods.find(m => m.name == 'fileNameExists')
+    expect(fileNameExists.descriptor).toBe('(Ljava/lang/String;)Z')
     // console.log(`org.apache.lucene.store.RAMDirectory.fileNameExists method descriptor is ${fileNameExists.descriptor}`)
   })
 
