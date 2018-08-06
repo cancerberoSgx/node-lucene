@@ -1,28 +1,29 @@
 import { Callback, Long } from '../java';
+import JavaBase from '../java/JavaBase';
 
-export namespace util {
+// export namespace util {
 
-  export class Accountable {
+export default class Accountable extends JavaBase {
 
-    protected _java: any
+  // protected _java: any
 
-    ramBytesUsedSync(): Long {
-      return this._java.ramBytesUsedSync()
-    }
-
-    ramBytesUsedAsync(callback: Callback<Long>) {
-      this._java.ramBytesUsedAsync(callback)
-    }
-
-    ramBytesUsedPromise(): Promise<Long> {
-      return this._java.ramBytesUsedPromise()
-    }
-
-    // /**
-    // TODO: implement
-    //  * ()Ljava/util/Collection;
-    //  */
-    // getChildResources(): any /*java.util.Collection*/;
+  ramBytesUsedSync(): Long {
+    return this._java.ramBytesUsedSync()
   }
 
+  ramBytesUsedAsync(callback: Callback<Long>) {
+    this._java.ramBytesUsedAsync(callback)
+  }
+
+  ramBytesUsedPromise(): Promise<Long> {
+    return this._java.ramBytesUsedPromise()
+  }
+
+  // /**
+  // TODO: implement
+  //  * ()Ljava/util/Collection;
+  //  */
+  // getChildResources(): any /*java.util.Collection*/;
 }
+
+// }

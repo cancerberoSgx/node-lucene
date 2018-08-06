@@ -1,15 +1,14 @@
-import * as lucene from '../../src'
+import RAMDirectory from '../../src/store/RAMDirectory'
 describe('RAMDirectory', () => {
   it('ramBytesUsedSync new instance should return 0', done => {
-    const d = new lucene.store.RAMDirectory()
+    const d = new RAMDirectory()
     expect(d.ramBytesUsedSync()).toEqual(0)
     expect(d.ramBytesUsedSync().valueOf()).toBe(0)
     done()
   })
 
   it('ramBytesUsedASync new instance should return 0', done => {
-    // const d =
-    new lucene.store.RAMDirectory().ramBytesUsedAsync((error, value) => {
+    new RAMDirectory().ramBytesUsedAsync((error, value) => {
       expect(error).not.toBeDefined()
       expect(value).toEqual(0)
       expect(value.valueOf()).toBe(0)
@@ -18,7 +17,7 @@ describe('RAMDirectory', () => {
   })
 
   it('ramBytesUsedPromise new instance should return 0', async done => {
-    const value = await new lucene.store.RAMDirectory().ramBytesUsedPromise()
+    const value = await new RAMDirectory().ramBytesUsedPromise()
 
     // expect(error).not.toBeDefined()
     expect(value).toEqual(0)

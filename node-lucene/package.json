@@ -8,7 +8,8 @@
     "build": "tsc",
     "prepare": "npm run build",
     "clean": "rm -rf dist",
-    "test": "ts-node node_modules/jasmine/bin/jasmine"
+    "test": "ts-node node_modules/jasmine/bin/jasmine",
+    "test-js": "npm run clean && npm run build && node dist/spec/index.js"
   },
   "keywords": [
     "lucene",
