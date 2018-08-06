@@ -1,10 +1,12 @@
 import Analyzer from '../Analyzer';
+import JavaBase from '../../java/JavaBase';
+import { getJava, Long, Callback } from '../../java';
 
 // import * as lucene from '../..'
 // /* @internal */
 // namespace analysis.standard {
 // export namespace standard {
-export default class StandardAnalyzer implements Analyzer {
+export default class StandardAnalyzer extends JavaBase implements Analyzer {
   // /**
   //  * (Lorg/apache/lucene/analysis/CharArraySet;)
   //  */
@@ -13,11 +15,13 @@ export default class StandardAnalyzer implements Analyzer {
   //  * (Ljava/io/Reader;)
   //  */
   // new(arg0: any /*java.io.Reader*/);
+
   /**
    * ()
    */
   constructor() {
-
+    super()
+    this._java = getJava().newInstanceSync("org.apache.lucene.analysis.standard.StandardAnalyzer")
   }
   // public ENGLISH_STOP_WORDS_SET: any /*org.apache.lucene.analysis.CharArraySet*/;
   // public DEFAULT_MAX_TOKEN_LENGTH: number;
@@ -31,7 +35,23 @@ export default class StandardAnalyzer implements Analyzer {
   // /**
   //  * ()I
   //  */
-  // getMaxTokenLength(): number;
+  // getMaxTokenLength(): Long {
+
+  // }
+
+  getMaxTokenLengthSync(): Long {
+    return this._java.getMaxTokenLengthSync()
+  }
+
+  getMaxTokenLengthAsync(callback: Callback<Long>) {
+    this._java.getMaxTokenLengthAsync(callback)
+  }
+
+  getMaxTokenLengthPromise(): Promise<Long> {
+    return this._java.getMaxTokenLengthPromise()
+  }
+
+
 }
 
   // }
