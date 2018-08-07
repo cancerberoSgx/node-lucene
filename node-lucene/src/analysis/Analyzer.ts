@@ -1,5 +1,7 @@
+import IJavaBase from '../java/IJavaBase';
+
 // namespace analysis {
-export default interface Analyzer /* extends java_io_Closeable*/ {
+export default interface Analyzer /* extends java_io_Closeable*/ extends IJavaBase {
 
   // interface org_apache_lucene_analysis_Analyzer extends org_apache_lucene_analysis_Analyzer, java_io_Closeable {
   // /**

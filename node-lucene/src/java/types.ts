@@ -68,10 +68,19 @@ export interface Java {
 
   /**
    * TODO
-   * Creates an instance of the specified class. If you are using the sync method an exception will be throw if an error occures,
+   * Creates an instance of the specified class. If you are using the sync method an exception will be throw if an error occurs,
 otherwise it will be the first argument in the callback.
    */
   newInstanceSync<T>(javaClass: string): T
+
+
+  /**
+   * TODO
+   * Creates an instance of the specified class. If you are using the sync method an exception will be throw if an error occurs,
+otherwise it will be the first argument in the callback.
+   */
+  newInstanceSync<T>(javaClass: string, ...args: any[]): T
+
   /**
    * If the JVM has not yet been created, execute the full JVM initialization process, then call callback
    * function when initialization is complete. If the JVM has been created, just call the callback. Note that

@@ -8,7 +8,17 @@ export namespace analysis {
 
   export type Analyzer = AnalyzerT
 
-  export namespace standard {
-    export type StandardAnalyzer = StandardAnalyzerT
+  //   export namespace standard {
+  //     export type StandardAnalyzer = StandardAnalyzerT
+  //   }
+}
+
+export const analysis = {
+
+  // Analyzer: AnalyzerT,
+
+  standard: {
+    StandardAnalyzer: StandardAnalyzerT
   }
 }
+

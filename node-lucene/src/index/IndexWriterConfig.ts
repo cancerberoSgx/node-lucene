@@ -1,7 +1,9 @@
 import Analyzer from '../analysis/Analyzer'
+import JavaBase from '../java/JavaBase';
+import { getJava } from '../java';
 
 // export namespace index {
-export default class IndexWriterConfig {
+export default class IndexWriterConfig extends JavaBase {
   // /**
   //  * ()
   //  */
@@ -10,8 +12,16 @@ export default class IndexWriterConfig {
    * (Lorg/apache/lucene/analysis/Analyzer;)
    */
   constructor(analyzer: Analyzer /*org.apache.lucene.analysis.Analyzer*/) {
-
+    super()
+    this._java = getJava().newInstanceSync(this.javaClassName, analyzer.java)
   }
+
+  public get javaClassName(): string {
+    return 'org.apache.lucene.index.IndexWriterConfig'
+  }
+
+  // var writerConfig = java.newInstanceSync("org.apache.lucene.index.IndexWriterConfig", analyzer);
+
 
   // public DISABLE_AUTO_FLUSH: number;
   // public DEFAULT_MAX_BUFFERED_DELETE_TERMS: number;

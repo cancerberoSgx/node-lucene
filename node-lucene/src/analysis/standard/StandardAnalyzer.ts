@@ -7,6 +7,7 @@ import { getJava, Long, Callback } from '../../java';
 // namespace analysis.standard {
 // export namespace standard {
 export default class StandardAnalyzer extends JavaBase implements Analyzer {
+
   // /**
   //  * (Lorg/apache/lucene/analysis/CharArraySet;)
   //  */
@@ -21,8 +22,13 @@ export default class StandardAnalyzer extends JavaBase implements Analyzer {
    */
   constructor() {
     super()
-    this._java = getJava().newInstanceSync("org.apache.lucene.analysis.standard.StandardAnalyzer")
+    this._java = getJava().newInstanceSync(this.javaClassName)
   }
+
+  public get javaClassName(): string {
+    return 'org.apache.lucene.analysis.standard.StandardAnalyzer'
+  }
+
   // public ENGLISH_STOP_WORDS_SET: any /*org.apache.lucene.analysis.CharArraySet*/;
   // public DEFAULT_MAX_TOKEN_LENGTH: number;
   // public STOP_WORDS_SET: any /*org.apache.lucene.analysis.CharArraySet*/;

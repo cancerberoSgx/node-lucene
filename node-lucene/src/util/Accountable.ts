@@ -6,6 +6,14 @@ import JavaBase from '../java/JavaBase';
 export default class Accountable extends JavaBase {
 
   // protected _java: any
+  // constructor() {
+  //   super()
+  // }
+
+
+  public get javaClassName(): string {
+    return 'org.apache.lucene.util.Accountable'
+  }
 
   ramBytesUsedSync(): Long {
     return this._java.ramBytesUsedSync()
