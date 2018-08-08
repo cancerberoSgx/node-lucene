@@ -1,8 +1,7 @@
 import IndexWriterConfigT from './IndexWriterConfig'
-// export namespace index {
-//   export type IndexWriterConfig = IndexWriterConfigT
-// }
+import IndexWriterT from './IndexWriter'
 
 export const index = {
-  IndexWriterConfig: IndexWriterConfigT
+  IndexWriterConfig: IndexWriterConfigT,
+  IndexWriter: IndexWriterT
 }
