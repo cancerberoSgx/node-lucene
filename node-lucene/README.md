@@ -30,7 +30,7 @@ npm install --save node-lucene
  * I don't want to start a server like solr or elasticsearch. Example: a text editor indexing lots of source code as eclipse IDE does.
 
 # TODO
-
+ * make all extends java.lang.object and this should extends JavaBase - so they all implement toString() etc
  * TODO: contribute node-java README to document standard `promisify: require('util').promisify` so no library is necessary. Also implement it as default promisify impl if exists since its supported from node 8.0.0.
  * use https://github.com/joeferner/node-java-maven to manage lucene jars and run in npm prepare script
  * do reflection in java to get method / class signatures and generate TS interfaces and implementations automatically using java2js. We realized this will be very hard task but would be ideal.

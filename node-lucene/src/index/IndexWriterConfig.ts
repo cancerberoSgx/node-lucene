@@ -1,6 +1,6 @@
 import Analyzer from '../analysis/Analyzer'
 import JavaBase from '../java/JavaBase';
-import { getJava } from '../java';
+import { getJava, Callback } from '../java';
 
 // export namespace index {
 export default class IndexWriterConfig extends JavaBase {
@@ -74,7 +74,22 @@ export default class IndexWriterConfig extends JavaBase {
   // /**
   //  * ()D
   //  */
-  // getRAMBufferSizeMB(): number;
+
+  getRAMBufferSizeMBSync(): number {
+    return this.java.getRAMBufferSizeMBSync()
+  }
+
+  getRAMBufferSizeMBAsync(callback: Callback<number>) {
+    this._java.getRAMBufferSizeMBAsync(callback)
+  }
+
+  getRAMBufferSizeMBPromise(): Promise<number> {
+    return this._java.getRAMBufferSizeMBPromise()
+  }
+
+
+
+
   // /**
   //  * ()Lorg/apache/lucene/index/MergeScheduler;
   //  */

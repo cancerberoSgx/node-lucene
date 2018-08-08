@@ -8,3 +8,4 @@ src
 dist/spec
 dist/tests
 tests
+examples
