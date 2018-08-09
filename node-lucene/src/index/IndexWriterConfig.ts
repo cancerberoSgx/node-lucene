@@ -8,15 +8,13 @@ export default class IndexWriterConfig extends JavaBase {
   //  * ()
   //  */
   // new();
-  /**
-   * (Lorg/apache/lucene/analysis/Analyzer;)
-   */
-  constructor(analyzer: Analyzer /*org.apache.lucene.analysis.Analyzer*/) {
+
+  constructor(analyzer: Analyzer) {
     super()
-    this._java = getJava().newInstanceSync(this.javaClassName, analyzer.java)
+    this._java = getJava().newInstanceSync(this._javaClassName, analyzer._java)
   }
 
-  public get javaClassName(): string {
+  public get _javaClassName(): string {
     return 'org.apache.lucene.index.IndexWriterConfig'
   }
 
@@ -76,7 +74,7 @@ export default class IndexWriterConfig extends JavaBase {
   //  */
 
   getRAMBufferSizeMBSync(): number {
-    return this.java.getRAMBufferSizeMBSync()
+    return this._java.getRAMBufferSizeMBSync()
   }
 
   getRAMBufferSizeMBAsync(callback: Callback<number>) {

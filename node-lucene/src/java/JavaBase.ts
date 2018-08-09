@@ -1,20 +1,32 @@
-import { getJava } from './java';
 import IJavaBase from './IJavaBase';
+import { Callback } from './types';
 
 export default abstract class JavaBase implements IJavaBase {
 
-  // constructor() {
-  //   // this._java = getJava().newInstanceSync(this.javaClassName)
-  // }
-
-  public abstract get javaClassName(): string
+  /** @internal */
+  public abstract get _javaClassName(): string
 
   /** @internal */
-  protected _java: any;
+  public _java: any;
 
   /** @internal */
-  public get java(): any {
-    return this._java
+  protected _buildSync<T extends JavaBase>(_query: any, instance: T): T {
+    instance._java = _query
+    return instance
+  }
+
+  /** @internal */
+  protected _buildAsync<T extends JavaBase>(callback: Callback<T>, instance: T): (error: any, _query: any) => void {
+    return (error: any, _query: any) => callback(error, this._buildSync(_query, instance))
+  }
+
+  /** @internal */
+  protected _buildPromise<T extends JavaBase>(p: Promise<any>, instance: T): Promise<T> {
+    return new Promise((resolve, reject) => {
+      p
+        .then(_query => resolve(this._buildSync(_query, instance)))
+        .catch(error => reject(error))
+    })
   }
 
 }

@@ -9,11 +9,11 @@ export default class RAMDirectory extends Accountable {
    */
   constructor() {
     super()
-    this._java = getJava().newInstanceSync(this.javaClassName)
+    this._java = getJava().newInstanceSync(this._javaClassName)
   }
   // protected _javaClassName = "org.apache.lucene.store.RAMDirectory"
 
-  public get javaClassName(): string {
+  public get _javaClassName(): string {
     return 'org.apache.lucene.store.RAMDirectory'
   }
 

@@ -11,7 +11,7 @@ export default class Accountable extends JavaBase {
   // }
 
 
-  public get javaClassName(): string {
+  public get _javaClassName(): string {
     return 'org.apache.lucene.util.Accountable'
   }
 

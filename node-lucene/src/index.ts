@@ -1,4 +1,5 @@
 export * from './util'
 export * from './store'
 export * from './analysis'
+export * from './queryparser'
 export * from './index/index'
