@@ -1,7 +1,7 @@
-import QueryT from '../search/Query'
+// import QueryT from '../search/Query'
 import QueryParserT from './classic/QueryParser'
 export const queryparser = {
-  Query: QueryT,
+  // Query: QueryT,
   classic: {
     QueryParser: QueryParserT
   }

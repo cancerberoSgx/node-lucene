@@ -1,0 +1,7 @@
+
+node_modules
+dist
+*.log
+tmp*
+lucene-lib
+dist

@@ -1,0 +1,11 @@
+node_modules
+package-deps.json
+*.log
+doc-assets
+tmp
+spec
+src
+dist/spec
+dist/tests
+tests
+examples

@@ -9,6 +9,7 @@ describe('QueryParser', () => {
       const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
       const q = parser.parseSync('foo')
       expect(q).toBeDefined()
+      debugger
       // console.log(q);
 
       // expect(parser.parseSync('foo')).toBeGreaterThan(0)

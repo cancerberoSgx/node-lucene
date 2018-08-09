@@ -11,7 +11,7 @@ describe('StandardAnalyzer', () => {
       done()
     })
 
-    it('getMaxTokenLengthPromise new instance should return greater than 1', done => {
+    it('getMaxTokenLengthAsync new instance should return greater than 1', done => {
       new lucene.analysis.standard.StandardAnalyzer().getMaxTokenLengthAsync((error, value) => {
         expect(error).not.toBeDefined()
         expect(value).toBeGreaterThan(0)
