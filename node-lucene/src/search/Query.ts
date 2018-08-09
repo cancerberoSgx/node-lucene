@@ -1,6 +1,4 @@
-// import Analyzer from '../../analysis/Analyzer';
-import JavaBase from '../java/JavaBase';
-// import { getJava } from '../java';
+import { Callback, Long, JavaBase } from 'node-java-rt'
 
 export default class Query extends JavaBase {
 

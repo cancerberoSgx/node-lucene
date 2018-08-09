@@ -1,6 +1,5 @@
-import Analyzer from '../analysis/Analyzer'
-import JavaBase from '../java/JavaBase';
-import { getJava, Callback, Long } from '../java';
+
+import { Callback, Long, JavaBase, getJava, IJavaBase } from 'node-java-rt';
 import RAMDirectory from '../store/RAMDirectory';
 import IndexWriterConfig from './IndexWriterConfig';
 

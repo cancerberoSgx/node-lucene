@@ -1,6 +1,5 @@
 import Analyzer from '../analysis/Analyzer'
-import JavaBase from '../java/JavaBase';
-import { getJava, Callback } from '../java';
+import { Callback, Long, JavaBase, getJava, IJavaBase } from 'node-java-rt';
 
 // export namespace index {
 export default class IndexWriterConfig extends JavaBase {

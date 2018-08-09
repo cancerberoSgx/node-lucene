@@ -1,5 +1,5 @@
 {
-  "name": "lucene-java-rt",
+  "name": "node-java-rt",
   "version": "0.0.1",
   "description": "Node.js API and bindings supporting java.lang and java.util. \n * (partial) support for java.lang based on node-java \n * (partial) support for java.util based on node-java.  \n * Basic abstraction on top of node-java \n * typings for node-java \n * Projects like node-lucene are based on this.",
   "main": "dist/src/index.js",

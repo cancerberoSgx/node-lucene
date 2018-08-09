@@ -1,7 +1,5 @@
 import Accountable from '../util/Accountable'
-import { getJava } from '../java';
-
-// export module store {
+import { getJava } from 'node-java-rt';
 
 export default class RAMDirectory extends Accountable {
   /**

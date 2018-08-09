@@ -1,15 +1,6 @@
-import { Callback, Long } from '../java';
-import JavaBase from '../java/JavaBase';
-
-// export namespace util {
+import { Callback, Long, JavaBase } from 'node-java-rt'
 
 export default class Accountable extends JavaBase {
-
-  // protected _java: any
-  // constructor() {
-  //   super()
-  // }
-
 
   public get _javaClassName(): string {
     return 'org.apache.lucene.util.Accountable'
@@ -33,5 +24,3 @@ export default class Accountable extends JavaBase {
   //  */
   // getChildResources(): any /*java.util.Collection*/;
 }
-
-// }

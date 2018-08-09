@@ -1,6 +1,5 @@
 import Analyzer from '../Analyzer';
-import JavaBase from '../../java/JavaBase';
-import { getJava, Long, Callback } from '../../java';
+import { Callback, Long, JavaBase, getJava, IJavaBase } from 'node-java-rt';
 
 // import * as lucene from '../..'
 // /* @internal */

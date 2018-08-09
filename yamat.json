@@ -14,6 +14,14 @@
   {
     "name": "java2js",
     "path": "java2js"
+  },
+  {
+    "name": "node-lucene",
+    "path": "node-lucene"
+  },
+  {
+    "name": "node-java-rt",
+    "path": "node-java-rt"
   }
   
 ]

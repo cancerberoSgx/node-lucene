@@ -1,4 +1,4 @@
-import IJavaBase from '../java/IJavaBase';
+import { Callback, Long, JavaBase, getJava, IJavaBase } from 'node-java-rt';
 
 // namespace analysis {
 export default interface Analyzer /* extends java_io_Closeable*/ extends IJavaBase {

@@ -1,7 +1,7 @@
-import IJavaBase from './IJavaBase';
+import { IJavaBase } from './IJavaBase';
 import { Callback } from './types';
 
-export default class JavaBase implements IJavaBase {
+export class JavaBase implements IJavaBase {
   // static create<T extends JavaBase>(arg0: any): any {
   //   return new JavaBase()._buildSync(arg0)
   // }

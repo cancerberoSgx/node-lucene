@@ -20,7 +20,8 @@
   "repository": "https://github.com/cancerberoSgx/node-lucene",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0"
+    "java": "^0.10.0",
+    "node-java-rt": "file:../node-java-rt"
   },
   "devDependencies": {
     "@types/glob": "^5.0.35",

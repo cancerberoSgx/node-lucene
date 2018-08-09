@@ -1,5 +1,5 @@
 
-export default interface IJavaBase {
+export interface IJavaBase {
   /** @internal */
   readonly _javaClassName: string
   /** @internal */

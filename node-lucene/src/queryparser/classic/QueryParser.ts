@@ -1,7 +1,6 @@
-import Analyzer from '../../analysis/Analyzer';
-import JavaBase from '../../java/JavaBase';
-import { getJava, Callback } from '../../java';
+import Analyzer from '../../analysis/Analyzer'
 import Query from '../../search/Query';
+import { Callback, Long, JavaBase, getJava } from 'node-java-rt';
 
 export default class QueryParser extends JavaBase {
 

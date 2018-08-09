@@ -1,4 +1,4 @@
-import JavaBase from '../JavaBase'
+import { JavaBase } from '../JavaBase'
 import { Callback } from '../types'
 export default class extends JavaBase {
 
