@@ -1,6 +1,16 @@
 import { JavaBase } from '../JavaBase'
 import { Callback } from '../types'
-export default class extends JavaBase {
+import { getJava } from '../java';
+export default class Object_ extends JavaBase {
+
+  constructor() {
+    super()
+    this._java = getJava().newInstanceSync(Object_._javaClassName())
+  }
+
+  public static _javaClassName(): string {
+    return 'java.lang.Object'
+  }
 
   toStringSync(): string {
     return this._java.toStringSync()

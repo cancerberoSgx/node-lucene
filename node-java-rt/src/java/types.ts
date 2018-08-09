@@ -75,9 +75,8 @@ otherwise it will be the first argument in the callback.
 
 
   /**
-   * TODO
-   * Creates an instance of the specified class. If you are using the sync method an exception will be throw if an error occurs,
-otherwise it will be the first argument in the callback.
+   * TODO Creates an instance of the specified class. If you are using the sync method an exception will be
+   * throw if an error occurs, otherwise it will be the first argument in the callback.
    */
   newInstanceSync<T>(javaClass: string, ...args: any[]): T
 
@@ -92,6 +91,19 @@ otherwise it will be the first argument in the callback.
    * Returns true if the JVM has been created. The JVM can only be created once.
    */
   isJvmCreated(): boolean
+
+  /**
+   * Gets a static field value from the specified class.
+   * @param className The name of the class to get the value from. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param fieldName The name of the field to get the value from.
+   * 
+   * Example: 
+   * ```js
+   * var data = java.getStaticFieldValue("com.nearinfinty.MyClass", "data");
+   * ```
+   */
+  getStaticFieldValue<T>(className: string, fieldName: string): T
+
 }
 
 

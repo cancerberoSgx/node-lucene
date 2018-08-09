@@ -21,10 +21,10 @@ export default class StandardAnalyzer extends lang.Object implements Analyzer {
    */
   constructor() {
     super()
-    this._java = getJava().newInstanceSync(this._javaClassName)
+    this._java = getJava().newInstanceSync(StandardAnalyzer._javaClassName())
   }
 
-  public get _javaClassName(): string {
+  public static _javaClassName(): string {
     return 'org.apache.lucene.analysis.standard.StandardAnalyzer'
   }
 

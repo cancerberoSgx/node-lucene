@@ -7,7 +7,7 @@ export class JavaBase implements IJavaBase {
   // }
 
   /** @internal */
-  public get _javaClassName(): string {
+  public static _javaClassName(): string {
     throw new Error('Must be implemented by subclass class')
   }
 
@@ -15,18 +15,20 @@ export class JavaBase implements IJavaBase {
   public _java: any;
 
   /** @internal */
-  protected _buildSync<T extends JavaBase>(_query: any, instance: T): T {
+  protected static _buildSync<T extends JavaBase>(_query: any, instance: T): T {
     instance._java = _query
     return instance
   }
 
+  // protected static _buildStaticSync()
+
   /** @internal */
-  protected _buildAsync<T extends JavaBase>(callback: Callback<T>, instance: T): (error: any, _query: any) => void {
+  protected static _buildAsync<T extends JavaBase>(callback: Callback<T>, instance: T): (error: any, _query: any) => void {
     return (error: any, _query: any) => callback(error, this._buildSync(_query, instance))
   }
 
   /** @internal */
-  protected _buildPromise<T extends JavaBase>(p: Promise<any>, instance: T): Promise<T> {
+  protected static _buildPromise<T extends JavaBase>(p: Promise<any>, instance: T): Promise<T> {
     return new Promise((resolve, reject) => {
       p
         .then(_query => resolve(this._buildSync(_query, instance)))
@@ -34,7 +36,7 @@ export class JavaBase implements IJavaBase {
     })
   }
 
-  protected _getNative(v: any): any {
+  protected static _getNative(v: any): any {
     return v._java || v
   }
 
