@@ -1,11 +1,11 @@
 import Analyzer from '../Analyzer';
-import { Callback, Long, JavaBase, getJava, IJavaBase } from 'node-java-rt';
+import { Callback, Long, JavaBase, getJava, IJavaBase, lang } from 'node-java-rt';
 
 // import * as lucene from '../..'
 // /* @internal */
 // namespace analysis.standard {
 // export namespace standard {
-export default class StandardAnalyzer extends JavaBase implements Analyzer {
+export default class StandardAnalyzer extends lang.Object implements Analyzer {
 
   // /**
   //  * (Lorg/apache/lucene/analysis/CharArraySet;)

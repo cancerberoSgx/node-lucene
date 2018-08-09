@@ -1,8 +1,8 @@
 import Analyzer from '../../analysis/Analyzer'
 import Query from '../../search/Query';
-import { Callback, Long, JavaBase, getJava } from 'node-java-rt';
+import { Callback, Long, JavaBase, getJava, lang } from 'node-java-rt';
 
-export default class QueryParser extends JavaBase {
+export default class QueryParser extends lang.Object {
 
   constructor(fieldName: string, analyzer: Analyzer) {
     super()

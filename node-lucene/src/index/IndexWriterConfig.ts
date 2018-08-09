@@ -1,8 +1,8 @@
 import Analyzer from '../analysis/Analyzer'
-import { Callback, Long, JavaBase, getJava, IJavaBase } from 'node-java-rt';
+import { Callback, Long, JavaBase, getJava, IJavaBase, lang } from 'node-java-rt';
 
 // export namespace index {
-export default class IndexWriterConfig extends JavaBase {
+export default class IndexWriterConfig extends lang.Object {
   // /**
   //  * ()
   //  */

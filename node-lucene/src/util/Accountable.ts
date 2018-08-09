@@ -1,6 +1,6 @@
-import { Callback, Long, JavaBase } from 'node-java-rt'
+import { Callback, Long, JavaBase, lang } from 'node-java-rt'
 
-export default class Accountable extends JavaBase {
+export default class Accountable extends lang.Object {
 
   public get _javaClassName(): string {
     return 'org.apache.lucene.util.Accountable'
