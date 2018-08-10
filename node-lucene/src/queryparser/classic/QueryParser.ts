@@ -1,12 +1,13 @@
-import Analyzer from '../../analysis/Analyzer'
+import { Callback, lang } from 'node-java-rt';
+import Analyzer from '../../analysis/Analyzer';
 import Query from '../../search/Query';
-import { Callback, Long, JavaBase, getJava, lang } from 'node-java-rt';
+import { getLuceneJava } from '../../util/getLuceneJava';
 
 export default class QueryParser extends lang.Object {
 
   constructor(fieldName: string, analyzer: Analyzer) {
     super()
-    this._java = getJava().newInstanceSync(QueryParser._javaClassName(), fieldName, analyzer._java)
+    this._java = getLuceneJava().newInstanceSync(QueryParser._javaClassName(), fieldName, analyzer._java)
   }
 
   static _javaClassName(): string {

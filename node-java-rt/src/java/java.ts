@@ -1,21 +1,26 @@
-import { Java } from './types';
+import { Java, JavaOptions } from './types';
 
 let java: Java
 
-export function getJava(): Java {
+const defaultJavaOptions: JavaOptions = {
+  asyncOptions: {
+    asyncSuffix: 'Async',
+    syncSuffix: 'Sync',
+    promiseSuffix: 'Promise',
+    promisify: require('util').promisify
+  },
+  classpath: [],
+  options: []
+}
+
+export function getJava(javaOptions: JavaOptions = defaultJavaOptions): Java {
   if (!java) {
     java = require("java")
-
-    java.asyncOptions = {
-      asyncSuffix: 'Async',
-      syncSuffix: 'Sync',
-      promiseSuffix: 'Promise',
-      promisify: require('util').promisify
-    }
-
-    java.classpath.push("./lucene-lib/lucene-core-7.4.0.jar")
-    java.classpath.push("./lucene-lib/lucene-analyzers-common-7.4.0.jar")
-    java.classpath.push("./lucene-lib/lucene-queryparser-7.4.0.jar")
+    // Object.assign(java, javaOptions) // TODO: throw native v8 exception ! - report to node-java ? 
+    java.asyncOptions = javaOptions.asyncOptions
+    javaOptions.classpath.forEach(cp => java.classpath.push(cp))
+    // javaOptions.classpath = java.classpath
+    java.options = javaOptions.options
   }
   return java
 }

@@ -2,8 +2,10 @@ import IndexWriterConfigT from './IndexWriterConfig'
 import IndexWriterT from './IndexWriter'
 import IndexReaderT from './IndexReader'
 import CompositeReaderT from './CompositeReader'
+import DirectoryReaderT from './DirectoryReader'
 
 export namespace index {
+  export type DirectoryReader = DirectoryReaderT
   export type CompositeReader = CompositeReaderT
   export type IndexReader = IndexReaderT
   export type IndexWriter = IndexWriterT
@@ -11,5 +13,6 @@ export namespace index {
 }
 export const index = {
   IndexWriterConfig: IndexWriterConfigT,
-  IndexWriter: IndexWriterT
+  IndexWriter: IndexWriterT,
+  DirectoryReader: DirectoryReaderT,
 }

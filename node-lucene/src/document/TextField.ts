@@ -1,12 +1,13 @@
-import { Callback, Long, JavaBase, lang, getJava, util } from 'node-java-rt'
+import { Callback, Long, JavaBase, lang, util } from 'node-java-rt'
 import FieldStore from './FieldStore';
 import { IndexableField } from '../index/IndexableField';
+import { getLuceneJava } from '../util/getLuceneJava';
 
 export default class TextField<T> extends IndexableField implements lang.Iterable<T> {
 
   constructor(fieldName: string, fieldValue: string, fieldStore: FieldStore) {
     super()
-    this._java = getJava().newInstanceSync(TextField._javaClassName(), fieldName, fieldValue, fieldStore._java)
+    this._java = getLuceneJava().newInstanceSync(TextField._javaClassName(), fieldName, fieldValue, fieldStore._java)
   }
 
   static _javaClassName(): string {

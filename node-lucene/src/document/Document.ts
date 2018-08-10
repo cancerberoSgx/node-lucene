@@ -1,5 +1,6 @@
-import { Callback, Long, JavaBase, lang, getJava, util } from 'node-java-rt'
+import { Callback, Long, JavaBase, lang, util } from 'node-java-rt'
 import { IndexableField } from '../index/IndexableField';
+import { getLuceneJava } from '../util/getLuceneJava';
 
 export default class Document<T> extends lang.Object implements lang.Iterable<T> /* TODO: dont know which is the type param of Iterable :  */ {
 
@@ -9,7 +10,7 @@ export default class Document<T> extends lang.Object implements lang.Iterable<T>
 
   constructor() {
     super()
-    this._java = getJava().newInstanceSync(Document._javaClassName())
+    this._java = getLuceneJava().newInstanceSync(Document._javaClassName())
   }
 
   removeFieldSync(fieldName: string): void {

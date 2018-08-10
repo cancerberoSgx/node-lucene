@@ -1,4 +1,5 @@
-import { Callback, Long, JavaBase, lang, getJava } from 'node-java-rt'
+import { Callback, Long, JavaBase, lang } from 'node-java-rt'
+import { getLuceneJava } from '../util/getLuceneJava';
 
 export default class FieldStore extends lang.Object {
 
@@ -11,7 +12,7 @@ export default class FieldStore extends lang.Object {
   //  */
   // constructor(arg0: string, arg1: number) {
   //   super()
-  //   this._java = getJava().newInstanceSync(FieldStore._javaClassName(), arg0, arg1)
+  //   this._java = getLuceneJava().newInstanceSync(FieldStore._javaClassName(), arg0, arg1)
   // }
 
   static _javaClassName(): string {
@@ -20,12 +21,12 @@ export default class FieldStore extends lang.Object {
 
   static get YES(): FieldStore {
     // TODO: cache for performance
-    return FieldStore._buildSync(getJava().getStaticFieldValue(FieldStore._javaClassName(), 'YES'), new FieldStore())
+    return FieldStore._buildSync(getLuceneJava().getStaticFieldValue(FieldStore._javaClassName(), 'YES'), new FieldStore())
   }
 
   static get NO(): FieldStore {
     // TODO: cache for performance
-    return FieldStore._buildSync(getJava().getStaticFieldValue(FieldStore._javaClassName(), 'NO'), new FieldStore())
+    return FieldStore._buildSync(getLuceneJava().getStaticFieldValue(FieldStore._javaClassName(), 'NO'), new FieldStore())
   }
   // /**
   //  * ()[Lorg/apache/lucene/document/Field$Store;

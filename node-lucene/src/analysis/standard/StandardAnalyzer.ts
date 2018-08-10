@@ -1,5 +1,6 @@
 import Analyzer from '../Analyzer';
-import { Callback, Long, JavaBase, getJava, IJavaBase, lang } from 'node-java-rt';
+import { Callback, Long, JavaBase, IJavaBase, lang } from 'node-java-rt';
+import { getLuceneJava } from '../../util/getLuceneJava';
 
 // import * as lucene from '../..'
 // /* @internal */
@@ -21,7 +22,7 @@ export default class StandardAnalyzer extends lang.Object implements Analyzer {
    */
   constructor() {
     super()
-    this._java = getJava().newInstanceSync(StandardAnalyzer._javaClassName())
+    this._java = getLuceneJava().newInstanceSync(StandardAnalyzer._javaClassName())
   }
 
   public static _javaClassName(): string {

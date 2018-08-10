@@ -1,13 +1,14 @@
 
-import { Callback, Long, JavaBase, getJava, IJavaBase, lang, getJavaObjectOrThrow } from 'node-java-rt';
+import { Callback, getJavaObjectOrThrow, lang, Long } from 'node-java-rt';
 import RAMDirectory from '../store/RAMDirectory';
+import { getLuceneJava } from '../util/getLuceneJava';
 import IndexWriterConfig from './IndexWriterConfig';
 
 export default class IndexWriter extends lang.Object /* extends org_apache_lucene_index_IndexWriter, java_io_Closeable, org_apache_lucene_index_TwoPhaseCommit, org_apache_lucene_util_Accountable, org_apache_lucene_index_MergePolicy$MergeContext */ {
 
   constructor(index: RAMDirectory /* TODO: use super interface org.apache.lucene.store.Directory not this concrete type*/, writerConfig: IndexWriterConfig) {
     super()
-    this._java = getJava().newInstanceSync(IndexWriter._javaClassName(), index._java, writerConfig._java)
+    this._java = getLuceneJava().newInstanceSync(IndexWriter._javaClassName(), index._java, writerConfig._java)
   }
 
   static _javaClassName(): string {

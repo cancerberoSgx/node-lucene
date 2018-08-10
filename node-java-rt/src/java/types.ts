@@ -1,5 +1,6 @@
 
-export interface Java {
+export interface JavaOptions {
+
   /**
    * Create async methods that return promises by setting the asyncOptions property of the java object. Allow changing the suffix assigned for sync and async method variants, and to further configure this module to optionally omit generation of any of these variants. 
    * 
@@ -44,6 +45,9 @@ export interface Java {
    * ```
    */
   options: string[]
+}
+
+export interface Java extends JavaOptions {
 
   /**
    * Loads the class given by className such that it acts and feels like a javascript object.
