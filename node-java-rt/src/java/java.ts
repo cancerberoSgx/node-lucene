@@ -19,3 +19,12 @@ export function getJava(): Java {
   }
   return java
 }
+
+export function getJavaObjectOrThrow(obj: any) {
+  if (obj._java) {
+    return obj._java
+  }
+  else {
+    throw new Error(`Object ${obj} expected to have property _java`)
+  }
+}

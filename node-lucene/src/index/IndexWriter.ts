@@ -1,5 +1,5 @@
 
-import { Callback, Long, JavaBase, getJava, IJavaBase, lang } from 'node-java-rt';
+import { Callback, Long, JavaBase, getJava, IJavaBase, lang, getJavaObjectOrThrow } from 'node-java-rt';
 import RAMDirectory from '../store/RAMDirectory';
 import IndexWriterConfig from './IndexWriterConfig';
 
@@ -17,7 +17,7 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
   ramBytesUsedSync(): Long {
     return this._java.ramBytesUsedSync()
   }
-  ramBytesUsedAsync(callback: Callback<Long>) {
+  ramBytesUsedAsync(callback: Callback<Long>): void {
     this._java.ramBytesUsedAsync(callback)
   }
   ramBytesUsedPromise(): Promise<Long> {
@@ -27,7 +27,7 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
   closeSync(): void {
     return this._java.closeSync()
   }
-  closeAsync(callback: Callback<void>) {
+  closeAsync(callback: Callback<void>): void {
     this._java.closeAsync(callback)
   }
   closePromise(): Promise<void> {
@@ -38,7 +38,7 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
   flushSync(): void {
     return this._java.flushSync()
   }
-  flushAsync(callback: Callback<void>) {
+  flushAsync(callback: Callback<void>): void {
     this._java.flushAsync(callback)
   }
   flushPromise(): Promise<void> {
@@ -48,16 +48,23 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
   numDocsSync(): number {
     return this._java.numDocsSync()
   }
-  numDocsAsync(callback: Callback<number>) {
+  numDocsAsync(callback: Callback<number>): void {
     this._java.numDocsAsync(callback)
   }
   numDocsPromise(): Promise<number> {
     return this._java.numDocsPromise()
   }
+
+  addDocumentSync<T>(document: lang.Iterable<T>): Long {
+    return this._java.addDocumentSync(getJavaObjectOrThrow(document))
+  }
+  addDocumentAsync<T>(document: lang.Iterable<T>, callback: Callback<Long>): void {
+    this._java.addDocumentAsync(getJavaObjectOrThrow(document), callback)
+  }
+  addDocumentPromise<T>(document: lang.Iterable<T>): Promise<Long> {
+    return this._java.addDocumentPromise(getJavaObjectOrThrow(document))
+  }
 }
-
-
-
 
 
 // interface org_apache_lucene_index_IndexWriter extends org_apache_lucene_index_IndexWriter, java_io_Closeable, org_apache_lucene_index_TwoPhaseCommit, org_apache_lucene_util_Accountable, org_apache_lucene_index_MergePolicy$MergeContext {

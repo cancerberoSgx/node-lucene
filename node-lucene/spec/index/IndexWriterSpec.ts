@@ -53,46 +53,41 @@ describe('IndexWriter', () => {
   })
 
 
-  // describe('addDocument', () => {
+  describe('addDocument', () => {
 
-  //   it('addDocumentSync should return zero on new instances', done => {
-  //     // const analyzer = new lucene.analysis.standard.StandardAnalyzer()
-  //     // const writerConfig = new lucene.index.IndexWriterConfig(analyzer)
-  //     // const index = new lucene.store.RAMDirectory()
-  //     // const writer = new lucene.index.IndexWriter(index, writerConfig)
+    it('addDocumentSync should work as expected', done => {
+      expect(writer.numDocsSync()).toEqual(0)
+      expect(writer.ramBytesUsedSync()).toEqual(0)
+      writer.addDocumentSync(new lucene.document.Document())
+      expect(writer.numDocsSync()).toEqual(1)
+      expect(writer.ramBytesUsedSync()).toEqual(0) // cause document is empty
 
-  // //     const doc1 = new lucene.document.Document()
-  // //     const field1 = new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES)
+      const doc1 = new lucene.document.Document()
+      doc1.addSync(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES))
+      writer.addDocumentSync(doc1)
+      expect(writer.numDocsSync()).toEqual(2)
+      expect(writer.ramBytesUsedSync()).toBeGreaterThan(0)
+      done()
+    })
 
+    // TODO: async - not a priority - use promises ! - probably deprecating async in the future!
 
-  //     expect(writer.addDocumentSync().valueOf()).toBe(0)
-  //     done()
-  //   })
+    it('addDocumentPromise should return zero on new instances', async done => {
+      expect(await writer.numDocsPromise()).toEqual(0)
+      expect(await writer.ramBytesUsedPromise()).toEqual(0)
+      await writer.addDocumentPromise(new lucene.document.Document())
+      expect(await writer.numDocsPromise()).toEqual(1)
+      expect(await writer.ramBytesUsedPromise()).toEqual(0) // cause document is empty
 
-  //   it('addDocumentAsync should return zero on new instances', done => {
-  //     // const analyzer = new lucene.analysis.standard.StandardAnalyzer()
-  //     // const writerConfig = new lucene.index.IndexWriterConfig(analyzer)
-  //     // const index = new lucene.store.RAMDirectory()
-  //     // const writer = new lucene.index.IndexWriter(index, writerConfig)
-  //     writer.addDocumentAsync((error, value) => {
-  //       expect(error).not.toBeDefined()
-  //       expect(value.valueOf()).toBe(0)
-  //       done()
-  //     })
-  //   })
+      const doc1 = new lucene.document.Document()
+      await doc1.addPromise(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES))
+      await writer.addDocumentPromise(doc1)
+      expect(await writer.numDocsPromise()).toEqual(2)
+      expect(await writer.ramBytesUsedPromise()).toBeGreaterThan(0)
+      done()
+    })
 
-  //   it('addDocumentPromise should return zero on new instances', async done => {
-  //     const analyzer = new lucene.analysis.standard.StandardAnalyzer()
-  //     const writerConfig = new lucene.index.IndexWriterConfig(analyzer)
-  //     const index = new lucene.store.RAMDirectory()
-  //     const writer = new lucene.index.IndexWriter(index, writerConfig)
-  //     const value = await writer.addDocumentPromise()
-  //     expect(value).toEqual(0)
-  //     expect(value.valueOf()).toBe(0)
-  //     done()
-  //   })
-
-  // })
+  })
 
 
 
