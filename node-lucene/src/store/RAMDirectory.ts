@@ -1,7 +1,8 @@
 import Accountable from '../util/Accountable'
 import { getJava, Long, Callback, lang } from 'node-java-rt';
+import BaseDirectory from './BaseDirectory';
 
-export default class RAMDirectory extends lang.Object implements Accountable {
+export default class RAMDirectory extends BaseDirectory implements Accountable /* implements Closeable, AutoCloseable*/ {
   /**
    * ()
    */
