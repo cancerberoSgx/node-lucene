@@ -17,13 +17,42 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
   ramBytesUsedSync(): Long {
     return this._java.ramBytesUsedSync()
   }
-
   ramBytesUsedAsync(callback: Callback<Long>) {
     this._java.ramBytesUsedAsync(callback)
   }
-
   ramBytesUsedPromise(): Promise<Long> {
     return this._java.ramBytesUsedPromise()
+  }
+
+  closeSync(): void {
+    return this._java.closeSync()
+  }
+  closeAsync(callback: Callback<void>) {
+    this._java.closeAsync(callback)
+  }
+  closePromise(): Promise<void> {
+    return this._java.closePromise()
+  }
+
+
+  flushSync(): void {
+    return this._java.flushSync()
+  }
+  flushAsync(callback: Callback<void>) {
+    this._java.flushAsync(callback)
+  }
+  flushPromise(): Promise<void> {
+    return this._java.flushPromise()
+  }
+
+  numDocsSync(): number {
+    return this._java.numDocsSync()
+  }
+  numDocsAsync(callback: Callback<number>) {
+    this._java.numDocsAsync(callback)
+  }
+  numDocsPromise(): Promise<number> {
+    return this._java.numDocsPromise()
   }
 }
 

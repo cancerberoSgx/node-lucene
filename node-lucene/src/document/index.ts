@@ -1,5 +1,9 @@
 import FieldStoreT from './FieldStore'
+import TextFieldT from './TextField'
+import DocumentT from './Document'
 
 export const document = {
-  FieldStore: FieldStoreT
+  FieldStore: FieldStoreT,
+  Document: DocumentT,
+  TextField: TextFieldT
 }

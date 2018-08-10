@@ -1,8 +1,8 @@
-import { Callback, Long, JavaBase, lang, getJava } from 'node-java-rt'
+import { Callback, Long, JavaBase, lang, getJava, util } from 'node-java-rt'
 import FieldStore from './FieldStore';
 import { IndexableField } from '../index/IndexableField';
 
-export default class TextField extends IndexableField /* implements  java_lang_Iterable  */ {
+export default class TextField<T> extends IndexableField implements lang.Iterable<T> {
 
   static _javaClassName(): string {
     return 'org.apache.lucene.document.TextField'
@@ -13,6 +13,13 @@ export default class TextField extends IndexableField /* implements  java_lang_I
     this._java = getJava().newInstanceSync(TextField._javaClassName(), fieldName, fieldValue, fieldStore._java)
   }
 
+  /**
+   * TODO: which should be this one without postfix ? promise, sync, async ? I think it must be sync because of complying with signature
+   * ()Ljava/util/Iterator;
+   */
+  iterator(): util.Iterator<T> {
+    throw new Error('not implemented')
+  }
 
   // /**
   //  * (Ljava/lang/String;Lorg/apache/lucene/analysis/TokenStream;)

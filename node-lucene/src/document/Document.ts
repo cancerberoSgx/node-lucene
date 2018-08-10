@@ -25,15 +25,15 @@ export default class Document<T> extends lang.Object implements lang.Iterable<T>
   }
 
   addSync(field: IndexableField): void {
-    return this._java.addSync(field)
+    return this._java.addSync(field._java)
   }
 
   addAsync(field: IndexableField, callback: Callback<void>) {
-    this._java.addAsync(field, callback)
+    this._java.addAsync(field._java, callback)
   }
 
   addPromise(field: IndexableField): Promise<void> {
-    return this._java.addPromise(field)
+    return this._java.addPromise(field._java)
   }
 
 
@@ -79,10 +79,27 @@ export default class Document<T> extends lang.Object implements lang.Iterable<T>
   //  * (Ljava/lang/String;)[Lorg/apache/lucene/index/IndexableField;
   //  */
   // getFields(arg0: string): any /*[Lorg.apache.lucene.index.IndexableField;*/;
+
   // /**
   //  * (Ljava/lang/String;)Lorg/apache/lucene/index/IndexableField;
   //  */
   // getField(arg0: string): any /*org.apache.lucene.index.IndexableField*/;
+
+
+  getFieldSync(field: string): IndexableField | null {
+    return this._java.getFieldSync(field)
+  }
+
+  getFieldAsync(field: string, callback: Callback<IndexableField | null>) {
+    this._java.getFieldAsync(field, callback)
+  }
+
+  getFieldPromise(field: string): Promise<IndexableField | null> {
+    return this._java.getFieldPromise(field)
+  }
+
+
+
   // /**
   //  * (Ljava/lang/String;)V
   //  */
