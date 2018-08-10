@@ -3,5 +3,5 @@ dist
 .yamat
 *.tgz
 tmp*
-examples-output
+# examples-output
 *.class

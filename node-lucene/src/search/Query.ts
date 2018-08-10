@@ -8,7 +8,7 @@ export default class Query extends lang.Object {
     // this._java = getJava().newInstanceSync(this._javaClassName, fieldName, analyzer._java)
   }
 
-  get _javaClassName(): string {
+  static _javaClassName(): string {
     // return 'org.apache.lucene.queryparser.classic.QueryParser'
     throw new Error('Should not be called - _java should be given')
   }

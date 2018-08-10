@@ -1,10 +1,11 @@
 import * as java from '../../../src'
 describe('LinkedList', () => {
 
+  // java.
   describe('add', () => {
 
     it('toStringSync should print list content representation', done => {
-      const list1 = new java.util.LinkedList()
+      const list1 = new java.util.LinkedList<number>() // TODO: how to force users to use generic in new call expression ? "Type parameters cannot appear on a constructor declaration."
       expect(list1.toStringSync()).toContain('[]')
       list1.addSync(1)
       expect(list1.toStringSync()).toContain('[1]')
@@ -14,7 +15,7 @@ describe('LinkedList', () => {
     })
 
     it('toStringAsync should print list content representation', done => {
-      const list1 = new java.util.LinkedList()
+      const list1 = new java.util.LinkedList<number>()
       list1.addAsync(1, async (error, value) => {
         expect(error).not.toBeDefined()
         expect(value).toBe(true)
@@ -25,7 +26,7 @@ describe('LinkedList', () => {
     })
 
     it('toStringPromise should print list content representation ', async done => {
-      const list1 = new java.util.LinkedList()
+      const list1 = new java.util.LinkedList<number>()
       expect(list1.toStringSync()).toContain('[]')
       expect(await list1.toStringPromise()).toContain('[]')
       await list1.addPromise(1)

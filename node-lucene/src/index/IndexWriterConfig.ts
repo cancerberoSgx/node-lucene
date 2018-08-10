@@ -1,7 +1,6 @@
 import Analyzer from '../analysis/Analyzer'
 import { Callback, Long, JavaBase, getJava, IJavaBase, lang } from 'node-java-rt';
 
-// export namespace index {
 export default class IndexWriterConfig extends lang.Object {
   // /**
   //  * ()
@@ -10,10 +9,10 @@ export default class IndexWriterConfig extends lang.Object {
 
   constructor(analyzer: Analyzer) {
     super()
-    this._java = getJava().newInstanceSync(this._javaClassName, analyzer._java)
+    this._java = getJava().newInstanceSync(IndexWriterConfig._javaClassName(), analyzer._java)
   }
 
-  public get _javaClassName(): string {
+  static _javaClassName(): string {
     return 'org.apache.lucene.index.IndexWriterConfig'
   }
 
@@ -204,4 +203,3 @@ export default class IndexWriterConfig extends lang.Object {
   //  */
   // setSoftDeletesField(arg0: string): any /*org.apache.lucene.index.IndexWriterConfig*/;
 }
-// }

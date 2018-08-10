@@ -6,10 +6,10 @@ export default class QueryParser extends lang.Object {
 
   constructor(fieldName: string, analyzer: Analyzer) {
     super()
-    this._java = getJava().newInstanceSync(this._javaClassName, fieldName, analyzer._java)
+    this._java = getJava().newInstanceSync(QueryParser._javaClassName(), fieldName, analyzer._java)
   }
 
-  get _javaClassName(): string {
+  static _javaClassName(): string {
     return 'org.apache.lucene.queryparser.classic.QueryParser'
   }
 

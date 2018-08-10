@@ -8,3 +8,4 @@
 # TODO
 
  * report TS issue - cannot name a class 'Object' and invoke its static method from constructor. See java.lang.Object.ts which i had to name Object_ because of this
+ * TS issue : // TODO: how to force users to use generic in new call expression ? "Type parameters cannot appear on a constructor declaration." - see LinkedList.ts

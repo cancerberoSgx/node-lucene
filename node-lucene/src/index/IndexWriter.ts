@@ -7,10 +7,10 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
 
   constructor(index: RAMDirectory /* TODO: use super interface org.apache.lucene.store.Directory not this concrete type*/, writerConfig: IndexWriterConfig) {
     super()
-    this._java = getJava().newInstanceSync(this._javaClassName, index._java, writerConfig._java)
+    this._java = getJava().newInstanceSync(IndexWriter._javaClassName(), index._java, writerConfig._java)
   }
 
-  get _javaClassName(): string {
+  static _javaClassName(): string {
     return 'org.apache.lucene.index.IndexWriter'
   }
 
