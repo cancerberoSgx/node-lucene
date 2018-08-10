@@ -4,32 +4,21 @@ describe('QueryParser', () => {
 
   describe('parse', () => {
 
-    it('parseSync new instance should greater than 1', done => {
+    it('should parseSync simple field definition', done => {
       const analyzer = new lucene.analysis.standard.StandardAnalyzer()
       const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
       const q = parser.parseSync('foo')
-      expect(q).toBeDefined()
-      debugger
-      // console.log(q);
-
-      // expect(parser.parseSync('foo')).toBeGreaterThan(0)
-      // expect(parser.parseSync('foo').valueOf()).toBeGreaterThan(0)
+      expect(q.toStringSync()).toBe('content:foo')
       done()
     })
 
-    // it('parsePromise new instance should return greater than 1', done => {
-    //   new lucene.analysis.standard.StandardAnalyzer().parseAsync((error, value) => {
-    //     expect(error).not.toBeDefined()
-    //     expect(value).toBeGreaterThan(0)
-    //     done()
-    //   })
-    // })
-
-    // it('parsePromise new instance should return greater than 1 ', async done => {
-    //   const value = await new lucene.analysis.standard.StandardAnalyzer().parsePromise()
-    //   expect(value).toBeGreaterThan(0)
-    //   done()
-    // })
+    it('should parsePromise simple field definition', async done => {
+      const analyzer = new lucene.analysis.standard.StandardAnalyzer()
+      const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
+      const q = await parser.parsePromise('foo')
+      expect(await q.toStringPromise()).toBe('content:foo')
+      done()
+    })
 
   })
 

@@ -52,7 +52,6 @@ describe('IndexWriter', () => {
 
   })
 
-
   describe('addDocument', () => {
 
     it('addDocumentSync should work as expected', done => {
@@ -70,7 +69,7 @@ describe('IndexWriter', () => {
       done()
     })
 
-    // TODO: async - not a priority - use promises ! - probably deprecating async in the future!
+    // TODO: async - not a priority - use promises ! - probably deprecating *Async methods in the future!
 
     it('addDocumentPromise should return zero on new instances', async done => {
       expect(await writer.numDocsPromise()).toEqual(0)

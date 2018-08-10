@@ -4,13 +4,13 @@ import { IndexableField } from '../index/IndexableField';
 
 export default class TextField<T> extends IndexableField implements lang.Iterable<T> {
 
-  static _javaClassName(): string {
-    return 'org.apache.lucene.document.TextField'
-  }
-
   constructor(fieldName: string, fieldValue: string, fieldStore: FieldStore) {
     super()
     this._java = getJava().newInstanceSync(TextField._javaClassName(), fieldName, fieldValue, fieldStore._java)
+  }
+
+  static _javaClassName(): string {
+    return 'org.apache.lucene.document.TextField'
   }
 
   /**
