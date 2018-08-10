@@ -11,39 +11,45 @@ describe('Document', () => {
   })
 
 
-  describe('addDocument', () => {
+  describe('add, getField', () => {
 
-    it('addDocumentSync should return zero on new instances', done => {
+    it('addSync and getFieldSync should work as expected', done => {
       const doc1 = new lucene.document.Document()
-      const field1 = new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES)
       expect(doc1.getFieldSync('content')).toBe(null)
-      doc1.addSync(field1)
+      doc1.addSync(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES))
       expect(doc1.getFieldSync('content').toStringSync()).toContain('content:hello world')
       done()
     })
 
-    //   //   it('addDocumentAsync should return zero on new instances', done => {
-    //   //     const analyzer = new lucene.analysis.standard.StandardAnalyzer()
-    //   //     const writerConfig = new lucene.index.IndexWriterConfig(analyzer)
-    //   //     const index = new lucene.store.RAMDirectory()
-    //   //     const writer = new lucene.index.IndexWriter(index, writerConfig)
-    //   //     writer.addDocumentAsync((error, value) => {
-    //   //       expect(error).not.toBeDefined()
-    //   //       expect(value.valueOf()).toBe(0)
-    //   //       done()
-    //   //     })
-    //   //   })
+    it('addAsync and getFieldAsync should return zero on new instances', done => {
+      const doc1 = new lucene.document.Document()
+      doc1.getFieldAsync('content', (error, value) => {
+        expect(error).not.toBeDefined()
+        expect(value).toBe(null)
+        doc1.addAsync(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES), (error, value) => {
+          expect(error).not.toBeDefined()
+          expect(value).toBeFalsy()
 
-    //   //   it('addDocumentPromise should return zero on new instances', async done => {
-    //   //     const analyzer = new lucene.analysis.standard.StandardAnalyzer()
-    //   //     const writerConfig = new lucene.index.IndexWriterConfig(analyzer)
-    //   //     const index = new lucene.store.RAMDirectory()
-    //   //     const writer = new lucene.index.IndexWriter(index, writerConfig)
-    //   //     const value = await writer.addDocumentPromise()
-    //   //     expect(value).toEqual(0)
-    //   //     expect(value.valueOf()).toBe(0)
-    //   //     done()
-    //   //   })
+          doc1.getFieldAsync('content', (error, value) => {
+            expect(error).not.toBeDefined()
+            doc1.getFieldAsync('content', (error, value) => {
+              expect(error).not.toBeDefined()
+              expect(value.toStringSync()).toContain('content:hello world')
+              done()
+            })
+          })
+        })
+      })
+    })
+
+    it('addPromise should return zero on new instances', async done => {
+      const doc1 = new lucene.document.Document()
+      expect(await doc1.getFieldPromise('content')).toBe(null)
+      await doc1.addPromise(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES))
+      const field1 = await doc1.getFieldPromise('content')
+      expect(field1.toStringSync()).toContain('content:hello world')
+      done()
+    })
 
   })
 
