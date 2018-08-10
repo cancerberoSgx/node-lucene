@@ -98,12 +98,24 @@ otherwise it will be the first argument in the callback.
    * @param fieldName The name of the field to get the value from.
    * 
    * Example: 
+   * 
    * ```js
-   * var data = java.getStaticFieldValue("com.nearinfinty.MyClass", "data");
+   * const data = java.getStaticFieldValue("com.nearinfinty.MyClass", "data");
    * ```
    */
   getStaticFieldValue<T>(className: string, fieldName: string): T
 
+  /**
+   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
+   * @param className The name of the class to call the method on. For nested classes seperate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
+   * Example: 
+   * 
+   * ```js
+   *   const result = java.callStaticMethodSync("com.nearinfinty.MyClass", "doSomething", 42, "test")
+   * ``` 
+   */
+  callStaticMethodSync<T>(className: string, fieldName: string, ...args: any[]): T
 }
 
 

@@ -1,6 +1,5 @@
-// import Accountable from '../util/Accountable'
-import { getJava, Long, Callback, lang } from 'node-java-rt';
+import { getJava, Long, Callback, lang, io } from 'node-java-rt';
+import Directory from './Directory';
 
-export default class BaseDirectory extends lang.Object /* implements Closeable, AutoCloseable*/ {
-
+export default abstract class BaseDirectory extends Directory {
 }

@@ -34,6 +34,7 @@ npm install --save node-lucene
  * contribute node-java README: to document standard `promisify: require('util').promisify` so no library is necessary. Also implement it as default promisify impl if exists since its supported from node 8.0.0 (LTS version now so it should be available in most cases) .
  * use https://github.com/joeferner/node-java-maven to manage lucene jars and run in npm prepare script
  * do reflection in java to get method / class signatures and generate TS interfaces and implementations automatically using java2js. We realized this will be very hard task but would be ideal.
- * contribute node-java README: typo : "classes seperate usi"
+ * contribute node-java README: fix several typos : "classes seperate usi" several typos : "if an error occures", "sted classes seperate u"
  * consider deprecating *Async methods since promises are available OOTB in node LTS, can be pollyfilled in older Node versions and callbacks are "obsolete" today in favor of promises. Supporting *Async is double work and testing it is harder (testing promises is just copy&paste *Sync and add async/await while testing *Async implies callbacks and require('async') - test code is totally different - too much work and no real gain). 
  * async constructors ? today calling `var o = new java.lang.Object()` is sync - should we support async analogy for example, `var o = await java.lang.Object.newAsync()`
+ * node-java - README - getStaticFieldValue  parameter  "callback(err, item) - Callback to be called when the class is created."   is confusing - is it really exists ? and if then " class is created" is wrong
