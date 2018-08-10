@@ -4,14 +4,16 @@ import { Callback, Long, JavaBase, lang, getJava, util } from 'node-java-rt'
 
 export default class IndexSearcher extends lang.Object {
 
-  // constructor(fieldName: string, fieldValue: string, fieldStore: FieldStore) {
-  //   super()
-  //   this._java = getJava().newInstanceSync(TextField._javaClassName(), fieldName, fieldValue, fieldStore._java)
-  // }
+  constructor() {
+    super()
+    this._java = getJava().newInstanceSync(IndexSearcher._javaClassName())
+  }
 
   static _javaClassName(): string {
     return 'org.apache.lucene.search.IndexSearcher'
   }
+
+}
 
   //   interface org_apache_lucene_search_IndexSearcher extends org_apache_lucene_search_IndexSearcher {
   //     /**
@@ -159,4 +161,3 @@ export default class IndexSearcher extends lang.Object {
   //      */
   //     collectionStatistics(arg0: string): any /*org.apache.lucene.search.CollectionStatistics*/;
   // }
-}

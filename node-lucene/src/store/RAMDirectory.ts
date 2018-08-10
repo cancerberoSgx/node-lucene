@@ -1,7 +1,7 @@
 import Accountable from '../util/Accountable'
-import { getJava } from 'node-java-rt';
+import { getJava, Long, Callback, lang } from 'node-java-rt';
 
-export default class RAMDirectory extends Accountable {
+export default class RAMDirectory extends lang.Object implements Accountable {
   /**
    * ()
    */
@@ -14,6 +14,20 @@ export default class RAMDirectory extends Accountable {
   public get _javaClassName(): string {
     return 'org.apache.lucene.store.RAMDirectory'
   }
+
+
+  ramBytesUsedSync(): Long {
+    return this._java.ramBytesUsedSync()
+  }
+
+  ramBytesUsedAsync(callback: Callback<Long>) {
+    this._java.ramBytesUsedAsync(callback)
+  }
+
+  ramBytesUsedPromise(): Promise<Long> {
+    return this._java.ramBytesUsedPromise()
+  }
+
 
   // /**
   //  * (Lorg/apache/lucene/store/LockFactory;)

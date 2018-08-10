@@ -1,22 +1,25 @@
 import { Callback, Long, JavaBase, lang } from 'node-java-rt'
 
-export default class Accountable extends lang.Object {
+export default interface Accountable/*  extends lang.Object  */ {
 
-  public get _javaClassName(): string {
-    return 'org.apache.lucene.util.Accountable'
-  }
+  // public get _javaClassName(): string {
+  //   return 'org.apache.lucene.util.Accountable'
+  // }
 
-  ramBytesUsedSync(): Long {
-    return this._java.ramBytesUsedSync()
-  }
+  ramBytesUsedSync(): Long
+  //  {
+  //   return this._java.ramBytesUsedSync()
+  // }
 
-  ramBytesUsedAsync(callback: Callback<Long>) {
-    this._java.ramBytesUsedAsync(callback)
-  }
+  ramBytesUsedAsync(callback: Callback<Long>): void
+  // {
+  //   this._java.ramBytesUsedAsync(callback)
+  // }
 
-  ramBytesUsedPromise(): Promise<Long> {
-    return this._java.ramBytesUsedPromise()
-  }
+  ramBytesUsedPromise(): Promise<Long>
+  // {
+  //   return this._java.ramBytesUsedPromise()
+  // }
 
   // /**
   // TODO: implement
