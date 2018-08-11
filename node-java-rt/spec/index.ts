@@ -3,6 +3,7 @@ import { join } from 'path'
 const Jasmine = require('jasmine')
 import { sync as glob } from 'glob'
 import minimist from 'minimist'
+// import { getJava } from '../src';
 
 const jasmineRunner = new Jasmine()
 const args = minimist(process.argv.slice(2)) as any
@@ -19,5 +20,7 @@ else {
 
 jasmineRunner.specFiles = specs
 jasmineRunner.execute()
+// getJava().ensureJvm(() => jasmineRunner.execute())
+
 
 

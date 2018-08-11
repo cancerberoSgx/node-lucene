@@ -17,8 +17,6 @@ xdescribe('IndexSearcher', () => {
 
       const query = parser.parseSync('foo')
 
-
-
       const directory = lucene.index.DirectoryReader.openSync(index)
       const searcher = new lucene.search.IndexSearcher(directory)
       const topDocs = searcher.searchSync(query, 10)

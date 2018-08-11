@@ -3,6 +3,7 @@ import { join } from 'path'
 const Jasmine = require('jasmine')
 import { sync as glob } from 'glob'
 import minimist from 'minimist'
+import { initializeLucene } from '../src/util/getLuceneJava';
 
 const jasmineRunner = new Jasmine()
 const args = minimist(process.argv.slice(2)) as any
@@ -18,6 +19,8 @@ else {
 }
 
 jasmineRunner.specFiles = specs
-jasmineRunner.execute()
 
+initializeLucene() // Heads up ! this call is important !  Make sure it's called before any other node-java related call. This is a mandatory call before using any node-lucene API so node-java is initialized first using lucene .jar in classpath and not without them like happens when getJava() is called directly from node-java-rt
+
+jasmineRunner.execute()
 

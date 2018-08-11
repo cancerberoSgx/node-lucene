@@ -2,7 +2,7 @@ import { Java, JavaOptions } from './types';
 
 let java: Java
 
-const defaultJavaOptions: JavaOptions = {
+let defaultJavaOptions: JavaOptions = {
   asyncOptions: {
     asyncSuffix: 'Async',
     syncSuffix: 'Sync',
@@ -13,14 +13,17 @@ const defaultJavaOptions: JavaOptions = {
   options: []
 }
 
-export function getJava(javaOptions: JavaOptions = defaultJavaOptions): Java {
+export function setJavaOptions(options: JavaOptions) {
+  defaultJavaOptions = options
+}
+
+export function getJava(): Java {
   if (!java) {
     java = require("java")
     // Object.assign(java, javaOptions) // TODO: throw native v8 exception ! - report to node-java ? 
-    java.asyncOptions = javaOptions.asyncOptions
-    javaOptions.classpath.forEach(cp => java.classpath.push(cp))
-    // javaOptions.classpath = java.classpath
-    java.options = javaOptions.options
+    java.asyncOptions = defaultJavaOptions.asyncOptions
+    defaultJavaOptions.classpath.forEach(cp => java.classpath.push(cp))
+    java.options = defaultJavaOptions.options
   }
   return java
 }
