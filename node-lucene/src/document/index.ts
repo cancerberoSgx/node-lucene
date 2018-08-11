@@ -4,7 +4,7 @@ import DocumentT from './Document'
 
 export namespace document {
   export type FieldStore = FieldStoreT
-  export type Document<T> = DocumentT<T>
+  export type Document<T> = DocumentT
   export type TextField<T> = TextFieldT<T>
 }
 export const document = {

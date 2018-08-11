@@ -8,8 +8,6 @@ export default class TopDocs extends lang.Object {
   }
   /** The top hits for the query. */
   get scoreDocs(): ScoreDoc[] {
-    const javaObject = this._java.scoreDocsSync()
-    debugger
-    return null
+    return this._java.scoreDocs
   }
 }

@@ -1,8 +1,9 @@
 import { Callback, Long, JavaBase, lang, util } from 'node-java-rt'
-import { IndexableField } from '../index/IndexableField';
-import { getLuceneJava } from '../util/getLuceneJava';
+import { IndexableField } from '../index/IndexableField'
+import { getLuceneJava } from '../util/getLuceneJava'
+import { IndexableFieldBase_ } from '../index/IndexableFieldBase_';
 
-export default class Document<T> extends lang.Object implements lang.Iterable<T> /* TODO: dont know which is the type param of Iterable :  */ {
+export default class Document extends lang.Object implements lang.Iterable<IndexableField> {
 
   static _javaClassName(): string {
     return 'org.apache.lucene.document.Document'
@@ -26,88 +27,31 @@ export default class Document<T> extends lang.Object implements lang.Iterable<T>
   }
 
   addSync(field: IndexableField): void {
-    return this._java.addSync(field._java)
+    return this._java.addSync(Document._getNative(field))
   }
 
   addAsync(field: IndexableField, callback: Callback<void>) {
-    this._java.addAsync(field._java, callback)
+    this._java.addAsync(Document._getNative(field), callback)
   }
 
   addPromise(field: IndexableField): Promise<void> {
-    return this._java.addPromise(field._java)
+    return this._java.addPromise(Document._getNative(field))
   }
 
-
-
-  // /**
-  //  * (Ljava/lang/String;)[Lorg/apache/lucene/util/BytesRef;
-  //  */
-  // getBinaryValues(arg0: string): any /*[Lorg.apache.lucene.util.BytesRef;*/;
-  // /**
-  //  * (Ljava/lang/String;)[Ljava/lang/String;
-  //  */
-  // getValues(arg0: string): any /*[Ljava.lang.String;*/;
-  // /**
-  //  * (Lorg/apache/lucene/index/IndexableField;)V
-  //  */
-  // add(arg0: any /*org.apache.lucene.index.IndexableField*/): any /*void*/;
-  // /**
-  //  * (Ljava/lang/String;)Ljava/lang/String;
-  //  */
-  // get(arg0: string): string;
-  // /**
-  //  * ()Ljava/lang/String;
-  //  */
-  // toString(): string;
-  // /**
-  //  * ()V
-  //  */
-  // clear(): any /*void*/;
-
-  /**
-   * TODO: which should be this one without postfix ? promise, sync, async ? I think it must be sync because of complying with signature
-   * ()Ljava/util/Iterator;
-   */
-  iterator(): util.Iterator<T> {
+  iterator(): util.Iterator<IndexableField> {
     throw new Error('not implemented')
   }
 
-  // /**
-  //  * ()Ljava/util/List;
-  //  */
-  // getFields(): any /*java.util.List*/;
-  // /**
-  //  * (Ljava/lang/String;)[Lorg/apache/lucene/index/IndexableField;
-  //  */
-  // getFields(arg0: string): any /*[Lorg.apache.lucene.index.IndexableField;*/;
-
-  // /**
-  //  * (Ljava/lang/String;)Lorg/apache/lucene/index/IndexableField;
-  //  */
-  // getField(arg0: string): any /*org.apache.lucene.index.IndexableField*/;
-
-
-  getFieldSync(field: string): IndexableField | null {
-    return this._java.getFieldSync(field)
+  getFieldSync(field: string): (IndexableField & lang.Object) | null {
+    return Document._buildSync(this._java.getFieldSync(field), new IndexableFieldBase_())
   }
 
-  getFieldAsync(field: string, callback: Callback<IndexableField | null>) {
-    this._java.getFieldAsync(field, callback)
+  getFieldAsync(field: string, callback: Callback<(IndexableField & lang.Object) | null>) {
+    return Document._buildAsync(this._java.getFieldAsync(field, callback), new IndexableFieldBase_())
   }
 
-  getFieldPromise(field: string): Promise<IndexableField | null> {
-    return this._java.getFieldPromise(field)
+  getFieldPromise(field: string): Promise<(IndexableField & lang.Object) | null> {
+    return Document._buildPromise(this._java.getFieldPromise(field), new IndexableFieldBase_())
   }
-
-
-
-  // /**
-  //  * (Ljava/lang/String;)V
-  //  */
-  // removeFields(arg0: string): any /*void*/;
-  // /**
-  //  * (Ljava/lang/String;)Lorg/apache/lucene/util/BytesRef;
-  //  */
-  // getBinaryValue(arg0: string): any /*org.apache.lucene.util.BytesRef*/;
 
 }

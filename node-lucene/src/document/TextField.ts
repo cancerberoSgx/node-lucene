@@ -3,7 +3,7 @@ import FieldStore from './FieldStore';
 import { IndexableField } from '../index/IndexableField';
 import { getLuceneJava } from '../util/getLuceneJava';
 
-export default class TextField<T> extends IndexableField implements lang.Iterable<T> {
+export default class TextField<T> extends lang.Object implements IndexableField, lang.Iterable<T> {
 
   constructor(fieldName: string, fieldValue: string, fieldStore: FieldStore) {
     super()
