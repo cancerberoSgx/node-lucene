@@ -4,15 +4,12 @@ import BaseDirectory from './BaseDirectory';
 import { getLuceneJava } from '../util/getLuceneJava';
 
 export default class RAMDirectory extends BaseDirectory implements Accountable /* implements Closeable, AutoCloseable*/ {
-  /**
-   * ()
-   */
+
   constructor() {
     super()
+    // this._java = getLuceneJava().newInstanceSync("org.apache.lucene.store.RAMDirectory");
     this._java = getLuceneJava().newInstanceSync(RAMDirectory._javaClassName())
   }
-  // protected _javaClassName = "org.apache.lucene.store.RAMDirectory"
-
   static _javaClassName(): string {
     return 'org.apache.lucene.store.RAMDirectory'
   }

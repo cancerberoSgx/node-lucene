@@ -21,6 +21,9 @@ xdescribe('IndexSearcher', () => {
       const searcher = new lucene.search.IndexSearcher(directory)
       const topDocs = searcher.searchSync(query, 10)
 
+      console.log(topDocs.totalHits);
+
+
       done()
     })
 
