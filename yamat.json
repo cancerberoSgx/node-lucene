@@ -22,6 +22,10 @@
   {
     "name": "node-java-rt",
     "path": "node-java-rt"
+  },
+  {
+    "name": "node-lucene-sample-project1",
+    "path": "node-lucene-sample-project1"
   }
   
 ]
