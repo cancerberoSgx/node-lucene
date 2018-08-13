@@ -33,3 +33,12 @@ export default class WordDelimiterGraphFilter extends lang.Object {
     return getLuceneJava().getStaticFieldValue('org.apache.lucene.analysis.miscellaneous.WordDelimiterGraphFilter', 'STEM_ENGLISH_POSSESSIVE')
   }
 }
+
+
+
+// public void doSplit(final String input, String... output) throws Exception {
+//   int flags = GENERATE_WORD_PARTS | GENERATE_NUMBER_PARTS | SPLIT_ON_CASE_CHANGE | SPLIT_ON_NUMERICS | STEM_ENGLISH_POSSESSIVE;
+//   WordDelimiterFilter wdf = new WordDelimiterFilter(keywordMockTokenizer(input),
+//       WordDelimiterIterator.DEFAULT_WORD_DELIM_TABLE, flags, null);
+//   assertTokenStreamContents(wdf, output);
+// }

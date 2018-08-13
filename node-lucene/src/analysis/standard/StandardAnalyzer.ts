@@ -24,4 +24,8 @@ export default class StandardAnalyzer extends lang.Object implements Analyzer {
   getMaxTokenLengthPromise(): Promise<Long> {
     return this._java.getMaxTokenLengthPromise()
   }
+
+  close(): void {
+    this._java.closeSync()
+  }
 }
