@@ -1,0 +1,1 @@
+* Static contants: Use `static get`. See src/analysis/miscellaneous/WordDelimiterGraphFilter.ts

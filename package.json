@@ -4,6 +4,7 @@
   "description": "node-lucene: (main objective) apache lucene bindings for nodejs (straightforward API, performant thanks to node-java dynamic bindings - no server, process spawning or IPC-like). javap and javap-json : inspect Java AST from .jar and .class. java2js: Research about auto generate TypeScript/JavaScript interfaces and implementations from java .jars and .class",
   "author": "Sebastian Gurin",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build": "npx yamat run npm run build",
     "test": " npx yamat run npm test",
