@@ -32,11 +32,25 @@ export default class IndexSearcher extends lang.Object {
 
   /** Finds the top n hits for query. */
   searchSync(query: Query, n: number): TopDocs {
-    const javaObject = this._java.searchSync(query._java, n)
-    return IndexSearcher._buildSync(javaObject, new TopDocs())
+    return IndexSearcher._buildSync(this._java.searchSync(query._java, n), new TopDocs())
   }
+  /** Finds the top n hits for query. */
+  search(query: Query, n: number): TopDocs {
+    return this.searchSync.apply(this, arguments)
+  }
+  /** Finds the top n hits for query. */
+  searchPromise(query: Query, n: number): Promise<TopDocs> {
+    return IndexSearcher._buildPromise<TopDocs>(this._java.searchPromise(query._java, n), new TopDocs())
+  }
+
 
   docSync(docId: number): Document {
     return IndexSearcher._buildSync<Document>(this._java.docSync(docId), new Document())
+  }
+  doc(docId: number): Document {
+    return IndexSearcher._buildSync<Document>(this._java.docSync(docId), new Document())
+  }
+  docPromise(docId: number): Promise<Document> {
+    return IndexSearcher._buildPromise<Document>(this._java.docSync(docId), new Document()) // TODO: should be this._java.docPromise
   }
 }

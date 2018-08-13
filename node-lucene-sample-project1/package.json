@@ -1,0 +1,15 @@
+{
+  "name": "node-lucene-sample-project1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-lucene": "file:../node-lucene/node-lucene-0.0.2.tgz"
+  }
+}

@@ -85,5 +85,7 @@ The following are the options that javap accept in general both in the JavaScrip
 
 ## TODO
 
+ * testing utility so I can get the AST of given java coded string (util will write, compile and execute javap-json over it automatically)
+ * utility to output dependency tree: for each type found in fields, params, return type, extends, implements, type param, etc build dependency tree of given class(es). Why? so we can generate ts/js only of needed types and not of everything. 
  * classPath when using folders should support globs and class filtering
  * Contribute to java-node : add to examples to .npmignore - all its users are downloading lucene .classPath on npm install !! n and probably same goes for test/ and **/*.class

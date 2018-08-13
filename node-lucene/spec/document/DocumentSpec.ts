@@ -10,7 +10,6 @@ describe('Document', () => {
     })
   })
 
-
   describe('add, getField', () => {
 
     it('addSync and getFieldSync should work as expected', done => {
@@ -29,7 +28,6 @@ describe('Document', () => {
         doc1.addAsync(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES), (error, value) => {
           expect(error).not.toBeDefined()
           expect(value).toBeFalsy()
-
           doc1.getFieldAsync('content', (error, value) => {
             expect(error).not.toBeDefined()
             doc1.getFieldAsync('content', (error, value) => {

@@ -17,11 +17,12 @@ export default class QueryParser extends lang.Object {
   parseSync(queryString: string): Query {
     return QueryParser._buildSync<Query>(this._java.parseSync(queryString), new Query())
   }
-
+  parse(queryString: string): Query {
+    return this.parseSync.apply(this, arguments)
+  }
   parseAsync(queryString: string, callback: Callback<Query>) {
     this._java.parseAsync(queryString, QueryParser._buildAsync(callback, new Query()))
   }
-
   parsePromise(queryString: string): Promise<Query> {
     return QueryParser._buildPromise(this._java.parsePromise(queryString), new Query())
   }

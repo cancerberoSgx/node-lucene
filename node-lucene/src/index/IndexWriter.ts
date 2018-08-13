@@ -28,6 +28,9 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
   closeSync(): void {
     return this._java.closeSync()
   }
+  close(): void {
+    return this.closeSync.apply(this, arguments)
+  }
   closeAsync(callback: Callback<void>): void {
     this._java.closeAsync(callback)
   }
@@ -38,6 +41,9 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
 
   flushSync(): void {
     return this._java.flushSync()
+  }
+  flush(): void {
+    return this.flushSync.apply(this, arguments)
   }
   flushAsync(callback: Callback<void>): void {
     this._java.flushAsync(callback)
@@ -58,6 +64,9 @@ export default class IndexWriter extends lang.Object /* extends org_apache_lucen
 
   addDocumentSync<T>(document: lang.Iterable<T>): Long {
     return this._java.addDocumentSync(getJavaObjectOrThrow(document))
+  }
+  addDocument<T>(document: lang.Iterable<T>): Long {
+    return this.addDocumentSync.apply(this, arguments)
   }
   addDocumentAsync<T>(document: lang.Iterable<T>, callback: Callback<Long>): void {
     this._java.addDocumentAsync(getJavaObjectOrThrow(document), callback)

@@ -9,3 +9,4 @@ dist/spec
 dist/tests
 tests
 examples
+*.tgz
