@@ -76,7 +76,7 @@ export default class Document extends lang.Object implements lang.Iterable<Index
     return this._java.getSync(name)
   }
   async getPromise(name: string): Promise<string> {
-    return this._java.getSync(name)
+    return this._java.getPromise(name)
   }
 
 

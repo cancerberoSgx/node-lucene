@@ -1,7 +1,8 @@
-import { lang } from 'node-java-rt';
 import { getLuceneJava } from '../../util/getLuceneJava';
+import TokenFilter from '../TokenFilter';
 
-export default class WordDelimiterGraphFilter extends lang.Object {
+export default class WordDelimiterGraphFilter extends TokenFilter {
+
   static get CATENATE_ALL(): number {
     return getLuceneJava().getStaticFieldValue('org.apache.lucene.analysis.miscellaneous.WordDelimiterGraphFilter', 'CATENATE_ALL')
   }

@@ -111,7 +111,7 @@ otherwise it will be the first argument in the callback.
 
   /**
    * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
-   * @param className The name of the class to call the method on. For nested classes seperate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
    * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
    * Example: 
    * 
@@ -120,6 +120,41 @@ otherwise it will be the first argument in the callback.
    * ``` 
    */
   callStaticMethodSync<T>(className: string, fieldName: string, ...args: any[]): T
+  /**
+   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
+   * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
+   * Example: 
+   * 
+   * ```js
+   *   const result = java.callStaticMethodSync("com.nearinfinty.MyClass", "doSomething", 42, "test")
+   * ``` 
+   */
+  callStaticMethod<T>(className: string, fieldName: string, ...args: any[]): void
+  /**
+   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
+   * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
+   * Example: 
+   * 
+   * ```js
+   *   const result = java.callStaticMethodSync("com.nearinfinty.MyClass", "doSomething", 42, "test")
+   * ``` 
+   */
+  callStaticMethodPromise<T>(className: string, fieldName: string, ...args: any[]): Promise<T>
+
+  // /**
+  //  * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
+  //  * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+  //  * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
+  //  * Example: 
+  //  * 
+  //  * ```js
+  //  *   const result = java.callStaticMethod("com.nearinfinty.MyClass", "doSomething", 42, "test")
+  //  * ``` 
+  //  */
+  // callStaticMethod<T>(className: string, fieldName: string, ...args: any[]/* , callback: (error: any, result: any) => void */): T
+
 }
 
 

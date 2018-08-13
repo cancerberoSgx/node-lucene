@@ -51,6 +51,6 @@ export default class IndexSearcher extends lang.Object {
     return IndexSearcher._buildSync<Document>(this._java.docSync(docId), new Document())
   }
   docPromise(docId: number): Promise<Document> {
-    return IndexSearcher._buildPromise<Document>(this._java.docSync(docId), new Document()) // TODO: should be this._java.docPromise
+    return IndexSearcher._buildPromise<Document>(this._java.docPromise(docId), new Document())
   }
 }

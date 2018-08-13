@@ -1,6 +1,6 @@
-import Analyzer from '../Analyzer';
-import { Callback, Long, JavaBase, IJavaBase, lang } from 'node-java-rt';
+import { Callback, lang, Long } from 'node-java-rt';
 import { getLuceneJava } from '../../util/getLuceneJava';
+import Analyzer from '../Analyzer';
 
 export default class StandardAnalyzer extends lang.Object implements Analyzer {
 
