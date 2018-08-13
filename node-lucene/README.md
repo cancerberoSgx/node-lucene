@@ -14,7 +14,8 @@ npm install --save node-lucene
 
 
 ```ts
-import * as lucene from 'node-lucene'
+const lucene = require('node-lucene')
+// or `import * as lucene from 'node-lucene'`
 
 // We will be indexing the following "books":
 const books = [
@@ -41,7 +42,7 @@ const books = [
 ]
 
 // before using this library make sure you call the following function for loading lucene .jars in Java classpath:
-initializeLucene()
+lucene.initialize()
 
 // create lucene index in memory:
 const analyzer = new lucene.analysis.standard.StandardAnalyzer()
@@ -68,16 +69,13 @@ const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
 
 // searching for 'phrase does not exists' should return 0 results
 let topDocs = searcher.search(parser.parse('phrase does not exists'), 10)
-expect(topDocs.totalHits).toEqual(0)
 
 // searching for 'cold' should return 1 results. We iterate found documents and print its author and titles:
 topDocs = searcher.search(parser.parse('cold'), 10) //TODO: lucene issue : why searching for 'the' is returning 0 results ? 
-expect(topDocs.totalHits).toEqual(1)
 
 // now get back the document from the index to access matched book's author and title
 const foundDoc = searcher.doc(topDocs.scoreDocs[0].doc)
-expect(foundDoc.get('author')).toBe('George Orwell')
-expect(foundDoc.get('title')).toBe('1984')
+console.log(`Found "${foundDoc.get('title')}" authored by ${foundDoc.get('author')}`);
 
 ```
 

@@ -52,14 +52,10 @@ const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
 
 // searching for 'phrase does not exists' should return 0 results
 let topDocs = searcher.search(parser.parse('phrase does not exists'), 10)
-// expect(topDocs.totalHits).toEqual(0)
 
 // searching for 'cold' should return 1 results. We iterate found documents and print its author and titles:
 topDocs = searcher.search(parser.parse('cold'), 10) //TODO: lucene issue : why searching for 'the' is returning 0 results ? 
-// expect(topDocs.totalHits).toEqual(1)
 
 // now get back the document from the index to access matched book's author and title
 const foundDoc = searcher.doc(topDocs.scoreDocs[0].doc)
 console.log(`Found "${foundDoc.get('title')}" authored by ${foundDoc.get('author')}`);
-// expect(foundDoc.get('author')).toBe('George Orwell')
-// expect(foundDoc.get('title')).toBe('1984')
