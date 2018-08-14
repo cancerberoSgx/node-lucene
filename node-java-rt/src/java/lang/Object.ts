@@ -15,6 +15,9 @@ export default class Object_ extends JavaBase {
   toStringSync(): string {
     return this._java.toStringSync()
   }
+  toString(): string {
+    return this._java.toStringSync()
+  }
   toStringAsync(c: Callback<string>): void {
     return this._java.toStringSync(c)
   }
@@ -23,6 +26,9 @@ export default class Object_ extends JavaBase {
   }
 
   equalsSync(value: any): boolean {
+    return this._java.equalsSync()
+  }
+  equals(value: any): boolean {
     return this._java.equalsSync()
   }
   equalsAsync(value: any, c: Callback<boolean>): void {
