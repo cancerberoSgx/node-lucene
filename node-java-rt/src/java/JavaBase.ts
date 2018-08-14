@@ -21,6 +21,16 @@ export class JavaBase implements IJavaBase {
       return null
     }
   }
+  /** @internal */
+  protected static _buildSyncOrThrow<T extends JavaBase>(javaObject: any, instance: T): T {
+    if (javaObject !== undefined && javaObject !== null && instance) {
+      instance._java = javaObject
+      return instance
+    }
+    else {
+      throw new Error('Expected javaObject to be defined')
+    }
+  }
 
   /** @internal */
   protected static _buildAsync<T extends JavaBase>(callback: Callback<T | null>, instance: T): (error: any, javaObject: any) => void {

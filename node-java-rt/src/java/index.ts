@@ -8,8 +8,10 @@ export * from './IJavaBase'
 import ObjectT from './lang/Object'
 import IterableT from './lang/Iterable'
 import AutoCloseableT from './lang/AutoCloseable'
+import EnumT from './lang/Enum'
 
 export namespace lang {
+  export type Enum<E>/* <E extends EnumT<E>> */ = EnumT<E /* extends EnumT */>/*  */ // TODO: can't do this report to TS
   export type Object = ObjectT
   export type Iterable<E> = IterableT<E>
   export type AutoCloseable = AutoCloseableT
@@ -17,6 +19,7 @@ export namespace lang {
 
 export const lang = {
   Object: ObjectT,
+  Enum: EnumT,
 }
 
 
@@ -46,4 +49,22 @@ export namespace io {
 }
 
 export const io = {
+}
+
+
+
+import PathsT from './nio/file/Paths'
+import PathT from './nio/file/Path'
+
+export namespace nio {
+  export namespace file {
+    export type Path = PathT
+    export type Paths = PathsT
+  }
+}
+
+export const nio = {
+  file: {
+    Paths: PathsT
+  }
 }
