@@ -2,8 +2,9 @@ import { Callback, lang } from 'node-java-rt';
 import Analyzer from '../../analysis/Analyzer';
 import Query from '../../search/Query';
 import { getLuceneJava } from '../../util/getLuceneJava';
+import QueryParserBase from './QueryParserBase';
 
-export default class QueryParser extends lang.Object {
+export default class QueryParser extends QueryParserBase {
 
   constructor(fieldName: string, analyzer: Analyzer) {
     super()
@@ -18,7 +19,7 @@ export default class QueryParser extends lang.Object {
     return QueryParser._buildSync<Query>(this._java.parseSync(queryString), new Query())
   }
   parse(queryString: string): Query {
-    return this.parseSync.apply(this, arguments)
+    return this.parseSync(queryString)
   }
   parseAsync(queryString: string, callback: Callback<Query>) {
     this._java.parseAsync(queryString, QueryParser._buildAsync(callback, new Query()))

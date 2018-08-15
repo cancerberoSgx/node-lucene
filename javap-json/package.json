@@ -28,10 +28,10 @@
   },
   "repository": "https://github.com/cancerberoSgx/node-lucene",
   "devDependencies": {
+    "jasmine": "^3.1.0",
     "@types/node": "^10.5.2"
   },
   "dependencies": {
-    "jasmine": "^3.1.0",
     "minimist": "^1.2.0",
     "shelljs": "^0.8.2"
   }

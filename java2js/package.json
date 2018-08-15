@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "hrtime-now": "^1.0.5",
-    "javap": "file:../javap",
+    "javap": "/home/sg/git/node-lucene/.yamat/javap-0.0.1.tgz",
     "minimist": "^1.2.0",
     "ts-simple-ast": "^12.5.4"
   },

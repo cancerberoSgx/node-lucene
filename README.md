@@ -1,9 +1,8 @@
-# Main objective
+# node-lucene
 
 [Apache Lucene](http://lucene.apache.org/core/) API for Node.js. Implemented calling Java directly from Node.js thanks to [node-java](https://github.com/joeferner/node-java) (no servers, no process spawning, no IPC-like mechanisms). Straightforward API.  
 
-See
-
+See [node-lucene sub project page](https://github.com/cancerberoSgx/node-lucene/tree/master/node-lucene) 
 
 # Subprojects and research: 
 

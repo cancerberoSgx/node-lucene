@@ -1,0 +1,31 @@
+[
+  {
+    "name": "generate-cli-api-help",
+    "path": "generate-cli-api-help"
+  },
+  {
+    "name": "javap-json",
+    "path": "javap-json"
+  },
+  {
+    "name": "javap",
+    "path": "javap"
+  },
+  {
+    "name": "java2js",
+    "path": "java2js"
+  },
+  {
+    "name": "node-lucene",
+    "path": "node-lucene"
+  },
+  {
+    "name": "node-java-rt",
+    "path": "node-java-rt"
+  },
+  {
+    "name": "node-lucene-sample-project1",
+    "path": "node-lucene-sample-project1"
+  }
+  
+]

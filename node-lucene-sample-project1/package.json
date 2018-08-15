@@ -5,15 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "exit 0",
-    "test-js": "jasmine",
-    "test": "jasmine"
+    "test-js": "npx jasmine",
+    "test": "npx jasmine"
   },
   "private": true,
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-lucene": "0.0.3"
+    "node-lucene": "/home/sg/git/node-lucene/.yamat/node-lucene-0.0.3.tgz"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.8",
