@@ -1,6 +1,6 @@
 {
   "name": "node-lucene-sample-project1",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-lucene": "file:../node-lucene"
+    "node-lucene": "0.0.4"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.8",

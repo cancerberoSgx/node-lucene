@@ -1,6 +1,6 @@
 {
   "name": "node-lucene",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Node.js API and bindings to apache lucene",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "java": "^0.10.0",
-    "node-java-rt": "file:../node-java-rt"
+    "node-java-rt": "0.0.2"
   },
   "devDependencies": {
     "@types/glob": "^5.0.35",
