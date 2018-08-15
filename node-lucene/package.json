@@ -21,7 +21,7 @@
   "license": "MIT",
   "dependencies": {
     "java": "^0.10.0",
-    "node-java-rt": "/home/sg/git/node-lucene/.yamat/node-java-rt-0.0.1.tgz"
+    "node-java-rt": "file:../node-java-rt"
   },
   "devDependencies": {
     "@types/glob": "^5.0.35",

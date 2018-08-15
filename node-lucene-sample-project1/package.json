@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-lucene": "/home/sg/git/node-lucene/.yamat/node-lucene-0.0.3.tgz"
+    "node-lucene": "file:../node-lucene"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.8",
