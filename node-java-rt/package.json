@@ -18,7 +18,7 @@
     "JavaScript"
   ],
   "author": "Sebastian Gurin",
-  "repository": "https://github.com/cancerberoSgx/node-java-rt",
+  "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/node-java-rt",
   "license": "MIT",
   "dependencies": {
     "java": "^0.10.0"

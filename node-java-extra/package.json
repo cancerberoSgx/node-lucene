@@ -1,7 +1,7 @@
 {
-  "name": "node-lucene",
-  "version": "0.0.4",
-  "description": "Node.js API and bindings to apache lucene",
+  "name": "node-java-extra",
+  "version": "0.0.1",
+  "description": "Research and prototypes on tings missing on project node-java, like being able to override a Java Method or extends an existing java class from JavaScript code. ",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
   "scripts": {
@@ -12,16 +12,16 @@
     "test-js": "npm run clean && npm run build && node dist/spec"
   },
   "keywords": [
-    "lucene",
-    "search",
-    "index"
+    "java",
+    "java.util",
+    "java.lang",
+    "JavaScript"
   ],
   "author": "Sebastian Gurin",
-  "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/node-lucene",
+  "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/node-java-extra",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0",
-    "node-java-rt": "file:../node-java-rt"
+    "java": "^0.10.0"
   },
   "devDependencies": {
     "@types/glob": "^5.0.35",

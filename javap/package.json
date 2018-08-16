@@ -20,11 +20,11 @@
     "node"
   ],
   "author": "Sebastian Gurin",
-  "repository": "https://github.com/cancerberoSgx/node-lucene",
+  "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/javap",
   "license": "MIT",
   "dependencies": {
     "java": "^0.10.0",
-    "javap-json": "/home/sg/git/node-lucene/.yamat/javap-json-0.0.1.tgz",
+    "javap-json": "file:../javap-json",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
     "shelljs": "^0.8.2"

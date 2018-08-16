@@ -2,7 +2,6 @@ import { getLuceneJava } from '../../util/getLuceneJava';
 import TokenFilter from '../TokenFilter';
 
 export default class WordDelimiterGraphFilter extends TokenFilter {
-
   static get CATENATE_ALL(): number {
     return getLuceneJava().getStaticFieldValue('org.apache.lucene.analysis.miscellaneous.WordDelimiterGraphFilter', 'CATENATE_ALL')
   }
@@ -34,8 +33,6 @@ export default class WordDelimiterGraphFilter extends TokenFilter {
     return getLuceneJava().getStaticFieldValue('org.apache.lucene.analysis.miscellaneous.WordDelimiterGraphFilter', 'STEM_ENGLISH_POSSESSIVE')
   }
 }
-
-
 
 // public void doSplit(final String input, String... output) throws Exception {
 //   int flags = GENERATE_WORD_PARTS | GENERATE_NUMBER_PARTS | SPLIT_ON_CASE_CHANGE | SPLIT_ON_NUMERICS | STEM_ENGLISH_POSSESSIVE;
