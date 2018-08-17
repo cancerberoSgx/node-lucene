@@ -7,7 +7,9 @@ describe('compile', () => {
     const result = compileCode({
       code: `
 public class Class1 {
-  public void method1(){}
+  public String method1(String p){
+    return "from java: " + p;
+  }
 }
 `,
       className: 'Class1'
