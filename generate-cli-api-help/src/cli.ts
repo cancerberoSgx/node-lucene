@@ -3,8 +3,8 @@ import { Options, printHelp } from '.';
 
 export async function mainCli() {
   const config = getConfig()
-  if (!config.fileWithInterface && !config.interfaceName) {
-    console.log('Incorrect call you must give --fileWithInterface and --interfaceName');
+  if (!config.input || !config.interfaceName) {
+    console.log('Incorrect call\n' + printOwnHelp());
     process.exit(1)
   }
   console.log(printHelp(config))
@@ -12,6 +12,15 @@ export async function mainCli() {
 
 function getConfig(): Options {
   const args = minimist(process.argv.slice(2)) as any
-  return Object.assign({}, args, {
+  const config = Object.assign({}, args, {
+  })
+  // console.log({ config });
+  return config
+}
+
+function printOwnHelp(): string {
+  return printHelp({
+    input: 'src/index.ts',
+    interfaceName: 'Options'
   })
 }
