@@ -1,5 +1,5 @@
-// import TokenStream from './TokenStream';
+// // import TokenStream from './TokenStream';
 
-export default class TokenFilter {
+// export default class TokenFilter {
 
-}
+// }

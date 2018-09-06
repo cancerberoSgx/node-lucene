@@ -3,6 +3,7 @@ import { join } from 'path'
 const Jasmine = require('jasmine')
 import { sync as glob } from 'glob'
 import minimist from 'minimist'
+import { getJava } from '../src';
 // import { getJava } from '../src';
 
 const jasmineRunner = new Jasmine()
@@ -19,6 +20,7 @@ else {
 }
 
 jasmineRunner.specFiles = specs
+getJava()
 jasmineRunner.execute()
 // getJava().ensureJvm(() => jasmineRunner.execute())
 

@@ -19,3 +19,7 @@ npm install --save node-swing
 ```ts
 // TODO
 ```
+
+# TODO
+
+ * move java/awt to its own package

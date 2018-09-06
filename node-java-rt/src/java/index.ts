@@ -27,17 +27,22 @@ export const lang = {
 
 
 import LinkedListT from './util/LinkedList'
+import EventObjectT from './util/EventObject'
 import IteratorT from './util/Iterator'
 import EnumerationT from './util/Enumeration'
+import EventListenerT from './util/EventListener'
 
 export namespace util {
+  export type EventObject = EventObjectT
   export type LinkedList<T> = LinkedListT<T>
   export type Iterator<T> = IteratorT<T>
   export type Enumeration<T> = EnumerationT<T>
+  export type EventListener = EventListenerT
 }
 
 export const util = {
-  LinkedList: LinkedListT
+  LinkedList: LinkedListT,
+  EventObject: EventObjectT
 }
 
 

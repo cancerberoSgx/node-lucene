@@ -8,7 +8,10 @@ export class JavaBase implements IJavaBase {
     throw new Error('Must be implemented by subclass class')
   }
 
-  /** @internal */
+  /** 
+   * Reference to the Java Object associated with this instance
+   * @internal 
+   * */
   public _java: any;
 
   /** @internal */

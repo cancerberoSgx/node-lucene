@@ -1,5 +1,5 @@
-import { IJavaBase, io } from 'node-java-rt';
+// import { IJavaBase, io } from 'node-java-rt';
 
-export default interface Analyzer extends io.Closeable, IJavaBase {
+// export default interface Analyzer extends IJavaBase {
 
-}
+// }

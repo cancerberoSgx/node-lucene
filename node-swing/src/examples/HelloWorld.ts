@@ -1,6 +1,6 @@
 import { JLabel } from '../javax/swing/JLabel'
 import { JFrame } from '../javax/swing/JFrame'
-import { initialize, getJava } from '../util/getLuceneJava';
+import { initialize, getJava } from '../util/getSwingJava';
 import { SwingUtilities } from '../javax/swing/SwingUtilities';
 import { lang } from 'node-java-rt';
 
@@ -24,8 +24,8 @@ function createAndShowGUI() {
   frame.pack()
   frame.setVisible(true)
 
+  //TODO: we need to set infinite timeout if not v8 will end and close the java app.
   setTimeout(() => {
-
     frame.pack()
     frame.setVisible(true)
   }, 1000000000);

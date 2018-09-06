@@ -1,4 +1,4 @@
-import { getJava } from '../../util/getLuceneJava';
+import { getJava } from '../../util/getSwingJava';
 import { JComponent } from './JComponent';
 
 export class JLabel extends JComponent {

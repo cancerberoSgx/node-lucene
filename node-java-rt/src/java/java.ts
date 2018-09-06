@@ -14,7 +14,7 @@ let defaultJavaOptions: JavaOptions = {
 }
 
 export function setJavaOptions(options: JavaOptions) {
-  defaultJavaOptions = options
+  defaultJavaOptions = options //TODO: Object.assign preserve defaults recursively
 }
 
 export function getJava(): Java {

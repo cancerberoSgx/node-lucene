@@ -3,7 +3,7 @@ import { join } from 'path'
 const Jasmine = require('jasmine')
 import { sync as glob } from 'glob'
 import minimist from 'minimist'
-import { initialize, getJava } from '../src/util/getLuceneJava';
+import { initialize, getJava } from '../src/util/getSwingJava';
 
 const jasmineRunner = new Jasmine()
 const args = minimist(process.argv.slice(2)) as any

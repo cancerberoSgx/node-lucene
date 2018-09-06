@@ -1,4 +1,4 @@
-import { getJava } from '../../util/getLuceneJava';
+import { getJava } from '../../util/getSwingJava';
 import { Container } from './Container';
 
 export class JFrame extends Container {

@@ -1,7 +1,3 @@
-
-export * from './analysis'
-
-// import { getLuceneJava, initializeLucene } from './util/getLuceneJava'
-
-// export const getJava = getLuceneJava
-// export const initialize = initializeLucene
+// export * from './analysis'
+export * from './java/awt'
+export * from './javax'
