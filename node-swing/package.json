@@ -1,0 +1,39 @@
+{
+  "name": "node-swing",
+  "version": "0.0.4",
+  "description": "Node.js API and bindings Java Swing",
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "npm run clean && tsc",
+    "prepare": "npm run build",
+    "clean": "rm -rf dist",
+    "test": "ts-node spec",
+    "test-js": "npm run clean && npm run build && node dist/spec"
+  },
+  "keywords": [
+    "lucene",
+    "search",
+    "index"
+  ],
+  "author": "Sebastian Gurin",
+  "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/node-swing",
+  "license": "MIT",
+  "dependencies": {
+    "java": "^0.10.0",
+    "node-java-rt": "file:../node-java-rt"
+  },
+  "devDependencies": {
+    "@types/glob": "^5.0.35",
+    "@types/jasmine": "^2.8.8",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^10.5.2",
+    "@types/shelljs": "^0.8.0",
+    "glob": "^7.1.2",
+    "jasmine": "^3.1.0",
+    "minimist": "^1.2.0",
+    "shelljs": "^0.8.2",
+    "ts-node": "^6.1.0",
+    "typescript": "2.9.2"
+  }
+}

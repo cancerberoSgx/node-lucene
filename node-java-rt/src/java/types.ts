@@ -155,6 +155,17 @@ otherwise it will be the first argument in the callback.
   //  */
   // callStaticMethod<T>(className: string, fieldName: string, ...args: any[]/* , callback: (error: any, result: any) => void */): T
 
+
+  /**
+   * Creates a new java Proxy for the given interface. Functions passed in will run on the v8 main thread and not a new thread.
+   * 
+   * The returned object has a method unref() which you can use to free the object for garbage collection.
+   * 
+   * @param interfaceName - The name of the interface to proxy. Separate nested classes using '$' (eg. com.nearinfinty.MyClass$NestedClass).
+   * @param functions A hash of functions matching the function in the interface. 
+   */
+  newProxy<T>(interfaceName: string, functions: any): any
+
 }
 
 

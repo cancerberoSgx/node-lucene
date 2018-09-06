@@ -9,10 +9,12 @@ import ObjectT from './lang/Object'
 import IterableT from './lang/Iterable'
 import AutoCloseableT from './lang/AutoCloseable'
 import EnumT from './lang/Enum'
+import RunnableT from './lang/Runnable'
 
 export namespace lang {
   export type Enum<E>/* <E extends EnumT<E>> */ = EnumT<E /* extends EnumT */>/*  */ // TODO: can't do this report to TS
   export type Object = ObjectT
+  export type Runnable = RunnableT
   export type Iterable<E> = IterableT<E>
   export type AutoCloseable = AutoCloseableT
 }

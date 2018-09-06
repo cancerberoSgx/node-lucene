@@ -22,5 +22,9 @@
   {
     "name": "node-lucene-sample-project1",
     "path": "node-lucene-sample-project1"
+  },
+  {
+    "name": "node-swing",
+    "path": "node-swing"
   }
 ]
