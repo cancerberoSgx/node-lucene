@@ -1,44 +1,39 @@
-import { JLabel } from '../javax/swing/JLabel'
-import { JFrame } from '../javax/swing/JFrame'
-import { initialize, getJava } from '../util/getSwingJava';
-import { SwingUtilities } from '../javax/swing/SwingUtilities';
-import { lang } from 'node-java-rt';
-
-
+import { javax } from '..'
 
 /**
  * Create the GUI and show it.  For thread safety,
- * this method should be invoked from the
- * event-dispatching thread.
+ * this method should be invoked from the event-dispatching thread.
  */
 function createAndShowGUI() {
   //Create and set up the window.
-  const frame = new JFrame("HelloWorldSwing")
-  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE())
+  const frame = new javax.swing.JFrame("HelloWorldSwing")
+  frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE())
 
   //Add the ubiquitous "Hello World" label.
-  const label = new JLabel('hello world')
+  const label = new javax.swing.JLabel('hello world2')
   frame.getContentPane().add(label)
 
   //Display the window.
   frame.pack()
   frame.setVisible(true)
-
-  //TODO: we need to set infinite timeout if not v8 will end and close the java app.
-  setTimeout(() => {
-    frame.pack()
-    frame.setVisible(true)
-  }, 1000000000);
 }
 
-function main() {
-  SwingUtilities.invokeLater({
-    run: function () {
-      console.log('hehehehe');
-      createAndShowGUI()
-    }
-  })
-}
 
-initialize()
-main()
+javax.swing.SwingUtilities.invokeLater({
+  run: function () {
+    createAndShowGUI()
+  }
+})
+
+// Heads up! Need to install infinite timeout so node.js process doesn't exit (destroying our frame). 
+setInterval(() => { }, 10000)
+
+
+// initialize()
+// import { lang } from 'node-java-rt';
+// lang.Runtime.getRuntime().addShutdownHook(() => {
+//   console.log('uiiiuiuiupiiii12123123')
+//   setTimeout(() => {
+//     console.log('uiiiuiuiupiiii')
+//   }, 1000);
+// })

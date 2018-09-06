@@ -21,10 +21,10 @@ export function getJava(): Java {
   return java
 }
 
-/**
- * This is a mandatory call before using any node-lucene API so node-java is initialized first using lucene
- * .jar in classpath and not without them like happens when getJava() is called directly from node-java-rt
- */
-export function initialize() {
-  getJava()
-}
+// /**
+//  * This is a mandatory call before using any node-lucene API so node-java is initialized first using lucene
+//  * .jar in classpath and not without them like happens when getJava() is called directly from node-java-rt
+//  */
+// export function initialize() {
+//   getJava()
+// }

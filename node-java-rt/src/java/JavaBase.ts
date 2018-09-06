@@ -1,5 +1,6 @@
 import { IJavaBase } from './IJavaBase';
 import { Callback } from './types';
+import { getJava } from './java';
 
 export class JavaBase implements IJavaBase {
 
@@ -53,4 +54,11 @@ export class JavaBase implements IJavaBase {
     return v._java || v
   }
 
+  // protected static _getProxy(interfaceName: string, proxied: any) {
+  //   //TODO: cache proxies so we don't create a new one each time
+  //   const proxy = getJava().newProxy(interfaceName, proxied)
+  // }
+
+  // const proxy = getJava().newProxy('java.lang.Runnable', runnable)
+  // getJava().callStaticMethodSync('javax.swing.SwingUtilities', 'invokeLater', proxy)
 }

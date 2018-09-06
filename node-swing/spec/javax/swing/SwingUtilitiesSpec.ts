@@ -1,10 +1,10 @@
-import { swing } from '../../../src/javax';
+import { javax } from '../../../src';
 
 describe('SwingUtilities', () => {
   describe('invokeLater', () => {
     it('should invoke given Runnable', done => {
       let counter = 0
-      swing.SwingUtilities.invokeLater({
+      javax.swing.SwingUtilities.invokeLater({
         run() {
           counter++
           expect(counter).toBe(1)

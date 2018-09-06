@@ -15,6 +15,5 @@ export class SwingUtilities extends lang.Object {
   static invokeLater(runnable: lang.Runnable): void {
     const proxy = getJava().newProxy('java.lang.Runnable', runnable)
     getJava().callStaticMethodSync('javax.swing.SwingUtilities', 'invokeLater', proxy)
-
   }
 }

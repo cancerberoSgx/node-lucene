@@ -26,7 +26,13 @@ public class HelloWorldSwing {
         //Add the ubiquitous "Hello World" label.
         JLabel label = new JLabel("Hello World");
         frame.getContentPane().add(label);
-        Runtime.getRuntime().availableProcessors()
+        // Runtime.getRuntime().availableProcessors()
+        Runtime.getRuntime().addShutdownHook(new Thread(){
+            @Override
+            public void run() {
+                System.out.println("uiiiuiuiupiiii");
+            }
+        });
         frame.getWindows()[0].addWindowListener(new WindowListener(){
         
             @Override

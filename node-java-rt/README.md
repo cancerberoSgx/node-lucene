@@ -14,4 +14,4 @@
  * node-java issue: see java.ts : 
     var java = require("java")
     // Object.assign(java, javaOptions) // TODO: throw native v8 exception ! - report to node-java ? 
-
+ * experiment with java threads and node.js

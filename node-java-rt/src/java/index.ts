@@ -4,15 +4,18 @@ export * from './JavaBase'
 export * from './IJavaBase'
 
 
+// java.lang
 
 import ObjectT from './lang/Object'
 import IterableT from './lang/Iterable'
 import AutoCloseableT from './lang/AutoCloseable'
 import EnumT from './lang/Enum'
 import RunnableT from './lang/Runnable'
+import RuntimeT from './lang/Runtime'
 
 export namespace lang {
-  export type Enum<E>/* <E extends EnumT<E>> */ = EnumT<E /* extends EnumT */>/*  */ // TODO: can't do this report to TS
+  export type Runtime = RuntimeT
+  export type Enum<E>/* <E extends EnumT<E>> */ = EnumT<E /* extends EnumT */>/*  */ // TODO: can't do this!. investigate & report to TS
   export type Object = ObjectT
   export type Runnable = RunnableT
   export type Iterable<E> = IterableT<E>
@@ -22,8 +25,12 @@ export namespace lang {
 export const lang = {
   Object: ObjectT,
   Enum: EnumT,
+  Runtime: RuntimeT,
 }
 
+
+
+// java.util
 
 
 import LinkedListT from './util/LinkedList'
@@ -49,6 +56,8 @@ export const util = {
 
 
 
+// java.io
+
 import CloseableT from './io/Closeable'
 
 export namespace io {
@@ -58,6 +67,10 @@ export namespace io {
 export const io = {
 }
 
+
+
+
+// java.nio
 
 
 import PathsT from './nio/file/Paths'
@@ -75,3 +88,5 @@ export const nio = {
     Paths: PathsT
   }
 }
+
+

@@ -1,6 +1,6 @@
 {
   "name": "node-swing",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node.js API and bindings Java Swing",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
