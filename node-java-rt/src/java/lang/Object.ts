@@ -1,6 +1,8 @@
 import { JavaBase } from '../JavaBase'
 import { Callback } from '../types'
 import { getJava } from '../java';
+import Class from './Class';
+
 export default class Object_ extends JavaBase {
 
   constructor() {
@@ -37,4 +39,15 @@ export default class Object_ extends JavaBase {
   equalsPromise(value: any): Promise<boolean> {
     return this._java.equalsPromise()
   }
+
+  getClass(): Class<any> {
+    const Class_ = require('./Class').default // TODO: workaround - if not ts error: "TypeError: Class extends value undefined is not a constructor or null" beause of circular dependency import issue 
+
+    // return null as any
+    // return new Class_()
+    return JavaBase._buildSyncOrThrow(this._java.getClassSync(), new Class_())
+  }
+  // static class(): Class<any> {
+  //   throw new Error('Not implemented, yet')
+  // }
 }

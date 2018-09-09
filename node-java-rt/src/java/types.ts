@@ -166,6 +166,7 @@ otherwise it will be the first argument in the callback.
    */
   newProxy<T>(interfaceName: string, functions: any): any
 
+  newArray(className: string, array: any[]): any
 }
 
 

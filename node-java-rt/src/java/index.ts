@@ -12,20 +12,34 @@ import AutoCloseableT from './lang/AutoCloseable'
 import EnumT from './lang/Enum'
 import RunnableT from './lang/Runnable'
 import RuntimeT from './lang/Runtime'
+import ClassLoaderT from './lang/ClassLoader'
+import ClassT from './lang/Class'
 
 export namespace lang {
+  export type Class<T> = ClassT<T>
+  export type ClassLoader = ClassLoaderT
   export type Runtime = RuntimeT
   export type Enum<E>/* <E extends EnumT<E>> */ = EnumT<E /* extends EnumT */>/*  */ // TODO: can't do this!. investigate & report to TS
   export type Object = ObjectT
   export type Runnable = RunnableT
   export type Iterable<E> = IterableT<E>
   export type AutoCloseable = AutoCloseableT
+
+  export namespace reflect {
+
+  }
 }
 
 export const lang = {
   Object: ObjectT,
+  ClassLoader: ClassLoaderT,
+  Class: ClassT,
   Enum: EnumT,
   Runtime: RuntimeT,
+
+  reflect: {
+
+  }
 }
 
 
