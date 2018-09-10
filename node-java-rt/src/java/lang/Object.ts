@@ -7,10 +7,10 @@ export default class Object_ extends JavaBase {
 
   constructor() {
     super()
-    this._java = getJava().newInstanceSync(Object_._javaClassName())
+    this._java = getJava().newInstanceSync(this._javaClassName())
   }
 
-  public static _javaClassName(): string {
+  public _javaClassName(): string {
     return 'java.lang.Object'
   }
 

@@ -5,7 +5,7 @@ import { getJava } from './java';
 export class JavaBase implements IJavaBase {
 
   /** @internal */
-  public static _javaClassName(): string {
+  public _javaClassName(): string {
     throw new Error('Must be implemented by subclass class')
   }
 
@@ -25,6 +25,7 @@ export class JavaBase implements IJavaBase {
       return null
     }
   }
+
   /** @internal */
   protected static _buildSyncOrThrow<T extends JavaBase>(javaObject: any, instance: T): T {
     if (javaObject !== undefined && javaObject !== null && instance) {
@@ -50,6 +51,7 @@ export class JavaBase implements IJavaBase {
     })
   }
 
+  /** @internal */
   static _buildArraySync<T extends JavaBase>(javaArray: any, createInstance: () => T): T[] {
     const arr: T[] = []
     const length = javaArray.length
@@ -58,6 +60,11 @@ export class JavaBase implements IJavaBase {
       arr.push(JavaBase._buildSyncOrThrow(javaObject, createInstance()))
     }
     return arr
+  }
+
+  /** @internal */
+  static _buildJavaArray<T extends JavaBase>(jsArray: T[], className: string): any {
+    return getJava().newArray(className, jsArray.map(i => i._java))
   }
 
 

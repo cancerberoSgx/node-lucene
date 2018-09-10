@@ -23,7 +23,8 @@ export default class Proxy extends Object /* TODO: implements Serializable */ {
   // proxyInstance.put("hello", "world");
 
   static newProxyInstance(loader: ClassLoader, interfaces: Class<any>[], h: InvocationHandler): any {
-    const interfaceArray = getJava().newArray('java.lang.Class', interfaces.map(i => i._java))
+    const interfaceArray = Proxy._buildJavaArray(interfaces, 'java.lang.Class')
+    // const interfaceArray = getJava().newArray('java.lang.Class', interfaces.map(i => i._java))
     // getJava().newProxy()
     // getJava().callStaticMethodSync('java.lang.reflect.Proxy', 'newProxyInstance', loader._java, interfaceArray, buildProxy(h))
   }

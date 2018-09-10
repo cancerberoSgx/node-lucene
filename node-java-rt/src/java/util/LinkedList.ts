@@ -6,10 +6,10 @@ export default class LinkedList<T> extends Object {
 
   constructor() {
     super()
-    this._java = getJava().newInstanceSync(LinkedList._javaClassName())
+    this._java = getJava().newInstanceSync(this._javaClassName())
   }
 
-  public static _javaClassName(): string {
+  public _javaClassName(): string {
     return 'java.util.LinkedList'
   }
 

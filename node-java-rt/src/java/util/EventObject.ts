@@ -5,10 +5,10 @@ export default class EventObject extends Object {
 
   constructor() {
     super()
-    this._java = getJava().newInstanceSync(EventObject._javaClassName())
+    this._java = getJava().newInstanceSync(this._javaClassName())
   }
 
-  public static _javaClassName(): string {
+  public _javaClassName(): string {
     return 'java.util.EventObject'
   }
 
