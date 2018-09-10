@@ -50,6 +50,17 @@ export class JavaBase implements IJavaBase {
     })
   }
 
+  static _buildArraySync<T extends JavaBase>(javaArray: any, createInstance: () => T): T[] {
+    const arr: T[] = []
+    const length = javaArray.length
+    for (let i = 0; i < length; i++) {
+      const javaObject = javaArray[i];
+      arr.push(JavaBase._buildSyncOrThrow(javaObject, createInstance()))
+    }
+    return arr
+  }
+
+
   protected static _getNative(v: any): any {
     return v._java || v
   }
