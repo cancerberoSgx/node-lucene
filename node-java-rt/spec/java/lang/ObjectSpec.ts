@@ -9,6 +9,7 @@ describe('Object', () => {
       done()
     })
   })
+
   describe('getClass', () => {
     it('should return class', done => {
       const o = new java.lang.Object()
@@ -19,9 +20,18 @@ describe('Object', () => {
 
   describe('class', () => {
     it('should return class', done => {
-      // const o = new java.lang.Object()
       expect(java.lang.Object.class('java.lang.Object').toString()).toBe('class java.lang.Object')
       done()
     })
   })
+
+
+  describe('equals', () => {
+    it('should return false for two new objects', done => {
+      expect(new java.lang.Object().equals(new java.lang.Object())).toBe(false)
+      done()
+    })
+  })
+
+
 })

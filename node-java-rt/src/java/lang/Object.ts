@@ -27,17 +27,17 @@ export default class Object_ extends JavaBase {
     return this._java.toStringPromise()
   }
 
-  equalsSync(value: any): boolean {
-    return this._java.equalsSync()
+  equalsSync(value: JavaBase): boolean {
+    return this._java.equalsSync(value._java)
   }
-  equals(value: any): boolean {
-    return this._java.equalsSync()
+  equals(value: JavaBase): boolean {
+    return this._java.equalsSync(value._java)
   }
-  equalsAsync(value: any, c: Callback<boolean>): void {
-    return this._java.equalsSync(c)
+  equalsAsync(value: JavaBase, c: Callback<boolean>): void {
+    return this._java.equalsSync(value._java, c)
   }
-  equalsPromise(value: any): Promise<boolean> {
-    return this._java.equalsPromise()
+  equalsPromise(value: JavaBase): Promise<boolean> {
+    return this._java.equalsPromise(value._java)
   }
 
   hashCode(): number {

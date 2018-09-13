@@ -13,6 +13,9 @@ export default class LinkedList<T> extends Object {
     return 'java.util.LinkedList'
   }
 
+  add(t: T): boolean { // TODO: return type ?
+    return this._java.addSync(LinkedList._getNative(t))
+  }
   addSync(t: T): boolean { // TODO: return type ?
     return this._java.addSync(LinkedList._getNative(t))
   }

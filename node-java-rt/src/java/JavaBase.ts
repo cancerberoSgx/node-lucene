@@ -6,15 +6,11 @@ export abstract class JavaBase implements IJavaBase {
 
   /** @internal */
   public abstract _javaClassName(): string
-  //  {
-  //   throw new Error('Must be implemented by subclass class')
-  // }
 
-  // /** @internal */
-  // public static _javaClassName(): string {
-  //   throw new Error('Must be implemented by subclass class')
-  // }
-
+  /** @internal */
+  public static _javaClassName(): string {
+    throw new Error('Must be implemented by subclass class')
+  }
 
   /** 
    * Reference to the Java Object associated with this instance
@@ -23,8 +19,9 @@ export abstract class JavaBase implements IJavaBase {
   public _java: any;
 
   /** @internal */
-  protected static _buildSync<T extends JavaBase>(javaObject: any, instance: T): T | null {
+  protected static _buildSync<T extends JavaBase>(javaObject: any, instance: T | InstanceCreator<T>): T | null {
     if (javaObject !== undefined && javaObject !== null && instance) {
+      instance = typeof (instance) === 'function' ? instance() : instance
       instance._java = javaObject
       return instance
     }
@@ -34,8 +31,9 @@ export abstract class JavaBase implements IJavaBase {
   }
 
   /** @internal */
-  protected static _buildSyncOrThrow<T extends JavaBase>(javaObject: any, instance: T): T {
+  protected static _buildSyncOrThrow<T extends JavaBase>(javaObject: any, instance: T | InstanceCreator<T>): T {
     if (javaObject !== undefined && javaObject !== null && instance) {
+      instance = typeof (instance) === 'function' ? instance() : instance
       instance._java = javaObject
       return instance
     }
@@ -45,12 +43,12 @@ export abstract class JavaBase implements IJavaBase {
   }
 
   /** @internal */
-  protected static _buildAsync<T extends JavaBase>(callback: Callback<T | null>, instance: T): (error: any, javaObject: any) => void {
+  protected static _buildAsync<T extends JavaBase>(callback: Callback<T | null>, instance: T | InstanceCreator<T>): (error: any, javaObject: any) => void {
     return (error: any, javaObject: any) => callback(error, this._buildSync(javaObject, instance))
   }
 
   /** @internal */
-  protected static _buildPromise<T extends JavaBase>(p: Promise<any>, instance: T): Promise<T | null> {
+  protected static _buildPromise<T extends JavaBase>(p: Promise<any>, instance: T | InstanceCreator<T>): Promise<T | null> {
     return new Promise((resolve, reject) => {
       p
         .then(javaObject => resolve(this._buildSync(javaObject, instance)))
@@ -59,7 +57,7 @@ export abstract class JavaBase implements IJavaBase {
   }
 
   /** @internal */
-  static _buildArraySync<T extends JavaBase>(javaArray: any, createInstance: () => T): T[] {
+  static _buildArraySync<T extends JavaBase>(javaArray: any, createInstance: InstanceCreator<T>): T[] {
     const arr: T[] = []
     const length = javaArray.length
     for (let i = 0; i < length; i++) {
@@ -87,3 +85,5 @@ export abstract class JavaBase implements IJavaBase {
   // const proxy = getJava().newProxy('java.lang.Runnable', runnable)
   // getJava().callStaticMethodSync('javax.swing.SwingUtilities', 'invokeLater', proxy)
 }
+
+export type InstanceCreator<T> = () => T
