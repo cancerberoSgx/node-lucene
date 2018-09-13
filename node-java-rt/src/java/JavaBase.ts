@@ -2,12 +2,19 @@ import { IJavaBase } from './IJavaBase';
 import { Callback } from './types';
 import { getJava } from './java';
 
-export class JavaBase implements IJavaBase {
+export abstract class JavaBase implements IJavaBase {
 
   /** @internal */
-  public _javaClassName(): string {
-    throw new Error('Must be implemented by subclass class')
-  }
+  public abstract _javaClassName(): string
+  //  {
+  //   throw new Error('Must be implemented by subclass class')
+  // }
+
+  // /** @internal */
+  // public static _javaClassName(): string {
+  //   throw new Error('Must be implemented by subclass class')
+  // }
+
 
   /** 
    * Reference to the Java Object associated with this instance

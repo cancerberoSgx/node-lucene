@@ -43,6 +43,19 @@
       "args": [
       ],
       "preLaunchTask": "node-lucene:build"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "node-java-rt test",
+      "cwd": "${workspaceFolder}/node-java-rt",
+      "program": "${workspaceFolder}/node-java-rt/spec/index.ts", 
+      "outFiles": [
+        "${workspaceFolder}/node-java-rt/dist/**/*"
+      ],
+      "args": [
+      ],
+      "preLaunchTask": "node-java-rt:build"
     }
   ]
 }

@@ -17,4 +17,11 @@ describe('Object', () => {
     })
   })
 
+  describe('class', () => {
+    it('should return class', done => {
+      // const o = new java.lang.Object()
+      expect(java.lang.Object.class('java.lang.Object').toString()).toBe('class java.lang.Object')
+      done()
+    })
+  })
 })

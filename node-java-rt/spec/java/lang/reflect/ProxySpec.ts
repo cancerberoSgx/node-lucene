@@ -1,4 +1,5 @@
 import * as java from '../../../../src'
+import Proxy from '../../../../src/java/lang/reflect/Proxy';
 
 describe('Proxy', () => {
   describe('newProxyInstance', () => {
@@ -14,6 +15,7 @@ describe('Proxy', () => {
       // proxyInstance.put("hello", "world");
 
 
+      // const proxyInstance = Proxy.newProxyInstance()
       done()
     })
   })

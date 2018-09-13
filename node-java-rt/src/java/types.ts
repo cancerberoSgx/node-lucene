@@ -47,13 +47,16 @@ export interface JavaOptions {
   options: string[]
 }
 
+/**
+ * (https://github.com/joeferner/node-java/#java-1)[node-java API]
+ */
 export interface Java extends JavaOptions {
 
   /**
    * Loads the class given by className such that it acts and feels like a javascript object.
    *
-   * @param className - The name of the class to create. For nested classes separate using a '$' (eg.
-   * com.nearinfinty.MyClass$NestedClass)
+   * @param className - The name of the class to create. For nested classes separate using a `'$'` (eg.
+   * `com.nearinfinty.MyClass$NestedClass`)
    *
    * Example: 
    *
@@ -68,7 +71,7 @@ export interface Java extends JavaOptions {
    *
    * @param className 
    */
-  import<T>(className: string): T
+  import<T = any>(className: string): T
 
   /**
    * TODO
@@ -91,6 +94,7 @@ otherwise it will be the first argument in the callback.
    * the JVM, then 3) executing all registered client *after* hooks.
    */
   ensureJvm(callback: () => void): void
+
   /**
    * Returns true if the JVM has been created. The JVM can only be created once.
    */
@@ -98,7 +102,7 @@ otherwise it will be the first argument in the callback.
 
   /**
    * Gets a static field value from the specified class.
-   * @param className The name of the class to get the value from. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param className The name of the class to get the value from. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param fieldName The name of the field to get the value from.
    * 
    * Example: 
@@ -111,7 +115,7 @@ otherwise it will be the first argument in the callback.
 
   /**
    * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
-   * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param className The name of the class to call the method on. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
    * Example: 
    * 
@@ -120,9 +124,10 @@ otherwise it will be the first argument in the callback.
    * ``` 
    */
   callStaticMethodSync<T>(className: string, fieldName: string, ...args: any[]): T
+
   /**
    * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
-   * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param className The name of the class to call the method on. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
    * Example: 
    * 
@@ -131,9 +136,10 @@ otherwise it will be the first argument in the callback.
    * ``` 
    */
   callStaticMethod<T>(className: string, fieldName: string, ...args: any[]): void
+
   /**
    * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
-   * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
+   * @param className The name of the class to call the method on. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
    * Example: 
    * 
@@ -143,30 +149,59 @@ otherwise it will be the first argument in the callback.
    */
   callStaticMethodPromise<T>(className: string, fieldName: string, ...args: any[]): Promise<T>
 
-  // /**
-  //  * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
-  //  * @param className The name of the class to call the method on. For nested classes separate using a '$' (eg. com.nearinfinty.MyClass$NestedClass)
-  //  * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
-  //  * Example: 
-  //  * 
-  //  * ```js
-  //  *   const result = java.callStaticMethod("com.nearinfinty.MyClass", "doSomething", 42, "test")
-  //  * ``` 
-  //  */
-  // callStaticMethod<T>(className: string, fieldName: string, ...args: any[]/* , callback: (error: any, result: any) => void */): T
-
-
   /**
    * Creates a new java Proxy for the given interface. Functions passed in will run on the v8 main thread and not a new thread.
    * 
    * The returned object has a method unref() which you can use to free the object for garbage collection.
    * 
-   * @param interfaceName - The name of the interface to proxy. Separate nested classes using '$' (eg. com.nearinfinty.MyClass$NestedClass).
+   * @param interfaceName - The name of the interface to proxy. Separate nested classes using `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`).
    * @param functions A hash of functions matching the function in the interface. 
    */
   newProxy<T>(interfaceName: string, functions: any): any
 
+  /**
+   * Creates a new java array of given glass type. To create array of primitive types like char, byte, etc, pass the primitive type name (eg. `java.newArray("char", "hello world\n".split(''))`).
+   * @param className The name of the type of array elements. Separate nested classes using `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`).
+   * @param array  A JavaScript array of values to assign to the java array.
+   */
   newArray(className: string, array: any[]): any
+
+  /**
+   * Creates a new java byte. This is needed because JavaScript does not have the concept of a byte.
+   * @param val The value of the java byte.
+   */
+  newByte(val: number): any;
+
+  /**
+   * Creates a new java char. This is needed because JavaScript does not have the concept of a char.
+   * @param val The value of the java char.
+   */
+  newChar(val: string): any;
+
+  /**
+   * Creates a new java short. This is needed because JavaScript does not have the concept of a short.
+   */
+  newShort(val: number): any;
+
+  /**
+   * Creates a new java long. This is needed because JavaScript does not have the concept of a long.
+   */
+  newLong(val: number): any;
+
+  /** 
+   * Creates a new java byte. This is needed because JavaScript does not have the concept of a byte.
+   */
+  newByte(val: number): any;
+
+  /**
+   * Creates a new java float. This is needed to force JavaScript's number to a float to call some methods.
+   */
+  newFloat(val: number): any;
+
+  /**
+   * Creates a new java double. This is needed to force JavaScript's number to a double to call some methods.
+   */
+  newDouble(val: number): any;
 }
 
 

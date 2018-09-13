@@ -23,6 +23,13 @@
       "script": "build",
       "path": "node-lucene/",
       "problemMatcher": []
+    },
+    {
+      "identifier": "node-java-rt:build",
+      "type": "npm",
+      "script": "build",
+      "path": "node-java-rt/",
+      "problemMatcher": []
     }
   ]
 }
