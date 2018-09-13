@@ -16,8 +16,6 @@ describe('Class', () => {
     it('should return new instances', done => {
       const obj1 = java.lang.Class.new<java.lang.Object>('java.lang.Object', new java.lang.Object())
       expect(obj1.getClass().toString()).toBe('class java.lang.Object')
-      // const obj2 = java.lang.Class.new<java.lang.Object>('java.lang.Object', new java.lang.Object())
-      // obj2.equals(obj1)
       done()
     })
   })

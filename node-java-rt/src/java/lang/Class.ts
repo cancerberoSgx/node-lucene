@@ -26,14 +26,3 @@ export default class Class<T> extends Object
     return Class._buildSyncOrThrow(obj, instance)
   }
 }
-
-
-// function toJsArray<T>(javaArray: any, transform?: (javaObject: any) => any): T[] {
-//   const arr: T[] = []
-//   const length = javaArray.length
-//   for (let i = 0; i < length; i++) {
-//     const javaObject = javaArray[i];
-//     arr.push(transform ? transform(javaObject) : javaObject)
-//   }
-//   return arr
-// }

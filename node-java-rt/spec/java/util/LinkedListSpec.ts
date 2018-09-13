@@ -37,6 +37,23 @@ describe('LinkedList', () => {
       done()
     })
 
+    describe('equals', () => {
+      it('should return true for two empty lists', done => {
+        expect(new java.util.LinkedList().equals(new java.util.LinkedList())).toBe(true)
+        done()
+      })
+    })
+
+
+  })
+
+
+  describe('new', () => {
+    it('should return new instances', done => {
+      const obj1 = java.lang.Class.new<java.lang.Object>('java.lang.Object', new java.lang.Object())
+      expect(obj1.getClass().toString()).toBe('class java.lang.Object')
+      done()
+    })
   })
 
 })

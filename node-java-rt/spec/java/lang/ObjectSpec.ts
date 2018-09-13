@@ -25,10 +25,13 @@ describe('Object', () => {
     })
   })
 
-
   describe('equals', () => {
     it('should return false for two new objects', done => {
       expect(new java.lang.Object().equals(new java.lang.Object())).toBe(false)
+      done()
+    })
+    it('should return Promise<false> for two new objects', async done => {
+      expect(await new java.lang.Object().equalsPromise(new java.lang.Object())).toBe(false)
       done()
     })
   })
