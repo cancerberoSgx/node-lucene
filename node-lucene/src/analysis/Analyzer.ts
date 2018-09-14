@@ -1,5 +1,11 @@
-import { IJavaBase, io } from 'node-java-rt';
+import { io, lang } from 'node-java-rt'
+import { getLuceneJava } from '../util/getLuceneJava';
 
-export default interface Analyzer extends io.Closeable, IJavaBase {
-
+export default class Analyzer extends lang.Object implements io.Closeable {
+  constructor() {
+    super()
+  }
+  close(): void {
+    this._java.closeSync()
+  }
 }
