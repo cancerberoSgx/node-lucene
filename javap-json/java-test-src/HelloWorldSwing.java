@@ -25,8 +25,8 @@ public class HelloWorldSwing {
 
         // new Object().getClass().getMethods().
         // java.lang.Object.class
-        String.copyValueOf(data)
-        ClassLoader.getSystemClassLoader().c
+        // String.copyValueOf(data)
+        // ClassLoader.getSystemClassLoader().c
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  

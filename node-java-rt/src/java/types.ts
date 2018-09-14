@@ -123,7 +123,7 @@ otherwise it will be the first argument in the callback.
    *   const result = java.callStaticMethodSync("com.nearinfinty.MyClass", "doSomething", 42, "test")
    * ``` 
    */
-  callStaticMethodSync<T>(className: string, fieldName: string, ...args: any[]): T
+  callStaticMethodSync<T = any>(className: string, fieldName: string, ...args: any[]): T
 
   /**
    * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  

@@ -73,7 +73,7 @@ export abstract class JavaBase implements IJavaBase {
   }
 
 
-  protected static _getNative(v: any): any {
+  static _getNative(v: any): any {
     return v._java || v
   }
 

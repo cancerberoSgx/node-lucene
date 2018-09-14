@@ -3,10 +3,6 @@ import java.lang.reflect.*;
 import java.util.*;
 
 public class ProxyTest1 implements InvocationHandler {
- 
-  // private static Logger LOGGER = LoggerFactory.getLogger(
-  //   ProxyTest1.class);
-
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) 
     throws Throwable {
@@ -14,19 +10,16 @@ public class ProxyTest1 implements InvocationHandler {
 
       return 42;
   }
-
   public static void main(String[] args) {
-    new Object().getClass()
+    // new Object().getClass()
+    ClassLoader.getSystemClassLoader().loadClass(name)
     Map proxyInstance = (Map) Proxy.newProxyInstance(
       ProxyTest1.class.getClassLoader(), 
       new Class[] { Map.class }, 
       new ProxyTest1()
     );
-
     proxyInstance.put("hello", "world");
-
   }
-  
 }
 
 // import java.lang.reflect.Method;
