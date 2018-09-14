@@ -14,12 +14,14 @@ import RunnableT from './lang/Runnable'
 import RuntimeT from './lang/Runtime'
 import ClassLoaderT from './lang/ClassLoader'
 import ClassT from './lang/Class'
+import DoubleT from './lang/Double'
 
 import ProxyT from './lang/reflect/Proxy'
 import MethodT from './lang/reflect/Method'
 import InvocationHandlerT from './lang/reflect/InvocationHandler'
 
 export namespace lang {
+  export type Double = DoubleT
   export type Class<T> = ClassT<T>
   export type ClassLoader = ClassLoaderT
   export type Runtime = RuntimeT
@@ -37,6 +39,7 @@ export namespace lang {
 }
 
 export const lang = {
+  Double: DoubleT,
   Object: ObjectT,
   ClassLoader: ClassLoaderT,
   Class: ClassT,
