@@ -114,3 +114,16 @@ export const nio = {
 }
 
 
+
+
+// JavaBase.math
+
+import BigIntegerT from './math/BigInteger'
+
+export namespace math {
+  export type BigInteger = BigIntegerT
+}
+
+export const math = {
+  BigInteger: BigIntegerT
+}

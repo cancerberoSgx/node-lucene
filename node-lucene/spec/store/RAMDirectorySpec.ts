@@ -54,31 +54,31 @@ describe('RAMDirectory', () => {
       field2 = new lucene.document.TextField('content', 'hi world', lucene.document.FieldStore.YES)
     })
 
-    it('should be usable Synchronously', async done => {
-      doc1.addSync(field1)
-      writer.addDocumentSync(doc1)
-      doc2.addSync(field2)
-      writer.addDocumentSync(doc2)
+    it('should be usable Synchronously', done => {
+      doc1.add(field1)
+      writer.addDocument(doc1)
+      doc2.add(field2)
+      writer.addDocument(doc2)
 
       // finish adding documents so we close the index before searching
-      writer.closeSync()
+      writer.close()
 
       // now we want to search so we create a directory reader, index searcher and a query parser
-      const directory = lucene.index.DirectoryReader.openSync(index)
+      const directory = lucene.index.DirectoryReader.open(index)
       const searcher = new lucene.search.IndexSearcher(directory)
 
-      // searching for 'foo should return 0 results
-      let topDocs = searcher.searchSync(parser.parseSync('foo'), 10)
+      // searching for 'foo' should return 0 results
+      let topDocs = searcher.search(parser.parse('foo'), 10)
       expect(topDocs.totalHits).toEqual(0)
 
       // searching for 'hello' should return 1 result
-      topDocs = searcher.searchSync(parser.parseSync('hello'), 10)
+      topDocs = searcher.search(parser.parse('hello'), 10)
       expect(topDocs.totalHits).toEqual(1)
 
       // get document and field sync
-      let doc1Result = searcher.docSync(topDocs.scoreDocs[0].doc)
-      let fieldResult = doc1Result.getFieldSync('content')
-      expect(fieldResult.toStringSync()).toContain('hello world')
+      let doc1Result = searcher.doc(topDocs.scoreDocs[0].doc)
+      let fieldResult = doc1Result.getField('content')
+      expect(fieldResult.toString()).toContain('hello world')
       expect(doc1Result.get('content')).toBe('hello world')
 
       done()

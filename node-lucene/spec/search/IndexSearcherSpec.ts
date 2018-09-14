@@ -3,6 +3,7 @@ import { getJava } from 'node-java-rt'
 
 describe('IndexSearcher', () => {
 
+
   describe('making it work natively with node-java', () => {
     it('make it work with pure js (non wrappers) to isolate/dagnose initial problems we are having', done => {
       const java = getJava()

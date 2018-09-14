@@ -42,7 +42,7 @@ describe('Proxy', () => {
     it('should be callable manually using node-java', done => {
       const loader = java.lang.ClassLoader.getSystemClassLoader()
       const interfaces = [loader.loadClass('java.util.Map')]
-      const interfaceArray = getJava().newArray('java.lang.Class', interfaces.map(i => i._java))
+      const interfaceArray = getJava().newArray('java.lang.Class', interfaces.map(i => JavaBase._getNative(i)))
       const invocationHandler = getJava().newProxy('java.lang.reflect.InvocationHandler', {
         invoke(proxy: any, method: java.lang.reflect.Method, ...args: any[]): any {
           if (method.getNameSync() === 'get' && args.length && args[0].length && args[0][0] === 'hello') {
