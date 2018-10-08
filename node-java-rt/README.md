@@ -15,3 +15,6 @@
     var java = require("java")
     // Object.assign(java, javaOptions) // TODO: throw native v8 exception ! - report to node-java ? 
  * experiment with java threads and node.js
+
+ * https://dzone.com/articles/dynamic-subtyping-java
+ 

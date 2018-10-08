@@ -13,10 +13,13 @@ public class ProxyTest2 {
           System.out.println("Invoked method: {} " + method.getName());
         return 42;
         }
-      };
+      },  
       new ProxyTest1()
     );
     proxyInstance.put("hello", "world");
+    // ClassLoader.getSystemClassLoader().
+    // Class.forName(name, initialize, loader)
+    // new Object().getClass().get
   }
 }
 

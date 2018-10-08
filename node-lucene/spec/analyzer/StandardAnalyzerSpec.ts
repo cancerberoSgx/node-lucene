@@ -24,6 +24,8 @@ describe('StandardAnalyzer', () => {
     })
   })
 
+
+
   describe('Example1', () => {
 
     /*
@@ -50,7 +52,7 @@ describe('StandardAnalyzer', () => {
        }
        */
 
-    it('1', () => {
+    it('docs/core/org/apache/lucene/analysis/package-summary.html', () => {
       const analyzer = new StandardAnalyzer()
       const ts = analyzer.tokenStream('myfield', 'some text goes here')
       const tokens: string[] = []
