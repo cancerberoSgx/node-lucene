@@ -18,13 +18,13 @@ export interface Options {
 export function printHelp(options: Options): string {
   options.format = options.format || 'markdown'
   const isMd = options.format === 'markdown'
-  const quote = isMd ? '`' : '\\`'
-  const prefix =  options.format ==='javascriptString' ? 'const helpText = `': ``
-  const postfix = options.format ==='javascriptString'  ? '`': ``
+  const quote = isMd ? '`' : ''
+  const prefix =  options.format ==='javascriptString' ? 'const helpText = `' : options.format ==='javascriptStringNoVar' ? '`' : ``
+  const postfix = ['javascriptString', 'javascriptStringNoVar'].includes(options.format) ? '`': ``
   const node = getNode(options)
   let s = `${prefix}${printJsDoc(node.getJsDocs())}
  * ${ node.getProperties().map(
-      p => quote + p.getName() + quote + ': (' + quote + p.getTypeNode().getText() + quote + ') - ' +
+      p => quote + p.getName() + quote + ' (' + quote + p.getTypeNode().getText() + quote + '): ' +
         (p.hasQuestionToken() ? 'optional' : 'mandatory') + ' - ' + printJsDoc(p.getJsDocs())).join('\n * ')}
 ${postfix}`
   return s
