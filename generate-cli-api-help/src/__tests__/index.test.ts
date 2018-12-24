@@ -2,7 +2,7 @@ import { Options, printHelp } from '..';
 
 describe('index', () => {
   describe('printHelp', () => {
-    fit('should print an interface jsdoc as help string', () => {
+    it('should print an interface jsdoc as help string', () => {
       const interface1 = 'src/__tests__/assets/interface1.ts'
       const config: Options = {
         input: interface1,
@@ -23,7 +23,7 @@ describe('index', () => {
       config.format = 'javascriptStringNoVar'
       help = printHelp(config).trim()
       expect(help).not.toContain(`const helpText = \`Usag`)
-      expect(help.endsWith('`')).toBe(true)
+      expect(help.endsWith('`')).not.toBe(true)
       // console.log(help);
 
     })

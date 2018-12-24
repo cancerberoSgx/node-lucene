@@ -1,6 +1,6 @@
 {
   "name": "generate-cli-api-help",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "given a TypeScript interface it will generate: \n * a function printing usage CLI Usage information\n * a markdown section detailing CLI Usage information\n * a markdown section detailing JavaScript API Usage information ",
   "main": "dist/src/index.js",
   "bindings": "dist/src/index.d.ts",

@@ -19,8 +19,8 @@ export function printHelp(options: Options): string {
   options.format = options.format || 'markdown'
   const isMd = options.format === 'markdown'
   const quote = isMd ? '`' : ''
-  const prefix =  options.format ==='javascriptString' ? 'const helpText = `' : options.format ==='javascriptStringNoVar' ? '`' : ``
-  const postfix = ['javascriptString', 'javascriptStringNoVar'].includes(options.format) ? '`': ``
+  const prefix =  options.format ==='javascriptString' ? 'const helpText = `' : ``
+  const postfix = ['javascriptString'].includes(options.format) ? '`': ``
   const node = getNode(options)
   let s = `${prefix}${printJsDoc(node.getJsDocs())}
  * ${ node.getProperties().map(
