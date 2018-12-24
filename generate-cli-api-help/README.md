@@ -40,6 +40,8 @@ generate-cli-api-help --input src/types.ts --interfaceName Options
 
 # TODO
 
+ * support inheritance
+ 
  * move to its own repo 
 
  * object validation : given a config object and interface validate the input. Validate Optionals. user programs could use us like: 
