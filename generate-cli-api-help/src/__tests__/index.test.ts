@@ -15,8 +15,16 @@ describe('index', () => {
     // console.log(help);
 
     config.format = 'javascriptString'
-    help = printHelp(config)
+    help = printHelp(config).trim()
+    expect(help).toContain(`const helpText = \`Usag`)
+    expect(help.endsWith('`')).toBe(true)
     // console.log(help);
+
+    config.format = 'javascriptStringNoVar'
+    help = printHelp(config).trim()
+    expect(help).not.toContain(`const helpText = \`Usag`)
+    expect(help.endsWith('`')).not.toBe(true)
+
   })
 
   xit('should print complete hierarchy of interface', () => {

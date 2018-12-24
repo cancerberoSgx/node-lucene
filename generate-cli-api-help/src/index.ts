@@ -12,15 +12,15 @@ export interface Options {
   /** optional name for generated usage function */
   functionName?: string
   /** output format - as JavaScript template string or as Markdown. Default: markdown */
-  format?: 'markdown' | 'javascriptString'
+  format?: 'markdown' | 'javascriptString' | 'javascriptStringNoVar'
 }
 
 export function printHelp(options: Options): string {
   options.format = options.format || 'markdown'
   const isMd = options.format === 'markdown'
   const quote = isMd ? '`' : '\\`'
-  const prefix = isMd ? '' : 'const helpText = `'
-  const postfix = isMd ? '' : '`'
+  const prefix =  options.format ==='javascriptString' ? 'const helpText = `': ``
+  const postfix = options.format ==='javascriptString'  ? '`': ``
   const node = getNode(options)
   let s = `${prefix}${printJsDoc(node.getJsDocs())}
  * ${ node.getProperties().map(
