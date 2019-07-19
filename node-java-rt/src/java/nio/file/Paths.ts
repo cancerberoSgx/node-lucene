@@ -15,10 +15,12 @@ export default class Paths extends lang.Object {
   }
 
   static getSync(...files: string[]): Path {
-    return Paths._buildSyncOrThrow(getJava().callStaticMethodSync.apply(getJava(), ['java.nio.file.Paths', 'get'].concat(files)), new PathAbstract())
+    return Paths._buildSyncOrThrow(getJava().callStaticMethodSync.apply(getJava(),
+      ['java.nio.file.Paths', 'get', ...files]), new PathAbstract())
   }
   static get(...files: string[]): Path {
-    return Paths._buildSyncOrThrow(getJava().callStaticMethodSync.apply(getJava(), ['java.nio.file.Paths', 'get'].concat(files)), new PathAbstract())
+    return Paths._buildSyncOrThrow(getJava().callStaticMethodSync.apply(getJava(),
+      ['java.nio.file.Paths', 'get', ...files]), new PathAbstract())
   }
   //TODO: getPromise
 }

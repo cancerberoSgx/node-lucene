@@ -7,6 +7,7 @@
 
 # TODO
 
+ * support node 12 - currently because `java` don't support node 12 we neither. node 11 is supported. 
  * report TS issue - cannot name a class 'Object' and invoke its static method from constructor. See java.lang.Object.ts which i had to name Object_ because of this
  * TS issue : // TODO: how to force users to use generic in new call expression ? "Type parameters cannot appear on a constructor declaration." - see LinkedList.ts 
  * consider deprecating *Async methods since promises are available OOTB in node LTS, can be pollyfilled in older Node versions and callbacks are "obsolete" today in favor of promises. Supporting *Async is double work and testing it is harder (testing promises is just copy&paste *Sync and add async/await while testing *Async implies callbacks and require('async') - test code is totally different - too much work and no real gain). 

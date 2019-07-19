@@ -1,6 +1,6 @@
 {
   "name": "node-java-rt",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node.js API and bindings supporting java.lang and java.util. \n * (partial) support for java.lang based on node-java \n * (partial) support for java.util based on node-java.  \n * Basic abstraction on top of node-java \n * typings for node-java \n * Projects like node-lucene are based on this.",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
@@ -9,7 +9,8 @@
     "prepare": "npm run build",
     "clean": "rm -rf dist",
     "test": "ts-node spec",
-    "test-js": "npm run clean && npm run build && node dist/spec"
+    "test-js": "npm run clean && npm run build && node dist/spec",
+    "all": "npm run clean && npm run build && npm test && npm run test-js"
   },
   "keywords": [
     "java",
@@ -21,17 +22,17 @@
   "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/node-java-rt",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0"
+    "java": "^0.11.1"
   },
   "devDependencies": {
-    "@types/glob": "^5.0.35",
-    "@types/jasmine": "^2.8.8",
+    "@types/glob": "^7.1.1",
+    "@types/jasmine": "^3.3.14",
     "@types/minimist": "^1.2.0",
-    "@types/node": "^10.9.4",
-    "glob": "^7.1.3",
-    "jasmine": "^3.1.0",
+    "@types/node": "^12.6.8",
+    "glob": "^7.1.4",
+    "jasmine": "^3.4.0",
     "minimist": "^1.2.0",
-    "ts-node": "7.0.1",
-    "typescript": "3.0.3"
+    "ts-node": "8.3.0",
+    "typescript": "3.5.3"
   }
 }

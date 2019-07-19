@@ -21,7 +21,7 @@ export default class Class<T> extends Object
    */
   static new<T extends JavaBase>(className: string, instance: T | InstanceCreator<T>, ...args: any[]): T {
     const java = getJava()
-    const obj = java.newInstanceSync.apply(java, [className].concat(args))
+    const obj = java.newInstanceSync.apply(java, [className, ...args])
     instance = typeof instance === 'function' ? instance() : instance
     return Class._buildSyncOrThrow(obj, instance)
   }
