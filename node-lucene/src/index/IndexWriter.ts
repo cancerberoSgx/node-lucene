@@ -4,6 +4,9 @@ import RAMDirectory from '../store/RAMDirectory';
 import { getLuceneJava } from '../util/getLuceneJava';
 import IndexWriterConfig from './IndexWriterConfig';
 import Directory from '../store/Directory';
+import Query from '../search/Query';
+import Term from './Term';
+import { IndexableField } from './IndexableField';
 
 export default class IndexWriter extends lang.Object /* TODO: implements lots of things */ {
 
@@ -16,65 +19,109 @@ export default class IndexWriter extends lang.Object /* TODO: implements lots of
     return 'org.apache.lucene.index.IndexWriter'
   }
 
-  ramBytesUsedSync(): Long {
+  public ramBytesUsedSync(): Long {
     return this._java.ramBytesUsedSync()
   }
-  ramBytesUsedAsync(callback: Callback<Long>): void {
+  public ramBytesUsedAsync(callback: Callback<Long>): void {
     this._java.ramBytesUsedAsync(callback)
   }
-  ramBytesUsedPromise(): Promise<Long> {
+  public ramBytesUsedPromise(): Promise<Long> {
     return this._java.ramBytesUsedPromise()
   }
 
-  closeSync(): void {
+  public closeSync(): void {
     return this._java.closeSync()
   }
-  close(): void {
-    return this.closeSync.apply(this, arguments)
+  public close(): void {
+    return this.closeSync.apply(this, arguments as any)
   }
-  closeAsync(callback: Callback<void>): void {
+  public closeAsync(callback: Callback<void>): void {
     this._java.closeAsync(callback)
   }
-  closePromise(): Promise<void> {
+  public closePromise(): Promise<void> {
     return this._java.closePromise()
   }
 
 
-  flushSync(): void {
+  public flushSync(): void {
     return this._java.flushSync()
   }
-  flush(): void {
-    return this.flushSync.apply(this, arguments)
+  public flush(): void {
+    return this.flushSync.apply(this, arguments as any)
   }
-  flushAsync(callback: Callback<void>): void {
+  public flushAsync(callback: Callback<void>): void {
     this._java.flushAsync(callback)
   }
-  flushPromise(): Promise<void> {
+  public flushPromise(): Promise<void> {
     return this._java.flushPromise()
   }
 
-  numDocsSync(): number {
+  public numDocsSync(): number {
     return this._java.numDocsSync()
   }
-  numDocsAsync(callback: Callback<number>): void {
+  public numDocsAsync(callback: Callback<number>): void {
     this._java.numDocsAsync(callback)
   }
-  numDocsPromise(): Promise<number> {
+  public numDocsPromise(): Promise<number> {
     return this._java.numDocsPromise()
   }
 
-  addDocumentSync<T>(document: lang.Iterable<T>): Long {
+  public addDocumentSync<T>(document: lang.Iterable<T>): Long {
     return this._java.addDocumentSync(getJavaObjectOrThrow(document))
   }
-  addDocument<T>(document: lang.Iterable<T>): Long {
-    return this.addDocumentSync.apply(this, arguments)
+  public addDocument<T>(document: lang.Iterable<T>): Long {
+    return this.addDocumentSync.apply(this, arguments as any)
   }
-  addDocumentAsync<T>(document: lang.Iterable<T>, callback: Callback<Long>): void {
+  public addDocumentAsync<T>(document: lang.Iterable<T>, callback: Callback<Long>): void {
     this._java.addDocumentAsync(getJavaObjectOrThrow(document), callback)
   }
-  addDocumentPromise<T>(document: lang.Iterable<T>): Promise<Long> {
+  public addDocumentPromise<T>(document: lang.Iterable<T>): Promise<Long> {
     return this._java.addDocumentPromise(getJavaObjectOrThrow(document))
   }
+
+  public deleteAllSync(): Long {
+    return this._java.deleteAllSync()
+  }
+  public deleteAll(): Long {
+    return this.deleteAllSync();
+  }
+  public deleteAllAsync(callback: Callback<Long>): void {
+    this._java.deleteAllAsync(callback)
+  }
+  public deleteAllPromise(): Promise<Long> {
+    return this._java.deleteAllPromise()
+  }
+
+  public deleteDocumentsSync(...queries: (Query|Term)[]): Long {
+    return this._java.deleteDocumentsSync(...queries.map(getJavaObjectOrThrow))
+  }
+  public deleteDocuments(...queries: (Query|Term)[]): Long {
+    return this.deleteDocumentsSync(...queries.map(getJavaObjectOrThrow));
+  }
+  public async deleteDocumentsAsync(callback: Callback<Long>, ...queries: (Query|Term)[]) {
+    var result = await  this._java.deleteDocumentsPromise(...queries.map(getJavaObjectOrThrow))
+    callback(null , result)
+  }
+  public async deleteDocumentsPromise(...queries: (Query|Term)[]): Promise<Long> {
+    var result = await  this._java.deleteDocumentsPromise(...queries.map(getJavaObjectOrThrow))
+    return result
+  }
+
+  public updateDocumentSync(term: Term, doc: lang.Iterable<IndexableField>): Long {
+    return this._java.updateDocumentSync(getJavaObjectOrThrow(term), getJavaObjectOrThrow(doc))
+  }
+  public updateDocument(term: Term, doc: lang.Iterable<IndexableField>): Long {
+    return this.updateDocumentSync(getJavaObjectOrThrow(term), getJavaObjectOrThrow(doc))
+  }
+  public async updateDocumentAsync(callback: Callback<Long>, term: Term, doc: lang.Iterable<IndexableField>) {
+    var result = await  this._java.updateDocumentPromise(getJavaObjectOrThrow(term), getJavaObjectOrThrow(doc))
+    callback(null , result)
+  }
+  public async updateDocumentPromise(term: Term, doc: lang.Iterable<IndexableField>): Promise<Long> {
+    var result = await  this._java.updateDocumentPromise(getJavaObjectOrThrow(term), getJavaObjectOrThrow(doc))
+    return result
+  }
+
 }
 
 

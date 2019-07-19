@@ -2,7 +2,7 @@ import { getJava, Java, JavaOptions, setJavaOptions } from 'node-java-rt';
 import { existsSync } from 'fs';
 
 
-const luceneVersion = '7.4.0'
+const luceneVersion = '7.7.2'
 function getClassPath() {
   const jars = ['lucene-core', 'lucene-analyzers-common', 'lucene-queryparser']
   const prefixes = ['./lucene-lib/', 'node_modules/node-lucene/lucene-lib/']
@@ -38,7 +38,7 @@ export function getLuceneJava(): Java {
 
 /**
  * This is a mandatory call before using any node-lucene API so node-java is initialized first using lucene
- * .jar in classpath and not without them like happens when getJava() is called directly from node-java-rt
+ * .jar in class path and not without them like happens when getJava() is called directly from node-java-rt
  */
 export function initializeLucene() {
   getLuceneJava()

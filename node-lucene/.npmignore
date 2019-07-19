@@ -10,3 +10,5 @@ dist/tests
 tests
 examples
 *.tgz
+lucene-lib
+.DS_Store

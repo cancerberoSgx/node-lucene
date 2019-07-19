@@ -36,7 +36,7 @@ export default class IndexSearcher extends lang.Object {
   }
   /** Finds the top n hits for query. */
   search(query: Query, n: number): TopDocs {
-    return this.searchSync.apply(this, arguments)
+    return this.searchSync.apply(this, arguments as any)
   }
   /** Finds the top n hits for query. */
   searchPromise(query: Query, n: number): Promise<TopDocs> {

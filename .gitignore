@@ -4,3 +4,5 @@ dist
 *.tgz
 tmp*
 *.log
+.DS_Store
+lucene-lib

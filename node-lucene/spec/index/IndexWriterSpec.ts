@@ -1,4 +1,7 @@
 import * as lucene from '../../src'
+import Term from '../../src/index/Term';
+import { getJava } from 'node-java-rt';
+import { sleep } from '../testUtil';
 
 describe('IndexWriter', () => {
   let analyzer: lucene.analysis.standard.StandardAnalyzer
@@ -59,7 +62,7 @@ describe('IndexWriter', () => {
       expect(writer.ramBytesUsedSync()).toEqual(0)
       writer.addDocumentSync(new lucene.document.Document())
       expect(writer.numDocsSync()).toEqual(1)
-      expect(writer.ramBytesUsedSync()).toEqual(0) // cause document is empty
+      expect(writer.ramBytesUsedSync()).toEqual(0) // because document is empty
 
       const doc1 = new lucene.document.Document()
       doc1.addSync(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES))
@@ -76,16 +79,93 @@ describe('IndexWriter', () => {
       expect(await writer.ramBytesUsedPromise()).toEqual(0)
       await writer.addDocumentPromise(new lucene.document.Document())
       expect(await writer.numDocsPromise()).toEqual(1)
-      expect(await writer.ramBytesUsedPromise()).toEqual(0) // cause document is empty
+      expect(await writer.ramBytesUsedPromise()).toEqual(0) // because document is empty
 
       const doc1 = new lucene.document.Document()
       await doc1.addPromise(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES))
       await writer.addDocumentPromise(doc1)
       expect(await writer.numDocsPromise()).toEqual(2)
       expect(await writer.ramBytesUsedPromise()).toBeGreaterThan(0)
+
       done()
     })
 
+    it('deleteDocumentsPromise, deleteAll', async done => {
+      await writer.addDocumentPromise(new lucene.document.Document())
+      var doc1 = new lucene.document.Document()
+      await doc1.addPromise(new lucene.document.TextField('content', 'gandalf world', lucene.document.FieldStore.YES))
+      await writer.addDocumentPromise(doc1)
+      expect(await writer.numDocsPromise()).toEqual(2)
+      doc1 = new lucene.document.Document()
+      await doc1.addPromise(new lucene.document.TextField('content', 'mordor world', lucene.document.FieldStore.YES))
+      await writer.addDocumentPromise(doc1)
+      expect(await writer.numDocsPromise()).toEqual(3)
+      const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
+      var query = await parser.parsePromise('gandalf')
+      expect(await writer.deleteDocumentsPromise(query)).toBeGreaterThan(0)
+      expect(await writer.numDocsPromise()).toEqual(3)
+      expect(await writer.deleteAllPromise()).toBeGreaterThan(0)
+      expect(await writer.numDocsPromise()).toEqual(0)
+      done()
+    })
+
+    it('updateDocument', async done => {
+      await writer.addDocumentPromise(new lucene.document.Document())
+      var doc1 = new lucene.document.Document()
+      await doc1.addPromise(new lucene.document.TextField('content', 'gandalf world', lucene.document.FieldStore.YES))
+      await writer.addDocumentPromise(doc1)
+      expect(await writer.numDocsPromise()).toEqual(2)
+      
+
+      var doc2 = new lucene.document.Document()
+      await doc2.addPromise(new lucene.document.TextField('content', 'gondor world', lucene.document.FieldStore.YES))
+      expect(await writer.numDocsPromise()).toEqual(2)
+
+      expect(await writer.updateDocumentPromise(new Term('content', 'gandalf world'), doc2)).toBeGreaterThan(0)
+            // var parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
+      // var query =
+      // await sleep(200);
+      // await writer.flushPromise()
+      // await sleep(200);
+      // await writer.flushPromise()
+      // await sleep(200);
+
+      // expect(await writer.numDocsPromise()).toEqual(2)
+      
+      // expect(await writer.numDocsPromise()).toEqual(2)
+      // await writer.deleteDocumentsPromise(await parser.parsePromise('gandalf'))
+      // // expect(await writer.numDocsPromise()).toEqual(2)
+      // await writer.deleteDocumentsPromise(await parser.parsePromise('gondor'))
+      // expect(await writer.numDocsPromise()).toEqual(1)
+      // 
+      // writer.flush()
+      // // writer.closeSync()
+      await writer.flushPromise()
+      // await sleep(200);
+      await writer.closePromise()
+      // await sleep(200);
+      // await writer.flushPromise()
+      // await sleep(200);
+      
+      // const directory = lucene.index.DirectoryReader.open(index)
+    const directory = lucene.index.DirectoryReader.open(index)
+    const searcher = new lucene.search.IndexSearcher(directory)
+      // const searcher = new lucene.search.IndexSearcher(index)
+      const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
+      
+// // searching for 'phrase does not exists' should return 0 results
+// let topDocs = await searcher.searchPromise(await parser.parsePromise('gandalf'), 10)
+// let topDocs = searcher.search(parser.parse( 'gandalf'), 10)
+// expect(topDocs.scoreDocs.length).toBe(0)
+let topDocs = await searcher.searchPromise(await parser.parsePromise('gondor'), 10)
+expect(topDocs.scoreDocs.length).toBe(1)
+
+// await directory.closePromise()
+
+      // const searcher = getJava().newInstanceSync<any>("org.apache.lucene.search.IndexSearcher", getJava().callStaticMethodSync("org.apache.lucene.index.DirectoryReader", "open", index))
+      // expect(searcher.toStringSync()).toContain('segments')
+      done()
+    })
   })
 
 

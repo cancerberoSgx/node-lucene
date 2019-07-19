@@ -1,6 +1,6 @@
 {
   "name": "node-lucene",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Node.js API and bindings to apache lucene",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
@@ -9,31 +9,36 @@
     "prepare": "npm run build",
     "clean": "rm -rf dist",
     "test": "ts-node spec",
-    "test-js": "npm run clean && npm run build && node dist/spec"
+    "test-js": "npm run clean && npm run build && node dist/spec",
+    "all": "npm run clean && npm run build && npm test && npm run test-js",
+    "all-publish": "npm run all && npm version patch && npm publish"
   },
   "keywords": [
     "lucene",
     "search",
-    "index"
+    "index",
+    "java",
+    "node.js",
+    "node-java"
   ],
   "author": "Sebastian Gurin",
   "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/node-lucene",
   "license": "MIT",
   "dependencies": {
-    "java": "^0.10.0",
-    "node-java-rt": "file:../node-java-rt"
+    "java": "^0.11.1",
+    "node-java-rt": "0.0.4"
   },
   "devDependencies": {
-    "@types/glob": "^5.0.35",
-    "@types/jasmine": "^2.8.8",
+    "@types/glob": "^7.1.1",
+    "@types/jasmine": "^3.3.14",
     "@types/minimist": "^1.2.0",
-    "@types/node": "^10.5.2",
-    "@types/shelljs": "^0.8.0",
-    "glob": "^7.1.2",
-    "jasmine": "^3.1.0",
+    "@types/node": "^12.6.8",
+    "@types/shelljs": "^0.8.5",
+    "glob": "^7.1.4",
+    "jasmine": "^3.4.0",
     "minimist": "^1.2.0",
-    "shelljs": "^0.8.2",
-    "ts-node": "^6.1.0",
-    "typescript": "2.9.2"
+    "shelljs": "^0.8.3",
+    "ts-node": "^8.3.0",
+    "typescript": "3.5.3"
   }
 }

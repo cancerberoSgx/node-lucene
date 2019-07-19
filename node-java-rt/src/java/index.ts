@@ -8,6 +8,7 @@ export * from './IJavaBase'
 
 import ObjectT from './lang/Object'
 import IterableT from './lang/Iterable'
+import ComparableT from './lang/Comparable'
 import AutoCloseableT from './lang/AutoCloseable'
 import EnumT from './lang/Enum'
 import RunnableT from './lang/Runnable'
@@ -29,6 +30,7 @@ export namespace lang {
   export type Object = ObjectT
   export type Runnable = RunnableT
   export type Iterable<E> = IterableT<E>
+  export type Comparable<E> = ComparableT<E>
   export type AutoCloseable = AutoCloseableT
 
   export namespace reflect {

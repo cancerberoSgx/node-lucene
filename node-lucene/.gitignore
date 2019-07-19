@@ -6,3 +6,4 @@ tmp*
 lucene-lib
 dist
 *.tgz
+.DS_Store
