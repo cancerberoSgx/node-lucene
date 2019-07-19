@@ -7,11 +7,11 @@
   "scripts": {
     "build": "npm run clean && tsc",
     "prepare": "npm run build",
-    "clean": "rm -rf dist docs tmp",
+    "clean": "rm -rf dist",
     "test": "ts-node spec",
     "test-js": "npm run clean && npm run build && node dist/spec",
     "docs": "npm run docs-readme-toc && npm run docs-api",
-    "docs-api": "rm -rf docs && typedoc  --ignoreCompilerErrors --theme markdown --out docs --readme none --excludeNotExported src/index.ts ",
+    "docs-api": "rm -rf ../docs/node-lucene/ && mkdir -p ../docs/node-lucene/ && typedoc  --ignoreCompilerErrors --theme markdown --out ../docs/node-lucene/ --readme none --excludeNotExported src/index.ts ",
     "docs-readme-toc": "npx markdown-toc README.md -i",
     "prettier": "npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120  --jsx-bracket-same-line true \"src/**/*.ts*\" \"spec/**/*.ts*\"",
     "all": "npm run clean && npm run prettier && npm run build && npm test && npm run test-js && npm run docs",

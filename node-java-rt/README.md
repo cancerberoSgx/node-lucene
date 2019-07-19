@@ -25,7 +25,7 @@ Node.js API and bindings supporting java.lang and java.util based on [node-java]
 
 ## Reference API
 
-[Reference API](docs/README.md).
+[Reference API](../docs/node-java-rt/README.md).
 
 ## TODO
 

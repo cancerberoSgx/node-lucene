@@ -1,13 +1,13 @@
 # node-lucene
 
-[Apache lucene](https://lucene.apache.org) API, types and bindings for Node.js.
+[Apache lucene](https://lucene.apache.org) API, types and bindings for Node.js. Implemented calling Java directly from Node.js thanks to [node-java](https://github.com/joeferner/node-java) (no servers, no process spawning, no IPC-like mechanisms). Straight forward, fast, API.  
 
 ## Contents
 
 <!-- toc -->
 
-- [Features](#features)
-- [Status](#status)
+- [Summary](#summary)
+  * [Status](#status)
 - [Reference API](#reference-api)
 - [Usage](#usage)
   * [Example: indexing and searching in RAM](#example-indexing-and-searching-in-ram)
@@ -18,7 +18,7 @@
 
 <!-- tocstop -->
 
-## Features
+## Summary
 
  * Node.js API straightforward translated / ported from Java API (trying to respect the original Java packages, types and interfaces as far as I could).
  * By default, methods are synchronous but there also exist signatures for Promise based return values. 
@@ -28,7 +28,7 @@
  * Requirements: Node.js and Java. For the installation Python is also required.
 
 
-## Status
+### Status
 
  * As proof of concept, this project project verifies that complex Java APIs like apache-lucene, can be ported to a JavaScript API in a quite straight forward and mechanical way.
  * Apache lucene JavaScript APIs are far to be completed. User contributions are welcome! Just create missing classes or methods copying existing implementations. 
@@ -36,7 +36,7 @@
 
 ## Reference API
 
-[Reference API](docs/README.md).
+[Reference API](../docs/node-lucene/README.md).
 
 ## Usage
 
