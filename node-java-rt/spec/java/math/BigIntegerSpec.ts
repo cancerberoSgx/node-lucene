@@ -9,5 +9,4 @@ describe('BigIntegerSpec', () => {
       done()
     })
   })
-
 })

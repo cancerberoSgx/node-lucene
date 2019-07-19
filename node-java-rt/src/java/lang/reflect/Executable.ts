@@ -1,5 +1,4 @@
-import AccessibleObject from './AccessibleObject';
+import AccessibleObject from './AccessibleObject'
 
-export default class Executable extends AccessibleObject/* implements Member, GenericDeclaration*/ {
-
+export default class Executable extends AccessibleObject /* implements Member, GenericDeclaration*/ {
 }

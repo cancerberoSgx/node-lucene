@@ -1,5 +1,3 @@
-import TokenStream from './TokenStream';
+import TokenStream from './TokenStream'
 
-export default class TokenFilter extends TokenStream {
-
-}
+export default class TokenFilter extends TokenStream {}

@@ -1,17 +1,14 @@
-import Object from '../Object';
+import Object from '../Object'
 // import ClassLoader from '../ClassLoader';
 // import Class from '../Class';
 // import InvocationHandler from './InvocationHandler';
-import { getJava } from '../../java';
+import { getJava } from '../../java'
 // import Thread from './Thread';
 // import Runnable from './Runnable';
 import * as java from '../../..'
-import { InstanceCreator, JavaBase } from '../../JavaBase';
+import { InstanceCreator, JavaBase } from '../../JavaBase'
 
 export default class Proxy extends Object /* TODO: implements Serializable */ {
-
-
-
   /**
    * 
    * 
@@ -37,10 +34,21 @@ proxyInstance.put("hello", "world");
    * @param interfaces 
    * @param h 
    */
-  static newProxyInstance<T extends JavaBase>(loader: java.lang.ClassLoader, interfaces: java.lang.Class<any>[], h: java.lang.reflect.InvocationHandler, instance: T | InstanceCreator<T>): T {
+  static newProxyInstance<T extends JavaBase>(
+    loader: java.lang.ClassLoader,
+    interfaces: java.lang.Class<any>[],
+    h: java.lang.reflect.InvocationHandler,
+    instance: T | InstanceCreator<T>
+  ): T {
     const interfaceArray = getJava().newArray('java.lang.Class', interfaces.map(i => i._java))
     const invocationHandler = getJava().newProxy('java.lang.reflect.InvocationHandler', h)
-    const obj = getJava().callStaticMethodSync('java.lang.reflect.Proxy', 'newProxyInstance', loader._java, interfaceArray, invocationHandler)
+    const obj = getJava().callStaticMethodSync(
+      'java.lang.reflect.Proxy',
+      'newProxyInstance',
+      loader._java,
+      interfaceArray,
+      invocationHandler
+    )
     // if (!instance) {
     //   return obj
     // }

@@ -1,11 +1,10 @@
-import { lang } from 'node-java-rt';
+import { lang } from 'node-java-rt'
 
-/** 
+/**
  * This class is artificial so we can instantiate an object to wrap ANY indexablefield type since we dont
- * know which is ts concrete type at Document.get() 
+ * know which is ts concrete type at Document.get()
  */
 export class IndexableFieldBase_ extends lang.Object {
-
   // /**
   //  * ()Lorg/apache/lucene/util/BytesRef;
   //  */

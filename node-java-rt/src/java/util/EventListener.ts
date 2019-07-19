@@ -1,2 +1,1 @@
-export default interface EventListener {
-}
+export default interface EventListener {}

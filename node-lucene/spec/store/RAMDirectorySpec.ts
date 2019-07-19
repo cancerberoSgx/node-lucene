@@ -1,7 +1,6 @@
 import * as lucene from '../../src'
 
 describe('RAMDirectory', () => {
-
   describe('ramBytesUsed', () => {
     it('ramBytesUsedSync new instance should return 0', done => {
       const index = new lucene.store.RAMDirectory()
@@ -25,9 +24,7 @@ describe('RAMDirectory', () => {
       expect(value.valueOf()).toBe(0)
       done()
     })
-
   })
-
 
   describe('RAMDirectory, DirectoryReader and QueryParser index and search basic use case', () => {
     let analyzer: lucene.analysis.standard.StandardAnalyzer,
@@ -84,9 +81,7 @@ describe('RAMDirectory', () => {
       done()
     })
 
-
     it('should be usable with promises', async done => {
-
       await doc1.addPromise(field1)
       await writer.addDocumentPromise(doc1)
       await doc2.addPromise(field2)
@@ -115,7 +110,5 @@ describe('RAMDirectory', () => {
 
       done()
     })
-
   })
-
 })

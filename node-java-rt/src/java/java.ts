@@ -1,4 +1,4 @@
-import { Java, JavaOptions } from './types';
+import { Java, JavaOptions } from './types'
 
 let java: Java
 
@@ -19,8 +19,8 @@ export function setJavaOptions(options: JavaOptions) {
 
 export function getJava(): Java {
   if (!java) {
-    java = require("java")
-    // Object.assign(java, javaOptions) // TODO: throw native v8 exception ! - report to node-java ? 
+    java = require('java')
+    // Object.assign(java, javaOptions) // TODO: throw native v8 exception ! - report to node-java ?
     java.asyncOptions = defaultJavaOptions.asyncOptions
     defaultJavaOptions.classpath.forEach(cp => java.classpath.push(cp))
     java.options = defaultJavaOptions.options
@@ -31,8 +31,7 @@ export function getJava(): Java {
 export function getJavaObjectOrThrow(obj: any) {
   if (obj._java) {
     return obj._java
-  }
-  else {
+  } else {
     throw new Error(`Object ${obj} expected to have property _java`)
   }
 }

@@ -1,10 +1,10 @@
-import { util } from '..';
+import { util } from '..'
 
 export default interface Iterable<T> {
   /**
    * ()Ljava/util/Iterator;
    */
-  iterator(): util.Iterator<T>;
+  iterator(): util.Iterator<T>
   // /**
   //  * ()Ljava/util/Spliterator;
   //  */

@@ -1,4 +1,4 @@
-import { lang, io } from 'node-java-rt';
+import { lang, io } from 'node-java-rt'
 
 export default class AttributeSource extends lang.Object implements io.Closeable {
   close(): void {

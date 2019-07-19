@@ -1,4 +1,3 @@
-import java from './Object';
+import java from './Object'
 
-export default class Enum<E/*  extends Enum<E> */> extends Object {
-}
+export default class Enum<E /*  extends Enum<E> */> extends Object {}

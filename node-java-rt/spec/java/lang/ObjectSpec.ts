@@ -35,6 +35,4 @@ describe('Object', () => {
       done()
     })
   })
-
-
 })

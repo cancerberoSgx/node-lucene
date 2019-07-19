@@ -1,7 +1,7 @@
 import * as lucene from '../../src'
-import Term from '../../src/index/Term';
-import { getJava } from 'node-java-rt';
-import { sleep } from '../testUtil';
+import Term from '../../src/index/Term'
+import { getJava } from 'node-java-rt'
+import { sleep } from '../testUtil'
 
 describe('IndexWriter', () => {
   let analyzer: lucene.analysis.standard.StandardAnalyzer
@@ -21,7 +21,6 @@ describe('IndexWriter', () => {
   })
 
   describe('ramBytesUsed', () => {
-
     it('ramBytesUsedSync and numDocsSync should return zero on new instances', done => {
       expect(writer.ramBytesUsedSync().valueOf()).toBe(0)
       expect(writer.ramBytesUsedSync()).toEqual(0)
@@ -52,11 +51,9 @@ describe('IndexWriter', () => {
       expect(value.valueOf()).toBe(0)
       done()
     })
-
   })
 
   describe('addDocument', () => {
-
     it('addDocumentSync should work as expected', done => {
       expect(writer.numDocsSync()).toEqual(0)
       expect(writer.ramBytesUsedSync()).toEqual(0)
@@ -115,14 +112,13 @@ describe('IndexWriter', () => {
       await doc1.addPromise(new lucene.document.TextField('content', 'gandalf world', lucene.document.FieldStore.YES))
       await writer.addDocumentPromise(doc1)
       expect(await writer.numDocsPromise()).toEqual(2)
-      
 
       var doc2 = new lucene.document.Document()
       await doc2.addPromise(new lucene.document.TextField('content', 'gondor world', lucene.document.FieldStore.YES))
       expect(await writer.numDocsPromise()).toEqual(2)
 
       expect(await writer.updateDocumentPromise(new Term('content', 'gandalf world'), doc2)).toBeGreaterThan(0)
-            // var parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
+      // var parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
       // var query =
       // await sleep(200);
       // await writer.flushPromise()
@@ -131,13 +127,13 @@ describe('IndexWriter', () => {
       // await sleep(200);
 
       // expect(await writer.numDocsPromise()).toEqual(2)
-      
+
       // expect(await writer.numDocsPromise()).toEqual(2)
       // await writer.deleteDocumentsPromise(await parser.parsePromise('gandalf'))
       // // expect(await writer.numDocsPromise()).toEqual(2)
       // await writer.deleteDocumentsPromise(await parser.parsePromise('gondor'))
       // expect(await writer.numDocsPromise()).toEqual(1)
-      // 
+      //
       // writer.flush()
       // // writer.closeSync()
       await writer.flushPromise()
@@ -146,28 +142,25 @@ describe('IndexWriter', () => {
       // await sleep(200);
       // await writer.flushPromise()
       // await sleep(200);
-      
+
       // const directory = lucene.index.DirectoryReader.open(index)
-    const directory = lucene.index.DirectoryReader.open(index)
-    const searcher = new lucene.search.IndexSearcher(directory)
+      const directory = lucene.index.DirectoryReader.open(index)
+      const searcher = new lucene.search.IndexSearcher(directory)
       // const searcher = new lucene.search.IndexSearcher(index)
       const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
-      
-// // searching for 'phrase does not exists' should return 0 results
-// let topDocs = await searcher.searchPromise(await parser.parsePromise('gandalf'), 10)
-// let topDocs = searcher.search(parser.parse( 'gandalf'), 10)
-// expect(topDocs.scoreDocs.length).toBe(0)
-let topDocs = await searcher.searchPromise(await parser.parsePromise('gondor'), 10)
-expect(topDocs.scoreDocs.length).toBe(1)
 
-// await directory.closePromise()
+      // // searching for 'phrase does not exists' should return 0 results
+      // let topDocs = await searcher.searchPromise(await parser.parsePromise('gandalf'), 10)
+      // let topDocs = searcher.search(parser.parse( 'gandalf'), 10)
+      // expect(topDocs.scoreDocs.length).toBe(0)
+      let topDocs = await searcher.searchPromise(await parser.parsePromise('gondor'), 10)
+      expect(topDocs.scoreDocs.length).toBe(1)
+
+      // await directory.closePromise()
 
       // const searcher = getJava().newInstanceSync<any>("org.apache.lucene.search.IndexSearcher", getJava().callStaticMethodSync("org.apache.lucene.index.DirectoryReader", "open", index))
       // expect(searcher.toStringSync()).toContain('segments')
       done()
     })
   })
-
-
-
 })

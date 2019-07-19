@@ -19,5 +19,5 @@ export const index = {
   IndexWriterConfig: IndexWriterConfigT,
   IndexWriterConfig$OpenMode: IndexWriterConfig$OpenModeT,
   IndexWriter: IndexWriterT,
-  DirectoryReader: DirectoryReaderT,
+  DirectoryReader: DirectoryReaderT
 }

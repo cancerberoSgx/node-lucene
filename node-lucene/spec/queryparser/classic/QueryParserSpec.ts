@@ -1,9 +1,7 @@
 import * as lucene from '../../../src'
 
 describe('QueryParser', () => {
-
   describe('parse', () => {
-
     it('should parseSync simple field definition', done => {
       const analyzer = new lucene.analysis.standard.StandardAnalyzer()
       const parser = new lucene.queryparser.classic.QueryParser('content', analyzer)
@@ -19,7 +17,5 @@ describe('QueryParser', () => {
       expect(await q.toStringPromise()).toBe('content:foo')
       done()
     })
-
   })
-
 })

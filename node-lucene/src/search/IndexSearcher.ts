@@ -1,9 +1,9 @@
-import { lang } from 'node-java-rt';
-import IndexReader from '../index/IndexReader';
-import { getLuceneJava } from '../util/getLuceneJava';
-import Query from './Query';
-import TopDocs from './TopDocs';
-import Document from '../document/Document';
+import { lang } from 'node-java-rt'
+import IndexReader from '../index/IndexReader'
+import { getLuceneJava } from '../util/getLuceneJava'
+import Query from './Query'
+import TopDocs from './TopDocs'
+import Document from '../document/Document'
 /**
  * Implements search over a single IndexReader. Applications usually need only call the inherited
  * search(Query,int) method. For performance reasons, if your index is unchanging, you should share a single
@@ -19,7 +19,6 @@ import Document from '../document/Document';
  * the IndexSearcher instance; use your own (non-Lucene) objects instead.
  */
 export default class IndexSearcher extends lang.Object {
-
   /** Creates a searcher searching the provided index. */
   constructor(r: IndexReader) {
     super()
@@ -42,7 +41,6 @@ export default class IndexSearcher extends lang.Object {
   searchPromise(query: Query, n: number): Promise<TopDocs> {
     return IndexSearcher._buildPromise<TopDocs>(this._java.searchPromise(query._java, n), new TopDocs())
   }
-
 
   docSync(docId: number): Document {
     return IndexSearcher._buildSync<Document>(this._java.docSync(docId), new Document())

@@ -1,23 +1,21 @@
 import * as java from '../../../../src'
 // import ClassLoader from '../../../../src/java/lang/ClassLoader';
-import Class from '../../../../src/java/lang/Class';
-import { getJava, JavaBase } from '../../../../src';
+import Class from '../../../../src/java/lang/Class'
+import { getJava, JavaBase } from '../../../../src'
 // import Method from '../../../../src/java/lang/reflect/Method';
-import InvocationHandler from '../../../../src/java/lang/reflect/InvocationHandler';
+import InvocationHandler from '../../../../src/java/lang/reflect/InvocationHandler'
 // import Method from '../../../../src/java/lang/reflect/Method';
 // import Map from '../../../../src/java/util/Map';
 
 describe('Proxy', () => {
-
   describe('newProxyInstance', () => {
-
     // example java call
     // Map proxyInstance = (Map) Proxy.newProxyInstance(
-    //   ProxyTest1.class.getClassLoader(), 
-    //   new Class[] { Map.class }, 
+    //   ProxyTest1.class.getClassLoader(),
+    //   new Class[] { Map.class },
     //   new InvocationHandler(){
     //     @Override
-    //     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {  
+    //     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
     //       System.out.println("Invoked method: {} " + method.getName());
     //     return 42;
     //     }
@@ -26,15 +24,19 @@ describe('Proxy', () => {
     // );
     // proxyInstance.put("hello", "world");
 
-
     it('should return valid proxy', done => {
       const loader = java.lang.ClassLoader.getSystemClassLoader()
-      const proxyInstance = java.lang.reflect.Proxy.newProxyInstance(loader, [loader.loadClass('java.util.Map')], {
-        invoke(proxy: any, method: java.lang.reflect.Method, ...args: any[]) {
-          return 42
-        }
-      }, new java.lang.Object())
-      const value = JavaBase._getNative(proxyInstance).putSync('hello', 'world'); // TODO: HashMap or other wrapper needed
+      const proxyInstance = java.lang.reflect.Proxy.newProxyInstance(
+        loader,
+        [loader.loadClass('java.util.Map')],
+        {
+          invoke(proxy: any, method: java.lang.reflect.Method, ...args: any[]) {
+            return 42
+          }
+        },
+        new java.lang.Object()
+      )
+      const value = JavaBase._getNative(proxyInstance).putSync('hello', 'world') // TODO: HashMap or other wrapper needed
       expect(value).toBe(42)
       done()
     })
@@ -51,13 +53,17 @@ describe('Proxy', () => {
           return 5
         }
       })
-      const proxy = getJava().callStaticMethodSync('java.lang.reflect.Proxy', 'newProxyInstance', loader._java, interfaceArray, invocationHandler)
+      const proxy = getJava().callStaticMethodSync(
+        'java.lang.reflect.Proxy',
+        'newProxyInstance',
+        loader._java,
+        interfaceArray,
+        invocationHandler
+      )
       expect(proxy.putSync('hello', 'world')).toBe(5)
       expect(proxy.getSync('hello2')).toBe(5)
       expect(proxy.getSync('hello')).toBe(666)
       done()
     })
-
-
   })
 })

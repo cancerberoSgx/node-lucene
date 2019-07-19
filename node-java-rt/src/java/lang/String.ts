@@ -1,5 +1,5 @@
-import Object from './Object';
-import { getJava } from '../java';
+import Object from './Object'
+import { getJava } from '../java'
 
 export default class String /* extends Object */ {
   static copyValueOf(charArray: any): any {

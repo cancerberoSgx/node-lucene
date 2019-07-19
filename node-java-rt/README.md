@@ -1,12 +1,33 @@
- * Important node 12 is not currently supported. Node.js 11 is supported. 
- * (partial) support for java.lang based on node-java
+# node-java-rt
+
+Base Java classes bindings and types for Node.js based on [node-java](https://github.com/joeferner/node-java).
+
+## Contents
+
+<!-- toc -->
+
+- [Summary](#summary)
+- [Reference API](#reference-api)
+- [TODO](#todo)
+
+<!-- tocstop -->
+
+## Summary 
+
+Node.js API and bindings supporting java.lang and java.util based on [node-java](https://github.com/joeferner/node-java).
+
+ * (partial) support for java.lang based on node-java 
  * (partial) support for java.util based on node-java. 
  * Basic abstraction on top of node-java
- * typings for node-java
- * Projects like node-lucene are based on this.
+ * Written in TypeScript
+ * Projects like node-lucene are based on this
+ * **Important** node 12 is not currently supported. Node.js 11 is supported. 
 
+## Reference API
 
-# TODO
+[Reference API](docs/README.md).
+
+## TODO
 
  * support node 12 - currently because `java` don't support node 12 we neither. node 11 is supported. 
  * report TS issue - cannot name a class 'Object' and invoke its static method from constructor. See java.lang.Object.ts which i had to name Object_ because of this
@@ -17,6 +38,4 @@
     var java = require("java")
     // Object.assign(java, javaOptions) // TODO: throw native v8 exception ! - report to node-java ? 
  * experiment with java threads and node.js
-
  * https://dzone.com/articles/dynamic-subtyping-java
- 

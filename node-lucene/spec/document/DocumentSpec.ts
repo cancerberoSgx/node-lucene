@@ -1,7 +1,6 @@
 import * as lucene from '../../src'
 
 describe('Document', () => {
-
   describe('constructor', () => {
     it('should be instantiable', async done => {
       const doc1 = new lucene.document.Document()
@@ -11,7 +10,6 @@ describe('Document', () => {
   })
 
   describe('add, getField', () => {
-
     it('addSync and getFieldSync should work as expected', done => {
       const doc1 = new lucene.document.Document()
       expect(doc1.getFieldSync('content')).toBe(null)
@@ -25,18 +23,21 @@ describe('Document', () => {
       doc1.getFieldAsync('content', (error, value) => {
         expect(error).not.toBeDefined()
         expect(value).toBe(null)
-        doc1.addAsync(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES), (error, value) => {
-          expect(error).not.toBeDefined()
-          expect(value).toBeFalsy()
-          doc1.getFieldAsync('content', (error, value) => {
+        doc1.addAsync(
+          new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES),
+          (error, value) => {
             expect(error).not.toBeDefined()
+            expect(value).toBeFalsy()
             doc1.getFieldAsync('content', (error, value) => {
               expect(error).not.toBeDefined()
-              expect(value.toStringSync()).toContain('content:hello world')
-              done()
+              doc1.getFieldAsync('content', (error, value) => {
+                expect(error).not.toBeDefined()
+                expect(value.toStringSync()).toContain('content:hello world')
+                done()
+              })
             })
-          })
-        })
+          }
+        )
       })
     })
 
@@ -48,8 +49,5 @@ describe('Document', () => {
       expect(field1.toStringSync()).toContain('content:hello world')
       done()
     })
-
   })
-
-
 })

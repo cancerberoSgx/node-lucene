@@ -1,4 +1,3 @@
-
 export interface IJavaBase {
   _javaClassName(): string
 

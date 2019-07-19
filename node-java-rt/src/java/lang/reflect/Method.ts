@@ -1,4 +1,4 @@
-import Executable from './Executable';
+import Executable from './Executable'
 
 export default class Method extends Executable {
   getName(): string {

@@ -1,11 +1,10 @@
-import { Callback, lang } from 'node-java-rt';
-import Analyzer from '../../analysis/Analyzer';
-import Query from '../../search/Query';
-import { getLuceneJava } from '../../util/getLuceneJava';
-import QueryParserBase from './QueryParserBase';
+import { Callback, lang } from 'node-java-rt'
+import Analyzer from '../../analysis/Analyzer'
+import Query from '../../search/Query'
+import { getLuceneJava } from '../../util/getLuceneJava'
+import QueryParserBase from './QueryParserBase'
 
 export default class QueryParser extends QueryParserBase {
-
   constructor(fieldName: string, analyzer: Analyzer) {
     super()
     this._java = getLuceneJava().newInstanceSync(QueryParser._javaClassName(), fieldName, analyzer._java)
@@ -27,5 +26,4 @@ export default class QueryParser extends QueryParserBase {
   parsePromise(queryString: string): Promise<Query> {
     return QueryParser._buildPromise(this._java.parsePromise(queryString), new Query())
   }
-
 }

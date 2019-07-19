@@ -1,7 +1,6 @@
 import * as lucene from '../../src'
 
 describe('FieldStore', () => {
-
   describe('YES', () => {
     it('should get YES static field', done => {
       const YES = lucene.document.FieldStore.YES
@@ -17,5 +16,4 @@ describe('FieldStore', () => {
       done()
     })
   })
-
 })

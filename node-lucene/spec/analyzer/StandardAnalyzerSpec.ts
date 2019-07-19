@@ -1,6 +1,6 @@
 import * as lucene from '../../src'
-import StandardAnalyzer from '../../src/analysis/standard/StandardAnalyzer';
-import { StringDecoder } from 'string_decoder';
+import StandardAnalyzer from '../../src/analysis/standard/StandardAnalyzer'
+import { StringDecoder } from 'string_decoder'
 
 describe('StandardAnalyzer', () => {
   describe('getMaxTokenLength', () => {
@@ -24,10 +24,7 @@ describe('StandardAnalyzer', () => {
     })
   })
 
-
-
   describe('Example1', () => {
-
     /*
         Version matchVersion = Version.LUCENE_XY; // Substitute desired Lucene version for XY
        Analyzer analyzer = new StandardAnalyzer(matchVersion); // or any other analyzer

@@ -3,7 +3,6 @@ import StandardAnalyzerT from './standard/StandardAnalyzer'
 import WordDelimiterGraphFilterT from './miscellaneous/WordDelimiterGraphFilter'
 import TokenFilterT from './TokenFilter'
 
-
 export namespace analysis {
   export type Analyzer = AnalyzerT
   export type TokenFilter = TokenFilterT
@@ -12,7 +11,6 @@ export namespace analysis {
   }
   export namespace miscellaneous {
     export type WordDelimiterGraphFilter = WordDelimiterGraphFilterT
-
   }
 }
 
@@ -26,4 +24,3 @@ export const analysis = {
     WordDelimiterGraphFilter: WordDelimiterGraphFilterT
   }
 }
-

@@ -1,8 +1,7 @@
-import Object from '../lang/Object';
-import { getJava } from '../java';
+import Object from '../lang/Object'
+import { getJava } from '../java'
 
 export default class EventObject extends Object {
-
   constructor() {
     super()
     this._java = getJava().newInstanceSync(this._javaClassName())
@@ -11,5 +10,4 @@ export default class EventObject extends Object {
   public _javaClassName(): string {
     return 'java.util.EventObject'
   }
-
 }

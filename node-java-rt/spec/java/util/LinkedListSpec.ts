@@ -1,9 +1,7 @@
 import * as java from '../../../src'
 describe('LinkedList', () => {
-
   // java.
   describe('add', () => {
-
     it('toStringSync should print list content representation', done => {
       const list1 = new java.util.LinkedList<number>() // TODO: how to force users to use generic in new call expression ? "Type parameters cannot appear on a constructor declaration."
       expect(list1.toStringSync()).toContain('[]')
@@ -43,10 +41,7 @@ describe('LinkedList', () => {
         done()
       })
     })
-
-
   })
-
 
   describe('new', () => {
     it('should return new instances', done => {
@@ -55,5 +50,4 @@ describe('LinkedList', () => {
       done()
     })
   })
-
 })

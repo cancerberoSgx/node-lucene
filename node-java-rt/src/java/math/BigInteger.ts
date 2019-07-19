@@ -1,6 +1,6 @@
-import * as java from '../..';
-import { getJava } from '../java';
-import Object_ from '../lang/Object';
+import * as java from '../..'
+import { getJava } from '../java'
+import Object_ from '../lang/Object'
 
 export default class BigInteger extends Object_ {
   constructor(val: string = '0') {

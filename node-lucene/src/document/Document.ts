@@ -1,7 +1,7 @@
 import { Callback, Long, JavaBase, lang, util } from 'node-java-rt'
 import { IndexableField } from '../index/IndexableField'
 import { getLuceneJava } from '../util/getLuceneJava'
-import { IndexableFieldBase_ } from '../index/IndexableFieldBase_';
+import { IndexableFieldBase_ } from '../index/IndexableFieldBase_'
 
 /**
  * Documents are the unit of indexing and search. A Document is a set of fields. Each field has a name and a
@@ -13,7 +13,6 @@ import { IndexableFieldBase_ } from '../index/IndexableFieldBase_';
  * ScoreDoc.doc or IndexReader.document(int).
  */
 export default class Document extends lang.Object implements lang.Iterable<IndexableField> {
-
   static _javaClassName(): string {
     return 'org.apache.lucene.document.Document'
   }
@@ -78,7 +77,4 @@ export default class Document extends lang.Object implements lang.Iterable<Index
   async getPromise(name: string): Promise<string> {
     return this._java.getPromise(name)
   }
-
-
-
 }

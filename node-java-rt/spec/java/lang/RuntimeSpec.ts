@@ -1,5 +1,5 @@
 import * as java from '../../../src'
-import Runtime from '../../../src/java/lang/Runtime';
+import Runtime from '../../../src/java/lang/Runtime'
 
 describe('Runtime', () => {
   describe('getRuntime', () => {
@@ -9,5 +9,4 @@ describe('Runtime', () => {
       done()
     })
   })
-
 })

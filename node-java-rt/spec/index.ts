@@ -3,7 +3,7 @@ import { join } from 'path'
 const Jasmine = require('jasmine')
 import { sync as glob } from 'glob'
 import minimist from 'minimist'
-import { getJava } from '../src';
+import { getJava } from '../src'
 // import { getJava } from '../src';
 
 const jasmineRunner = new Jasmine()
@@ -12,8 +12,7 @@ let specs: string[]
 
 if (args.specs) {
   specs = (args.specs as string).split(',').map(spec => join(__dirname, spec))
-}
-else {
+} else {
   specs = glob(join(__dirname, '**/*Spec.*s'))
     .filter(f => !f.endsWith('.d.ts'))
     .map(f => f.substring(0, f.length - 3))
@@ -23,6 +22,3 @@ jasmineRunner.specFiles = specs
 getJava()
 jasmineRunner.execute()
 // getJava().ensureJvm(() => jasmineRunner.execute())
-
-
-

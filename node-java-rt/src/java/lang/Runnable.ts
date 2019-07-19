@@ -1,4 +1,3 @@
-import Object from './Object';
+import Object from './Object'
 
-export default interface Runnable {
-}
+export default interface Runnable {}

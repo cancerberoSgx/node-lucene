@@ -1,7 +1,6 @@
 import * as java from '../../../src'
 
 describe('Class', () => {
-
   describe('getMethods', () => {
     it('should return methods', done => {
       const methods = new java.lang.Object().getClass().getMethods()

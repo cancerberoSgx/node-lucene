@@ -1,7 +1,6 @@
-import { lang } from 'node-java-rt';
+import { lang } from 'node-java-rt'
 
 export interface IndexableField {
-
   // /**
   //  * ()Lorg/apache/lucene/util/BytesRef;
   //  */

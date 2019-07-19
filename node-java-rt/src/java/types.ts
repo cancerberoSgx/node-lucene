@@ -1,6 +1,4 @@
-
 export interface JavaOptions {
-
   /**
    * Create async methods that return promises by setting the asyncOptions property of the java object. Allow changing the suffix assigned for sync and async method variants, and to further configure this module to optionally omit generation of any of these variants. 
    * 
@@ -23,7 +21,7 @@ export interface JavaOptions {
    *
    * All items must be added to the classpath before calling any other node-java methods.
    *
-   * Example: 
+   * Example:
    *
    * ```javascript
    * java.classpath.push('commons.io.jar');
@@ -51,14 +49,13 @@ export interface JavaOptions {
  * (https://github.com/joeferner/node-java/#java-1)[node-java API]
  */
 export interface Java extends JavaOptions {
-
   /**
    * Loads the class given by className such that it acts and feels like a javascript object.
    *
    * @param className - The name of the class to create. For nested classes separate using a `'$'` (eg.
    * `com.nearinfinty.MyClass$NestedClass`)
    *
-   * Example: 
+   * Example:
    *
    * ```javascript
    * var Test = java.import('Test');
@@ -69,7 +66,7 @@ export interface Java extends JavaOptions {
    * list.instanceMethodSync('item1');
    * ```
    *
-   * @param className 
+   * @param className
    */
   import<T = any>(className: string): T
 
@@ -79,7 +76,6 @@ export interface Java extends JavaOptions {
 otherwise it will be the first argument in the callback.
    */
   newInstanceSync<T>(javaClass: string): T
-
 
   /**
    * TODO Creates an instance of the specified class. If you are using the sync method an exception will be
@@ -104,9 +100,9 @@ otherwise it will be the first argument in the callback.
    * Gets a static field value from the specified class.
    * @param className The name of the class to get the value from. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param fieldName The name of the field to get the value from.
-   * 
-   * Example: 
-   * 
+   *
+   * Example:
+   *
    * ```js
    * const data = java.getStaticFieldValue("com.nearinfinty.MyClass", "data");
    * ```
@@ -114,48 +110,48 @@ otherwise it will be the first argument in the callback.
   getStaticFieldValue<T>(className: string, fieldName: string): T
 
   /**
-   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
+   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.
    * @param className The name of the class to call the method on. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
-   * Example: 
-   * 
+   * Example:
+   *
    * ```js
    *   const result = java.callStaticMethodSync("com.nearinfinty.MyClass", "doSomething", 42, "test")
-   * ``` 
+   * ```
    */
   callStaticMethodSync<T = any>(className: string, fieldName: string, ...args: any[]): T
 
   /**
-   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
+   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.
    * @param className The name of the class to call the method on. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
-   * Example: 
-   * 
+   * Example:
+   *
    * ```js
    *   const result = java.callStaticMethodSync("com.nearinfinty.MyClass", "doSomething", 42, "test")
-   * ``` 
+   * ```
    */
   callStaticMethod<T>(className: string, fieldName: string, ...args: any[]): void
 
   /**
-   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.  
+   * Calls a static method on the specified class. If you are using the sync method an exception will be throw if an error occures, otherwise it will be the first argument in the callback.
    * @param className The name of the class to call the method on. For nested classes separate using a `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`)
    * @param methodName The name of the method to call. The method name can include the full signature (see [Getting the full method signature](#getFullMethodSignature)).
-   * Example: 
-   * 
+   * Example:
+   *
    * ```js
    *   const result = java.callStaticMethodSync("com.nearinfinty.MyClass", "doSomething", 42, "test")
-   * ``` 
+   * ```
    */
   callStaticMethodPromise<T>(className: string, fieldName: string, ...args: any[]): Promise<T>
 
   /**
    * Creates a new java Proxy for the given interface. Functions passed in will run on the v8 main thread and not a new thread.
-   * 
+   *
    * The returned object has a method unref() which you can use to free the object for garbage collection.
-   * 
+   *
    * @param interfaceName - The name of the interface to proxy. Separate nested classes using `'$'` (eg. `com.nearinfinty.MyClass$NestedClass`).
-   * @param functions A hash of functions matching the function in the interface. 
+   * @param functions A hash of functions matching the function in the interface.
    */
   newProxy<T>(interfaceName: string, functions: any): any
 
@@ -170,40 +166,39 @@ otherwise it will be the first argument in the callback.
    * Creates a new java byte. This is needed because JavaScript does not have the concept of a byte.
    * @param val The value of the java byte.
    */
-  newByte(val: number): any;
+  newByte(val: number): any
 
   /**
    * Creates a new java char. This is needed because JavaScript does not have the concept of a char.
    * @param val The value of the java char.
    */
-  newChar(val: string): any;
+  newChar(val: string): any
 
   /**
    * Creates a new java short. This is needed because JavaScript does not have the concept of a short.
    */
-  newShort(val: number): any;
+  newShort(val: number): any
 
   /**
    * Creates a new java long. This is needed because JavaScript does not have the concept of a long.
    */
-  newLong(val: number): any;
+  newLong(val: number): any
 
-  /** 
+  /**
    * Creates a new java byte. This is needed because JavaScript does not have the concept of a byte.
    */
-  newByte(val: number): any;
+  newByte(val: number): any
 
   /**
    * Creates a new java float. This is needed to force JavaScript's number to a float to call some methods.
    */
-  newFloat(val: number): any;
+  newFloat(val: number): any
 
   /**
    * Creates a new java double. This is needed to force JavaScript's number to a double to call some methods.
    */
-  newDouble(val: number): any;
+  newDouble(val: number): any
 }
-
 
 export type Callback<T> = (error: Error, value: T) => void
 

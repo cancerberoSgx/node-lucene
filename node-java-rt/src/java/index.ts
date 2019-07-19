@@ -3,7 +3,6 @@ export * from './types'
 export * from './JavaBase'
 export * from './IJavaBase'
 
-
 // java.lang
 
 import ObjectT from './lang/Object'
@@ -26,7 +25,7 @@ export namespace lang {
   export type Class<T> = ClassT<T>
   export type ClassLoader = ClassLoaderT
   export type Runtime = RuntimeT
-  export type Enum<E>/* <E extends EnumT<E>> */ = EnumT<E /* extends EnumT */>/*  */ // TODO: can't do this!. investigate & report to TS
+  export type Enum<E> /* <E extends EnumT<E>> */ = EnumT<E /* extends EnumT */> /*  */ // TODO: can't do this!. investigate & report to TS
   export type Object = ObjectT
   export type Runnable = RunnableT
   export type Iterable<E> = IterableT<E>
@@ -51,14 +50,11 @@ export const lang = {
   reflect: {
     // InvocationHandler: InvocationHandlerT,
     Method: MethodT,
-    Proxy: ProxyT,
+    Proxy: ProxyT
   }
 }
 
-
-
 // java.util
-
 
 import LinkedListT from './util/LinkedList'
 import EventObjectT from './util/EventObject'
@@ -81,10 +77,6 @@ export const util = {
   EventObject: EventObjectT
 }
 
-
-
-
-
 // java.io
 
 import CloseableT from './io/Closeable'
@@ -93,14 +85,9 @@ export namespace io {
   export type Closeable = CloseableT
 }
 
-export const io = {
-}
-
-
-
+export const io = {}
 
 // java.nio
-
 
 import PathsT from './nio/file/Paths'
 import PathT from './nio/file/Path'
@@ -117,9 +104,6 @@ export const nio = {
     Paths: PathsT
   }
 }
-
-
-
 
 // JavaBase.math
 

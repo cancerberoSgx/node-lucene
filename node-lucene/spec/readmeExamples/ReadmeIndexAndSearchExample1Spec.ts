@@ -1,15 +1,13 @@
 import * as lucene from '../../src'
 
 describe('ReadmeIndexAndSearchExample1Spec', () => {
-
   describe('Indexing and searching synchronously', () => {
-
     it('should be able to index a couple of documents and then search using synchronous operations', () => {
-
       // We will be indexing the following "books":
       const books = [
         {
-          content: 'The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents.',
+          content:
+            'The most merciful thing in the world, I think, is the inability of the human mind to correlate all its contents.',
           title: 'One Hundred Years of Solitude',
           author: 'Gabriel Garcia Marquez'
         },
@@ -61,7 +59,7 @@ describe('ReadmeIndexAndSearchExample1Spec', () => {
       expect(topDocs.totalHits).toEqual(0)
 
       // searching for 'cold' should return 1 results. We iterate found documents and print its author and titles:
-      topDocs = searcher.search(parser.parse('cold'), 10) //TODO: lucene issue : why searching for 'the' is returning 0 results ? 
+      topDocs = searcher.search(parser.parse('cold'), 10) //TODO: lucene issue : why searching for 'the' is returning 0 results ?
       expect(topDocs.totalHits).toEqual(1)
 
       // now get back the document from the index to access matched book's author and title
@@ -70,5 +68,4 @@ describe('ReadmeIndexAndSearchExample1Spec', () => {
       expect(foundDoc.get('title')).toBe('1984')
     })
   })
-
 })

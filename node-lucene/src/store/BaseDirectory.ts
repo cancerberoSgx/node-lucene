@@ -1,4 +1,3 @@
-import Directory from './Directory';
+import Directory from './Directory'
 
-export default abstract class BaseDirectory extends Directory {
-}
+export default abstract class BaseDirectory extends Directory {}

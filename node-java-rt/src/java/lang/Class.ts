@@ -1,11 +1,11 @@
 import Object from './Object'
-import Method from './reflect/Method';
-import { JavaBase, InstanceCreator } from '../JavaBase';
-import { getJava } from '../java';
+import Method from './reflect/Method'
+import { JavaBase, InstanceCreator } from '../JavaBase'
+import { getJava } from '../java'
 
-export default class Class<T> extends Object
-/*TODO:  implements java.io.Serializable,GenericDeclaration,Type,AnnotatedElement*/ {
-
+export default class Class<
+  T
+> extends Object /*TODO:  implements java.io.Serializable,GenericDeclaration,Type,AnnotatedElement*/ {
   getMethods(): Method[] {
     const javaObject = this._java.getMethodsSync()
     // return toJsArray<Method>(javaObject, javaObject => Class._buildSyncOrThrow(javaObject, new Method()))
@@ -14,7 +14,7 @@ export default class Class<T> extends Object
 
   /**
    * Easy way to instantiate objects of a class, instead of having to use node-java directly, eg:
-   * 
+   *
    * ```js
    * const obj = Class
    * ```

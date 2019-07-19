@@ -1,8 +1,7 @@
 import * as java from '../../../src'
-import Double from '../../../src/java/lang/Double';
+import Double from '../../../src/java/lang/Double'
 
 describe('Double', () => {
-
   describe('sum', () => {
     it('should sum', done => {
       const result = java.lang.Double.sum(new java.lang.Double('3.14'), new java.lang.Double('6.5'))

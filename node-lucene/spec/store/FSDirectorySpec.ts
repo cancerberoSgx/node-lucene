@@ -1,9 +1,8 @@
 import * as lucene from '../../src'
 import * as java from 'node-java-rt'
-import { rm, test, config } from 'shelljs';
+import { rm, test, config } from 'shelljs'
 
 describe('FSDirectory', () => {
-
   let directory: lucene.store.Directory
   let analyzer: lucene.analysis.Analyzer
   let writerConfig: lucene.index.IndexWriterConfig
@@ -22,7 +21,7 @@ describe('FSDirectory', () => {
     analyzer = new lucene.analysis.standard.StandardAnalyzer()
     writerConfig = new lucene.index.IndexWriterConfig(analyzer)
     writerConfig.setOpenMode(lucene.index.IndexWriterConfig$OpenMode.CREATE)
-    writer = new lucene.index.IndexWriter(directory, writerConfig);
+    writer = new lucene.index.IndexWriter(directory, writerConfig)
 
     doc1 = new lucene.document.Document()
     doc1.addSync(new lucene.document.TextField('content', 'hello world', lucene.document.FieldStore.YES))
@@ -45,10 +44,16 @@ describe('FSDirectory', () => {
     analyzer = new lucene.analysis.standard.StandardAnalyzer()
     writerConfig = new lucene.index.IndexWriterConfig(analyzer)
     writerConfig.setOpenMode(lucene.index.IndexWriterConfig$OpenMode.CREATE)
-    writer = new lucene.index.IndexWriter(directory, writerConfig);
+    writer = new lucene.index.IndexWriter(directory, writerConfig)
 
     doc1 = new lucene.document.Document()
-    doc1.addSync(new lucene.document.TextField('content', `Thus the man who is responsive to artistic stimuli reacts to the reality of dreams as does the philosopher to the reality of existence; he observes closely, and he enjoys his observation: for it is out of these images that he interprets life, out of these processes that he trains himself for life.`, lucene.document.FieldStore.YES))
+    doc1.addSync(
+      new lucene.document.TextField(
+        'content',
+        `Thus the man who is responsive to artistic stimuli reacts to the reality of dreams as does the philosopher to the reality of existence; he observes closely, and he enjoys his observation: for it is out of these images that he interprets life, out of these processes that he trains himself for life.`,
+        lucene.document.FieldStore.YES
+      )
+    )
     writer.addDocumentSync(doc1)
     writer.closeSync()
     expect(test('-d', folder.toString())).toBeTruthy()
@@ -67,10 +72,16 @@ describe('FSDirectory', () => {
     // open the index again on APPEND mode and add another document
     writerConfig = new lucene.index.IndexWriterConfig(analyzer)
     writerConfig.setOpenMode(lucene.index.IndexWriterConfig$OpenMode.APPEND)
-    writer = new lucene.index.IndexWriter(directory, writerConfig);
+    writer = new lucene.index.IndexWriter(directory, writerConfig)
 
     doc1 = new lucene.document.Document()
-    doc1.add(new lucene.document.TextField('content', `But what changes come upon the weary desert of our culture, so darkly described, when it is touched by the magic of Dionysus!`, lucene.document.FieldStore.YES))
+    doc1.add(
+      new lucene.document.TextField(
+        'content',
+        `But what changes come upon the weary desert of our culture, so darkly described, when it is touched by the magic of Dionysus!`,
+        lucene.document.FieldStore.YES
+      )
+    )
     writer.addDocumentSync(doc1)
     writer.closeSync()
 
@@ -90,6 +101,4 @@ describe('FSDirectory', () => {
     expect(test('-d', folder.toString())).toBeFalsy()
     done()
   })
-
-
 })

@@ -1,6 +1,5 @@
-import { lang } from 'node-java-rt';
+import { lang } from 'node-java-rt'
 export default class ScoreDoc extends lang.Object {
-
   /** A hit document's number. */
   get doc(): number {
     return this._java.doc

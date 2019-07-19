@@ -12,5 +12,5 @@ export namespace search {
 
 export const search = {
   Query: QueryT,
-  IndexSearcher: IndexSearcherT,
+  IndexSearcher: IndexSearcherT
 }

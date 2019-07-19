@@ -1,10 +1,9 @@
-import { Callback, lang, Long } from 'node-java-rt';
-import { getLuceneJava } from '../../util/getLuceneJava';
-import Analyzer from '../Analyzer';
-import TokenStream from '../TokenStream';
+import { Callback, lang, Long } from 'node-java-rt'
+import { getLuceneJava } from '../../util/getLuceneJava'
+import Analyzer from '../Analyzer'
+import TokenStream from '../TokenStream'
 
 export default class StandardAnalyzer extends Analyzer {
-
   constructor() {
     super()
     this._java = getLuceneJava().newInstanceSync(StandardAnalyzer._javaClassName())

@@ -1,4 +1,3 @@
-import IndexReader from './IndexReader';
+import IndexReader from './IndexReader'
 
-export default abstract class CompositeReader extends IndexReader {
-}
+export default abstract class CompositeReader extends IndexReader {}

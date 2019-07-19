@@ -1,7 +1,6 @@
-import AttributeSource from '../util/AttributeSource';
+import AttributeSource from '../util/AttributeSource'
 
 export default class TokenStream extends AttributeSource {
-
   incrementToken(): boolean {
     return this._java.incrementTokenSync()
   }

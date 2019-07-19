@@ -1,9 +1,8 @@
-import { getJava } from '../../../src';
-import String from '../../../src/java/lang/String';
+import { getJava } from '../../../src'
+import String from '../../../src/java/lang/String'
 
 describe('String', () => {
   describe('copyValueOf', () => {
-
     it('should return string', done => {
       const javaCharArray = getJava().newArray('char', ['a', 'b', 'c'])
       const copy = String.copyValueOf(javaCharArray)

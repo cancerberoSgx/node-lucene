@@ -1,14 +1,22 @@
 # node-lucene
 
-node.js API to apache lucene Java implementation. 
+[Apache lucene](https://lucene.apache.org) API, types and bindings for Node.js.
 
-## Status
+## Contents
 
- * As proof of concept, this project project verifies that complex Java APIs like apache-lucene, can be ported to a JavaScript API in a quite straight forward and mechanical way.
- * Apache lucene JavaScript APIs are far to be completed. User contributions are welcome! Just create missing classes or methods copying existing implementations. 
- * An important limitation found is that creating class extensions from JavaScript is not possible and this is sometimes needed to use APIs like lucene in custom use cases. If you need to declare Java subclasses then you might need to write them in Java and add them in this project class path.
+<!-- toc -->
 
+- [Features](#features)
+- [Status](#status)
+- [Reference API](#reference-api)
+- [Usage](#usage)
+  * [Example: indexing and searching in RAM](#example-indexing-and-searching-in-ram)
+  * [Example: indexing in File System](#example-indexing-in-file-system)
+- [Status](#status-1)
+- [Why?](#why)
+- [TODO](#todo)
 
+<!-- tocstop -->
 
 ## Features
 
@@ -18,6 +26,17 @@ node.js API to apache lucene Java implementation.
  * Written in TypeScript.
  * apache lucene is easily upgradable and included along the project.
  * Requirements: Node.js and Java. For the installation Python is also required.
+
+
+## Status
+
+ * As proof of concept, this project project verifies that complex Java APIs like apache-lucene, can be ported to a JavaScript API in a quite straight forward and mechanical way.
+ * Apache lucene JavaScript APIs are far to be completed. User contributions are welcome! Just create missing classes or methods copying existing implementations. 
+ * An important limitation found is that creating class extensions from JavaScript is not possible and this is sometimes needed to use APIs like lucene in custom use cases. If you need to declare Java subclasses then you might need to write them in Java and add them in this project class path.
+
+## Reference API
+
+[Reference API](docs/README.md).
 
 ## Usage
 
@@ -124,7 +143,7 @@ writer.closeSync()
 
  * still deciding if handcrafting an implementation or auto generating it using java2js like tool. Right now just a handcrafted respecting original lucene java package structure with folders and TS namespaces and using auto generated java2js interfaces as reference / copy/paste 
 
-## why?
+## Why?
 
  * lucene is THE best index / search engine implementation
  * I want to call lucene API directly from my nodejs program without fork(), spawn(), request(), socket, or any IPC. 
