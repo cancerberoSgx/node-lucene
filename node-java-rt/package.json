@@ -37,7 +37,7 @@
     "glob": "^7.1.4",
     "jasmine": "^3.4.0",
     "prettier": "^1.18.2",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "ts-node": "8.3.0",
     "typedoc": "^0.14.2",
     "typedoc-plugin-markdown": "^2.0.10",
