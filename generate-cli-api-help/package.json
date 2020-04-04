@@ -23,7 +23,7 @@
   "repository": "https://github.com/cancerberoSgx/node-lucene/tree/master/generate-cli-api-help",
   "license": "MIT",
   "dependencies": {
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.3",
     "ts-simple-ast": "^12.5.4"
   },
   "devDependencies": {
