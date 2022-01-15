@@ -27,7 +27,7 @@
     "javap-json": "file:../javap-json",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
-    "shelljs": "^0.8.2"
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.8",
