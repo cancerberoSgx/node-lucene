@@ -20,6 +20,6 @@
     "@types/node": "^10.5.8",
     "@types/shelljs": "^0.8.0",
     "jasmine": "^3.2.0",
-    "shelljs": "^0.8.2"
+    "shelljs": "^0.8.5"
   }
 }
