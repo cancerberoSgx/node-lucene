@@ -31,7 +31,7 @@
     "@types/shelljs": "^0.8.0",
     "glob": "^7.1.2",
     "jasmine": "^3.1.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "shelljs": "^0.8.2",
     "ts-node": "^6.1.0",
     "typescript": "2.9.2"
